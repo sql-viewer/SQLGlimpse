@@ -1,4 +1,4 @@
 # sql-viewer
 
 
-Slack group link https://slq-viewer.slack.com/messages/general/
+Slack group link https://sql-viewer.slack.com/messages/general/
