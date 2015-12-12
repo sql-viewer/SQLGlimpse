@@ -14,9 +14,17 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
+
 from django.conf.urls import url
-from django.contrib import admin
+
+
+# Wire up our API using automatic URL routing.
+# Additionally, we include login URLs for the browsable API.
+from sqlviewer.viewer.views import DiagramsView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^api/v1/models/(?P<model_id>\w+)/diagrams/(?P<diagram_id>\w+)[/]?$',
+        DiagramsView.as_view(), name='diagrams_view'),
+    url(r'^api/v1/models/(?P<model_id>\w+)/diagrams[/]?$',
+        DiagramsView.as_view(), name='diagrams_view'),
 ]

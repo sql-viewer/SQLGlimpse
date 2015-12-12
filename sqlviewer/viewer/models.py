@@ -1,9 +1,9 @@
 # Create your models here.
 class Diagram:
-    def __init__(self, identifier, name, tables):
+    def __init__(self, identifier, name, tables=None):
         self.id = identifier
         self.name = name
-        self.tables = tables
+        self.tables = tables or []
 
 
 class Table:
