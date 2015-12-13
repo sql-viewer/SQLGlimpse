@@ -5,3 +5,5 @@ install:
   - pip3 install -r requirements.txt --use-mirrors
 script:
   - python3 manage.py test
+notifications:
+  slack: sql-viewer:cpiFy6bobvYvlOvNj5naOa8u
