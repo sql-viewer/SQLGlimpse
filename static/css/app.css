@@ -7,5 +7,29 @@ html,body {
 .main {
 	width: 100%;
 	height: 100%;
+	background-color: #9DEBFF;
+}
+
+.sqlv-table {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	border: 1px solid #7f8c8d;
+	border-radius: 5px;
+	margin: 0;
+	padding: 0;
 	background-color: #ecf0f1;
+}
+
+.sqlv-table td {
+	padding: 5px;
+}
+
+.sqlv-table th {
+	background-color: #1abc9c;
+}
+
+.sqlv-canvasText {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;	
+	color: #34495e;
 }
