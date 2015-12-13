@@ -1,0 +1,22 @@
+{% extends 'viewer/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Diagram{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block custom_js %}
+    <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/svg.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sql-viewer/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sql-viewer/canvas.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/sql-viewer/table.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="main" id="main"></div>
+{% endblock %}

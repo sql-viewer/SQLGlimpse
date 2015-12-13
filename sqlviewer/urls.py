@@ -22,14 +22,17 @@ from django.conf.urls import url
 # Additionally, we include login URLs for the browsable API.
 from django.views.generic import RedirectView
 import sqlviewer
-from sqlviewer.viewer.views import DiagramsView
+from sqlviewer.viewer.views import DiagramsAPI
 
 urlpatterns = [
-    url(r'^api/v1/models/(?P<model_id>\w+)/diagrams/(?P<diagram_id>\w+)[/]?$',
-        DiagramsView.as_view(), name='diagrams_view'),
-    url(r'^api/v1/models/(?P<model_id>\w+)/diagrams[/]?$',
-        DiagramsView.as_view(), name='diagrams_view'),
+    url(r'^api/v1/models/(?P<model_id>[\w\-]+)/diagrams/(?P<diagram_id>[\w\-]+)[/]?$',
+        DiagramsAPI.as_view(), name='diagrams_view'),
+    url(r'^api/v1/models/(?P<model_id>[\w\-]+)/diagrams[/]?$',
+        DiagramsAPI.as_view(), name='diagrams_view'),
 
-    url(r'^$', RedirectView.as_view(url='/home')),
-    url(r'^home$', sqlviewer.viewer.views.home, name='home')
+    url(r'^$', RedirectView.as_view(url='/models/model-id/')),
+    url(r'^models/(?P<model_id>[\w\-]+)[/]?$',
+        sqlviewer.viewer.views.model_details_view, name='model_details'),
+    url(r'^models/(?P<model_id>[\w\-]+)/diagrams/(?P<diagram_id>[\w\-])[/]?$',
+        sqlviewer.viewer.views.diagram_details_view, name='diagram_details')
 ]
