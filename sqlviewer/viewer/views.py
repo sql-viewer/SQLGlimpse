@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 from django.shortcuts import render
 
 from sqlviewer.viewer.services import get_diagrams_for_model
-from viewer.services import get_diagram_details
+from sqlviewer.viewer.services import get_diagram_details
 
 
 class DiagramsAPI(APIView):
