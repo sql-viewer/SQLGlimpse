@@ -30,6 +30,9 @@ urlpatterns = [
     url(r'^api/v1/models/(?P<model_id>\w+)/diagrams[/]?$',
         DiagramsView.as_view(), name='diagrams_view'),
 
-    url(r'^$', RedirectView.as_view(url='/home')),
-    url(r'^home$', sqlviewer.viewer.views.home, name='home')
+    url(r'^$', RedirectView.as_view(url='/models/0/')),
+    url(r'^models/(?P<model_id>\w+)[/]?',
+        sqlviewer.viewer.views.model_view, name='home'),
+    url(r'^models/(?P<model_id>\w+)/diagrams/(?P<diagram_id>\w+)[/]?$',
+        sqlviewer.viewer.views.diagram_view(), name='home')
 ]

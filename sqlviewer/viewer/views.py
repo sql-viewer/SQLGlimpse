@@ -18,5 +18,11 @@ class DiagramsView(APIView):
         return response
 
 
-def home(request):
-    return render(request, 'viewer/index.html')
+def model_view(request, model_id):
+    diagrams = get_diagrams(model_id)
+    data = {"diagrams": diagrams}
+    return render(request, 'viewer/model.html', data)
+
+
+def diagram_view(request, model_id, diagram_id):
+    return None
