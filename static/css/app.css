@@ -10,10 +10,22 @@ html,body {
 	height: 100%;
 }
 
+.sqlv-svg {
+	background-color: #9DEBFF;
+	cursor: pointer;
+	cursor: grab;
+	cursor: -webkit-grab;
+}
+
+.sqlv-svg-grabing {
+	cursor: move;
+	cursor: grabing;
+	cursor: -webkit-grabing;
+}
+
 .main {
 	width: 100%;
 	height: 100%;
-	background-color: #9DEBFF;
 }
 
 .sqlv-table {

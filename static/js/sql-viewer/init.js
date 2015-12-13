@@ -1,7 +1,7 @@
 // GLOBAL NAMESPACE
 var SqlViewer = SqlViewer || {};
 
-SqlViewer.draw = SVG("main").size('100%', '100%');
+SqlViewer.draw = SVG("main").size('100%', '100%').attr({ class: "sqlv-svg" });
 
 // GLOBAL FUNCTIONS: 
 // Extends global namespace
