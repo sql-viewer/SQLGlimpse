@@ -1,6 +1,7 @@
 # SQL Viewer
 
-Currently supports viewing of mysql workbench files
+Currently supports viewing of mysql workbench files. 
+Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewer
 
 ## How To Install
 
