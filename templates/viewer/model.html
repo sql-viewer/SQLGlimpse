@@ -12,7 +12,7 @@
 {% block body %}
     <ul>
         {% for dia in diagrams %}
-            <li>{{ dia.name }}</li>
+            <li><a href="{% url 'diagram_details' model_id dia.id %}">{{ dia.name }}</a></li>
         {% endfor %}
 
     </ul>
