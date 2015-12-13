@@ -13,7 +13,7 @@ SqlViewer.Table = function (x, y, name, rows) {
 
     this.draw = function() {
 
-        SqlViewer.draw.svg(this.createTable(this.name, this.rows)).attr({ x:this.x, y:this.y, class: "sqlv-table" });
+        SqlViewer.draw.svg(this.createTable(this.name, this.rows));
 
     };
 
