@@ -49,6 +49,7 @@
     "data": {
       "tables": [
         {
+          "id": "GUID",
           "name": "Table",
           "comment": "Some Table Comment",
           "columns": [
