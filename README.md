@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sql-viewer/SQLGlimpse.svg?branch=master)](https://travis-ci.org/sql-viewer/SQLGlimpse)
+
 # SQLGlimpse
 
 Currently supports viewing of mysql workbench files. 
