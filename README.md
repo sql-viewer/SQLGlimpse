@@ -1,4 +1,4 @@
-# SQL Viewer
+# SQLGlimpse
 
 Currently supports viewing of mysql workbench files. 
 Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewer
