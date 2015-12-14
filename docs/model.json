@@ -1,0 +1,89 @@
+{
+  "model": {
+    "id": "GUID",
+    "name": "OmniDB",
+    "version": "20151010T1010",
+    "diagrams": [
+      {
+        "id": "GUID",
+        "name": "Some Diagram",
+        "layers": [
+          {
+            "id": "GUID",
+            "name": "Root",
+            "comment": "Some Layer Comment",
+            "element": {
+              "x": 100,
+              "y": 100,
+              "width": 100,
+              "height": 100,
+              "color": "#FF0000"
+            },
+            "tables": [
+              {
+                "id": "GUID",
+                "tableId": "GUID",
+                "element": {
+                  "x": 100,
+                  "y": 100,
+                  "width": 100,
+                  "height": 100,
+                  "color": "#FF0000",
+                  "collapsed": false
+                }
+              }
+            ],
+            "links": [
+              {
+                "id": "GUID",
+                "linkId": "GUID",
+                "element": {
+                  "draw": "hidden|full|split"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "data": {
+      "tables": [
+        {
+          "name": "Table",
+          "comment": "Some Table Comment",
+          "columns": [
+            {
+              "id": "GUID",
+              "name": "Column Name",
+              "dataType": "BINARY(16)",
+              "customType": "ID / Dictionary Field / Reference Field",
+              "comment": "Some table comment",
+              "default": null,
+              "flags": {
+                "key": false,
+                "nullable": false,
+                "autoIncrement": false,
+                "hidden": false,
+                "reference": true
+              }
+            }
+          ]
+        }
+      ],
+      "links": [
+        {
+          "id": "LINKID",
+          "type": "COLUMN | TABLE",
+          "source": {
+            "tableId": "table ID",
+            "columnId": "column ID"
+          },
+          "destination": {
+            "tableId": "table ID",
+            "columnId": "column ID"
+          }
+        }
+      ]
+    }
+  }
+}
