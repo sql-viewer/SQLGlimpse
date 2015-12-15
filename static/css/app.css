@@ -37,7 +37,7 @@ html,body {
 
 .sqlv-table {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
+	font-size: 14px;
 	border: 1px solid #7f8c8d;
 	border-radius: 5px;
 	margin: 0;
@@ -50,6 +50,7 @@ html,body {
 }
 
 .sqlv-table th {
+	text-align: center;
 	background-color: #1abc9c;
 }
 

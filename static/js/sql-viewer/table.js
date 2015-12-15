@@ -1,7 +1,7 @@
 SqlViewer.namespace("SqlViewer.Table"); 
-SqlViewer.Table = function (x, y, name, rows) {
+SqlViewer.Table = function (x, y, name, columns) {
     if (!(this instanceof SqlViewer.Table)) {
-        return new SqlViewer.Table(x, y, name, rows);
+        return new SqlViewer.Table(x, y, name, columns);
     }
 
     // Properties:
@@ -9,30 +9,22 @@ SqlViewer.Table = function (x, y, name, rows) {
     this.x = x;
     this.y = y;
     this.name = name;
-    this.rows = rows;
-
-    this.draw = function() {
-
-        SqlViewer.draw.svg(this.createTable(this.name, this.rows));
-
-    };
-
-    this.createTable = function() {
-
-        if( Object.prototype.toString.call( rows ) !== '[object Array]' ) {
-            console.error("CreateTable argument is not array!");
-            throw "CreateTable argument is not array!";
-        }
-
-        table = SqlViewer.stringFormat('<foreignobject x="{0}" y="{1}">', this.x, this.y);
-
-        table += SqlViewer.stringFormat("<table class='sqlv-table'><tr><th>{0}</th></tr>", this.name);
-        for (var i = 0; i < this.rows.length; i++) {
-            table += SqlViewer.stringFormat("<tr><td>{0}</td></tr>", rows[i]);
-        };
-        table += "</table></foreignobject>";
-
-        return table;
-    }
+    this.columns = columns;
 };
 
+SqlViewer.Table.prototype.draw = function() {
+    SqlViewer.draw.svg(this.createTable(this.name, this.columns));
+}
+
+SqlViewer.Table.prototype.createTable = function(name, columns) {
+
+    table = SqlViewer.stringFormat('<foreignobject x="{0}" y="{1}">', this.x, this.y);
+
+    table += SqlViewer.stringFormat("<table class='sqlv-table'><tr><th>{0}</th></tr>", name);
+    for (var i = 0; i < columns.length; i++) {
+        table += SqlViewer.stringFormat("<tr><td>{0}</td></tr>", columns[i]);
+    };
+    table += "</table></foreignobject>";
+
+    return table;
+}
