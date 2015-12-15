@@ -41,7 +41,7 @@
                   "color": "#3498db",
                   "collapsed": false
                 }
-              }             
+              }
             ],
             "links": [
               {
@@ -93,7 +93,7 @@
                 "hidden": false,
                 "reference": false
               }
-            },  
+            },
             {
               "id": "718BD94C-4411-4D72-9AAA-DD9BD1B14FA5",
               "name": "OrderDate",
@@ -108,77 +108,77 @@
                 "hidden": false,
                 "reference": false
               }
-            },               
+            }
           ]
         },
-       {
-        "id": "28AC3A4A-5C5D-4E56-B752-D2C3D3DFEA92",
-        "tableId": "20CB57F3-AA19-44CC-9C90-EC3E11DA3AA5",
-        "name": "Customers",
-        "comment": "Customers table",
-        "columns": [
-          {
-            "id": "E6EF88AE-AC44-4638-8264-74A315859BE1",
-            "name": "CustomerID",
-            "dataType": "BINARY(16)",
-            "customType": "",
-            "comment": "order id comment",
-            "default": null,
-            "flags": {
-              "key": false,
-              "nullable": false,
-              "autoIncrement": false,
-              "hidden": false,
-              "reference": false
-            }
-          },
-          {
-            "id": "55D7DBCF-8094-4C3E-B86E-2C520D1FBEB8",
-            "name": "CustomerName",
-            "dataType": "VARCHAR(120)",
-            "customType": "",
-            "comment": "",
-            "default": null,
-            "flags": {
-              "key": false,
-              "nullable": false,
-              "autoIncrement": false,
-              "hidden": false,
-              "reference": false
-            }
-          },  
-          {
-            "id": "95F03099-3BE2-4801-8A09-F3D86CFED5DC",
-            "name": "ContactName",
-            "dataType": "VARCHAR(120)",
-            "customType": "",
-            "comment": "",
-            "default": null,
-            "flags": {
-              "key": false,
-              "nullable": false,
-              "autoIncrement": false,
-              "hidden": false,
-              "reference": false
+        {
+          "id": "28AC3A4A-5C5D-4E56-B752-D2C3D3DFEA92",
+          "tableId": "20CB57F3-AA19-44CC-9C90-EC3E11DA3AA5",
+          "name": "Customers",
+          "comment": "Customers table",
+          "columns": [
+            {
+              "id": "E6EF88AE-AC44-4638-8264-74A315859BE1",
+              "name": "CustomerID",
+              "dataType": "BINARY(16)",
+              "customType": "",
+              "comment": "order id comment",
+              "default": null,
+              "flags": {
+                "key": false,
+                "nullable": false,
+                "autoIncrement": false,
+                "hidden": false,
+                "reference": false
+              }
             },
-          },  
-          {
-            "id": "D5C42496-8874-41E8-9A7C-4F6AA1F63008",
-            "name": "Country",
-            "dataType": "VARCHAR(120)",
-            "customType": "",
-            "comment": "",
-            "default": null,
-            "flags": {
-              "key": false,
-              "nullable": false,
-              "autoIncrement": false,
-              "hidden": false,
-              "reference": false
+            {
+              "id": "55D7DBCF-8094-4C3E-B86E-2C520D1FBEB8",
+              "name": "CustomerName",
+              "dataType": "VARCHAR(120)",
+              "customType": "",
+              "comment": "",
+              "default": null,
+              "flags": {
+                "key": false,
+                "nullable": false,
+                "autoIncrement": false,
+                "hidden": false,
+                "reference": false
+              }
             },
-          }               
-        ]
-      },       
+            {
+              "id": "95F03099-3BE2-4801-8A09-F3D86CFED5DC",
+              "name": "ContactName",
+              "dataType": "VARCHAR(120)",
+              "customType": "",
+              "comment": "",
+              "default": null,
+              "flags": {
+                "key": false,
+                "nullable": false,
+                "autoIncrement": false,
+                "hidden": false,
+                "reference": false
+              }
+            },
+            {
+              "id": "D5C42496-8874-41E8-9A7C-4F6AA1F63008",
+              "name": "Country",
+              "dataType": "VARCHAR(120)",
+              "customType": "",
+              "comment": "",
+              "default": null,
+              "flags": {
+                "key": false,
+                "nullable": false,
+                "autoIncrement": false,
+                "hidden": false,
+                "reference": false
+              }
+            }
+          ]
+        }
       ],
       "links": [
         {
