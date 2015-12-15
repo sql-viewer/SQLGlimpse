@@ -2,6 +2,9 @@
 var SqlViewer = SqlViewer || {};
 
 SqlViewer.draw = SVG("main").size('100%', '100%').attr({ class: "sqlv-svg" });
+SqlViewer.data = null;
+SqlViewer.diagram = null;
+
 
 // GLOBAL FUNCTIONS: 
 // Extends global namespace
@@ -60,3 +63,34 @@ SqlViewer.stringFormat = function (format) {
         return typeof args[number] != 'undefined' ? args[number] : match;
     });
 };
+
+SqlViewer.setData = function(diagram, data) {
+    SqlViewer.diagram = diagram;
+    SqlViewer.data = data;
+}
+
+SqlViewer.ParseDiagram = function(model) {
+    SqlViewer.setData(model.diagrams[0],model.data);
+    SqlViewer.Draw();
+}
+
+SqlViewer.Draw = function() {
+    
+    SqlViewer.DrawLayers(SqlViewer.diagram.layers);
+}
+
+SqlViewer.DrawLayers = function(layers) {
+    
+    for (var i = 0; i < layers.length; i++) {
+        var layer = SqlViewer.diagram.layers[i];
+        var canvas = new SqlViewer.Canvas(
+            layer.element.x,
+            layer.element.y,
+            layer.element.height,
+            layer.element.width,
+            layer.element.color,
+            layer.name);
+        
+        canvas.draw();
+    }; 
+}
