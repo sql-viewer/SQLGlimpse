@@ -60,7 +60,6 @@
       "tables": [
         {
           "id": "5C772FCD-80E6-49DF-AA3E-649BCCAA333C",
-          "tableId": "9DC4D5AC-F943-45E1-B242-9E9E24BED7DC",
           "name": "Orders",
           "comment": "Orders table",
           "columns": [
