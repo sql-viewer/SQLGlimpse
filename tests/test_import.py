@@ -7,6 +7,9 @@ __author__ = 'stefa'
 
 
 class TestMySQLWbImport(TestCase):
+    def setUp(self):
+        self.maxDiff = None
+
     def test_import_model(self):
         model_path = get_resource_path('model/mysqlwb.mwb')
         data = mysqlwb.import_model(model_path, 'name', 'version')

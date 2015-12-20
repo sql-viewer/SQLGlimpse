@@ -2,6 +2,65 @@
   "model": {
     "id": "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6",
     "name": "name",
-    "version": "version"
+    "version": "version",
+    "diagrams": [],
+    "data": {
+      "tables": [
+        {
+          "id": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+          "name": "CMN_PRO_Products",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+          "name": "CMN_PRO_Catalogs",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "CF37A726-40B9-4524-90A9-9D08C129D282",
+          "name": "CMN_PRO_CatalogRevisions",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+          "name": "CMN_BPT_BusinessParticipants",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "A2555342-B966-4751-BD9B-9146541FDA8E",
+          "name": "CMN_BPT_Suppliers",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "6290B13A-5D62-41A2-98F2-D9785D31C874",
+          "name": "CMN_BPT_Customer",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "F44443DB-9C01-4C10-89A5-9721474952F5",
+          "name": "CMN_PRO_CatalogSubscriptions",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+          "name": "CMN_PRO_Catalog_Products",
+          "comment": null,
+          "columns": []
+        },
+        {
+          "id": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
+          "name": "CMN_PRO_Catalog_CustomAttributes",
+          "comment": null,
+          "columns": []
+        }
+      ]
+    }
   }
 }

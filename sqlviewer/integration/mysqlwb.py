@@ -8,19 +8,49 @@ def import_model(model_path, name, version):
     content = read_model_from_zip(model_path)
     root = ET.ElementTree(ET.fromstring(content))
 
-    data = parse_model_information(root, name, version)
-
-    return data
-
-
-def parse_model_information(root, name, version):
     model_element = root.find('.//value[@struct-name="workbench.logical.Model"]')
-    model = {
+    model = parse_model_information(model_element, name, version)
+    for table_element in root.findall('.//value[@type="object"][@struct-name="db.mysql.Table"]'):
+        model['data']['tables'].append(parse_table_information(table_element))
+
+    return {"model": model}
+
+
+def parse_model_information(model_element, name, version):
+    return {
         'id': model_element.get('id').strip('{}'),
         'name': name,
-        'version': version
+        'version': version,
+        'diagrams': [],
+        'data': {
+            'tables': []
+        }
     }
-    return {'model': model}
+
+
+def parse_table_information(table_element):
+    return {
+        "id": table_element.get('id').strip('{}'),
+        "name": table_element.find('.value[@key="name"]').text,
+        "comment": table_element.find('.value[@key="comment"]').text,
+        "columns": []
+    }
+
+
+def parse_column_information(column_element, table_id):
+    return {
+        "id": column_element.get('id').strip('{}'),
+        "tableId": table_id,
+        "name": column_element.find('.value[@key="name"]').text,
+        "comment": column_element.find('.value[@key="comment"]').text,
+        "flags": {
+            "key": False,
+            "nullable": int(column_element.find('.value[@key="isNotNull"]').text) is 0,
+            "autoIncrement": False,
+            "hidden": False,
+            "reference": False
+        }
+    }
 
 
 def read_model_from_zip(path):
