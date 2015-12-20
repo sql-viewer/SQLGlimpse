@@ -1,3 +1,5 @@
 db.sqlite3
 .idea
 *.pyc
+tests/resources/model/document.mwb.xml
+tests/resources/model/mysqlwb.mwb.bak
