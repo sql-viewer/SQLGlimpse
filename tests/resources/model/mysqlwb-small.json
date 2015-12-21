@@ -5,18 +5,34 @@
     "name": "name",
     "diagrams": [
       {
-        "id": "A40EC320-032E-499E-8654-E9FC97952C5F",
+        "id": "1ABE0B5E-152C-48A0-AF62-B865324F28FC",
         "name": "Core",
         "layers": [
           {
-            "id": "F9F617B3-C1AD-4A11-A090-87C2BF257A28",
-            "name": "Root",
-            "comment": null
+            "id": "58A8526D-4C44-4896-A18E-EDBFFC7E7E4A",
+            "name": "LayerName",
+            "description": null,
+            "element": {
+              "height": 300,
+              "width": 512,
+              "x": 641,
+              "y": 943,
+              "color": "#F0F1FE"
+            },
+            "tables": []
           },
           {
-            "id": "F9F617B3-C1AD-4A11-A090-87C2BF257A28",
-            "name": "Layer",
-            "comment": null
+            "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
+            "name": "rootLayer",
+            "description": null,
+            "element": {
+              "height": 2761,
+              "width": 3944,
+              "x": 0,
+              "y": 0,
+              "color": "#FFFFFF"
+            },
+            "tables": []
           }
         ]
       }

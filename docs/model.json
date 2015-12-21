@@ -7,11 +7,12 @@
       {
         "id": "A40EC320-032E-499E-8654-E9FC97952C5F",
         "name": "Some Diagram",
+        "description":"Description",
         "layers": [
           {
             "id": "F9F617B3-C1AD-4A11-A090-87C2BF257A28",
             "name": "Root",
-            "comment": "Some Layer Comment",
+            "description": "Some Layer Comment",
             "element": {
               "x": 10,
               "y": 10,

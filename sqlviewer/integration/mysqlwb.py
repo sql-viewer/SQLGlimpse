@@ -20,12 +20,27 @@ def import_model(model_path, name, version):
             column = parse_column_information(column_element, table['id'], idx)
             table['columns'].append(column)
 
-    return {"model": model}
+    for diagram_element in root.findall('.//value[@type="object"][@struct-name="workbench.physical.Diagram"]'):
+        diagram = parse_diagram_information(diagram_element)
+        model['diagrams'].append(diagram)
+
+        for layer_element in diagram_element.findall(
+                './/value[@type="object"][@struct-name="workbench.physical.Layer"]'):
+            layer = parse_layer_information(layer_element)
+            diagram['layers'].append(layer)
+
+    return {'model': model}
 
 
-def parse_model_information(model_element, name, version):
+def parse_model_information(element, name, version):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
     return {
-        'id': model_element.get('id').strip('{}'),
+        'id': element.get('id').strip('{}'),
         'name': name,
         'version': version,
         'diagrams': [],
@@ -35,25 +50,73 @@ def parse_model_information(model_element, name, version):
     }
 
 
-def parse_table_information(table_element):
+def parse_diagram_information(element):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
     return {
-        "id": table_element.get('id').strip('{}'),
-        "name": table_element.find('.value[@key="name"]').text,
-        "comment": table_element.find('.value[@key="comment"]').text,
+        "id": element.get('id').strip('{}'),
+        "name": element.find('.value[@key="name"]').text,
+        "layers": []
+    }
+
+
+def parse_table_information(element):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
+    return {
+        "id": element.get('id').strip('{}'),
+        "name": element.find('.value[@key="name"]').text,
+        "comment": element.find('.value[@key="comment"]').text,
         "columns": []
     }
 
 
-def parse_column_information(column_element, table_id, ordinal):
+def parse_layer_information(element):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
+    return {
+        "id": element.get('id').strip('{}'),
+        "name": element.get('key') if 'key' in element.attrib else element.find('.value[@key="name"]').text,
+        "description": element.find('.value[@key="description"]').text,
+        "element": {
+            "x": convert_workbench_size(element.find('.value[@key="left"]').text),
+            "y": convert_workbench_size(element.find('.value[@key="top"]').text),
+            "width": convert_workbench_size(element.find('.value[@key="width"]').text),
+            "height": convert_workbench_size(element.find('.value[@key="height"]').text),
+            "color": element.find('.value[@key="color"]').text or "#FFFFFF"
+        },
+        "tables": []
+    }
+
+
+def parse_column_information(element, table_id, ordinal):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
     column = {
-        "id": column_element.get('id').strip('{}'),
+        "id": element.get('id').strip('{}'),
         "tableId": table_id,
-        "name": column_element.find('.value[@key="name"]').text,
-        "comment": column_element.find('.value[@key="comment"]').text,
+        "name": element.find('.value[@key="name"]').text,
+        "comment": element.find('.value[@key="comment"]').text,
     }
     flags = {
         "key": False if ordinal else True,
-        "nullable": int(column_element.find('.value[@key="isNotNull"]').text) is 0,
+        "nullable": int(element.find('.value[@key="isNotNull"]').text) is 0,
         "autoIncrement": False,
         "hidden": False,
         "reference": column['name'].endswith('_RefID')
@@ -62,6 +125,11 @@ def parse_column_information(column_element, table_id, ordinal):
     column['flags'] = flags
 
     return column
+
+
+def convert_workbench_size(value):
+    segments = value.split("e+")
+    return int(float(segments[0]) * (10 ** int(segments[1])))
 
 
 def read_model_from_zip(path):
