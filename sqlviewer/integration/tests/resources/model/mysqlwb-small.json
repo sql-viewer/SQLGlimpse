@@ -1,0 +1,202 @@
+{
+  "model": {
+    "id": "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6",
+    "version": "version",
+    "name": "name",
+    "diagrams": [
+      {
+        "id": "1ABE0B5E-152C-48A0-AF62-B865324F28FC",
+        "name": "Core",
+        "layers": [
+          {
+            "id": "58A8526D-4C44-4896-A18E-EDBFFC7E7E4A",
+            "name": "LayerName",
+            "description": null,
+            "element": {
+              "height": 300,
+              "width": 512,
+              "x": 641,
+              "y": 943,
+              "color": "#F0F1FE"
+            },
+            "tables": [
+              {
+                "element": {
+                  "collapsed": false,
+                  "color": "#98BFDA",
+                  "height": 190,
+                  "width": 330,
+                  "x": 87,
+                  "y": 37
+                },
+                "id": "CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB",
+                "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
+              }
+            ]
+          },
+          {
+            "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
+            "name": "rootLayer",
+            "description": null,
+            "element": {
+              "height": 2761,
+              "width": 3944,
+              "x": 0,
+              "y": 0,
+              "color": "#FFFFFF"
+            },
+            "tables": [
+              {
+                "element": {
+                  "collapsed": false,
+                  "color": "#98BFDA",
+                  "height": 120,
+                  "width": 330,
+                  "x": 730,
+                  "y": 730
+                },
+                "id": "C50C81C5-2192-4738-B85D-3D55DA5E75A5",
+                "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "data": {
+      "tables": [
+        {
+          "comment": "This is a COMMENT!",
+          "name": "CMN_PRO_Products",
+          "columns": [
+            {
+              "comment": null,
+              "name": "CMN_PRO_ProductID",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "70A39AC0-1194-4831-94B2-B663A2118C42",
+              "flags": {
+                "reference": false,
+                "nullable": false,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": true
+              }
+            },
+            {
+              "comment": null,
+              "name": "ProductITL",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "DD0E4803-9F70-4B9B-97BE-A4F53D58F3DD",
+              "flags": {
+                "reference": false,
+                "nullable": true,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            },
+            {
+              "comment": null,
+              "name": "Created_Timestamp",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "2D248548-8BDB-4D89-884E-717111605447",
+              "flags": {
+                "reference": false,
+                "nullable": true,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            },
+            {
+              "comment": null,
+              "name": "SourceJSONHash",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "CEC8E2CB-1525-4CB7-93CF-B6025AD90C70",
+              "flags": {
+                "reference": false,
+                "nullable": true,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            },
+            {
+              "comment": null,
+              "name": "SourceJSON",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "E24BAC76-8F24-430D-ACC9-208DA2208096",
+              "flags": {
+                "reference": false,
+                "nullable": true,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            },
+            {
+              "comment": null,
+              "name": "Version",
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "id": "2DCCF8C3-F032-477E-8F69-25681DE3204C",
+              "flags": {
+                "reference": false,
+                "nullable": true,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            }
+          ],
+          "id": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
+        },
+        {
+          "comment": null,
+          "name": "CMN_PRO_Catalog_Products",
+          "columns": [
+            {
+              "comment": null,
+              "name": "CMN_PRO_Catalog_ProductsID",
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+              "id": "89731E3B-D5E6-4923-A9AB-97E04459D9C9",
+              "flags": {
+                "reference": false,
+                "nullable": false,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": true
+              }
+            },
+            {
+              "comment": null,
+              "name": "CMN_PRO_Catalog_RefID",
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+              "id": "0CA2D3E5-7AF4-446D-9D4B-ADFD65DD2699",
+              "flags": {
+                "reference": true,
+                "nullable": false,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            },
+            {
+              "comment": null,
+              "name": "CMN_PRO_Product_RefID",
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+              "id": "C9AC6FCD-3B74-458C-B551-3C62AAAC42E8",
+              "flags": {
+                "reference": true,
+                "nullable": false,
+                "hidden": false,
+                "autoIncrement": false,
+                "key": false
+              }
+            }
+          ],
+          "id": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
+        }
+      ]
+    }
+  }
+}

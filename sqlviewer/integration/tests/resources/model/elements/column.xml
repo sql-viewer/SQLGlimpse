@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<value struct-checksum="0x783b5183" id="{70A39AC0-1194-4831-94B2-B663A2118C42}" struct-name="db.mysql.Column"
+       type="object">
+    <value type="int" key="autoIncrement">0</value>
+    <value type="string" key="characterSetName"/>
+    <value type="list" key="checks" content-struct-name="db.CheckConstraint" content-type="object"
+           _ptr_="00000000235C98F0"/>
+    <value type="string" key="collationName"/>
+    <value type="string" key="datatypeExplicitParams"/>
+    <value type="string" key="defaultValue"/>
+    <value type="int" key="defaultValueIsNull">0</value>
+    <value type="list" key="flags" content-type="string" _ptr_="00000000235C9D50"/>
+    <value type="int" key="isNotNull">1</value>
+    <value type="int" key="length">-1</value>
+    <value type="int" key="precision">-1</value>
+    <value type="int" key="scale">-1</value>
+    <link struct-name="db.UserDatatype" type="object" key="userType">{F9A6BEC1-E5E8-4FE8-B086-9938A583B491}</link>
+    <value type="string" key="comment">Special Comment</value>
+    <value type="string" key="name">CMN_PRO_ProductID</value>
+    <value type="string" key="oldName">CMN_PRO_ProductID</value>
+    <link struct-name="GrtObject" type="object" key="owner">{3709F0EB-A274-4A70-8119-7A3D198CC00D}</link>
+</value>
