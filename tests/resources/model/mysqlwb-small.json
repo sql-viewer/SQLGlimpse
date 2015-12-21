@@ -19,7 +19,20 @@
               "y": 943,
               "color": "#F0F1FE"
             },
-            "tables": []
+            "tables": [
+              {
+                "element": {
+                  "collapsed": false,
+                  "color": "#98BFDA",
+                  "height": 190,
+                  "width": 330,
+                  "x": 87,
+                  "y": 37
+                },
+                "id": "CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB",
+                "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
+              }
+            ]
           },
           {
             "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
@@ -32,7 +45,20 @@
               "y": 0,
               "color": "#FFFFFF"
             },
-            "tables": []
+            "tables": [
+              {
+                "element": {
+                  "collapsed": false,
+                  "color": "#98BFDA",
+                  "height": 120,
+                  "width": 330,
+                  "x": 730,
+                  "y": 730
+                },
+                "id": "C50C81C5-2192-4738-B85D-3D55DA5E75A5",
+                "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
+              }
+            ]
           }
         ]
       }

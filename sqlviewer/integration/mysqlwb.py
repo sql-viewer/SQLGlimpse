@@ -29,6 +29,13 @@ def import_model(model_path, name, version):
             layer = parse_layer_information(layer_element)
             diagram['layers'].append(layer)
 
+            for table_element in diagram_element.findall(
+                    './/value[@type="object"][@struct-name="workbench.physical.TableFigure"]'):
+                table_layer_id = table_element.find('.link[@key="layer"]').text.strip('{}')
+                if table_layer_id == layer['id']:
+                    table = parse_table_figure_information(table_element)
+                    layer['tables'].append(table)
+
     return {'model': model}
 
 
@@ -79,6 +86,28 @@ def parse_table_information(element):
     }
 
 
+def parse_table_figure_information(element):
+    """
+
+    :param element:
+    :type element: _elementtree.Element
+    :return:
+    """
+    return {
+        "id": element.get('id').strip('{}'),
+        "tableId": element.find('.link[@key="table"]').text.strip('{}'),
+        "element": {
+
+            "x": convert_workbench_size(element.find('.value[@key="left"]').text),
+            "y": convert_workbench_size(element.find('.value[@key="top"]').text),
+            "width": convert_workbench_size(element.find('.value[@key="width"]').text),
+            "height": convert_workbench_size(element.find('.value[@key="height"]').text),
+            "color": element.find('.value[@key="color"]').text or "#FFFFFF",
+            "collapsed": element.find('.value[@key="expanded"]').text == "0"
+        }
+    }
+
+
 def parse_layer_information(element):
     """
 
@@ -86,6 +115,7 @@ def parse_layer_information(element):
     :type element: _elementtree.Element
     :return:
     """
+
     return {
         "id": element.get('id').strip('{}'),
         "name": element.get('key') if 'key' in element.attrib else element.find('.value[@key="name"]').text,

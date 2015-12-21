@@ -7,7 +7,7 @@
       {
         "id": "A40EC320-032E-499E-8654-E9FC97952C5F",
         "name": "Some Diagram",
-        "description":"Description",
+        "description": "Description",
         "layers": [
           {
             "id": "F9F617B3-C1AD-4A11-A090-87C2BF257A28",
@@ -23,6 +23,7 @@
             "tables": [
               {
                 "id": "9DC4D5AC-F943-45E1-B242-9E9E24BED7DC",
+                "tableId": "4BA0DD11-FF3C-4E22-BECD-7AFFFA1A63B6",
                 "element": {
                   "x": 50,
                   "y": 150,
@@ -34,6 +35,7 @@
               },
               {
                 "id": "20CB57F3-AA19-44CC-9C90-EC3E11DA3AA5",
+                "tableId": "5C772FCD-80E6-49DF-AA3E-649BCCAA333C",
                 "element": {
                   "x": 200,
                   "y": 150,
