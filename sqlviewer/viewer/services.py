@@ -19,4 +19,8 @@ def get_diagrams_for_model(model_id):
 
 
 def get_diagram_details(model_id, diagram_id):
-    pass
+    diagrams = get_diagrams_for_model(model_id)
+    for dia in diagrams:
+        if dia['id'].lower() == diagram_id.lower():
+            return dia
+    return None

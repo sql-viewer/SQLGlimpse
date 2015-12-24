@@ -11,7 +11,7 @@ class RestAPITest(TestCase):
 
     def test_get_diagrams_ok(self):
         # Issue a GET request.
-        model_id = "model-id"
+        model_id = "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6"
         response = self.client.get('/api/v1/models/{0}/diagrams'.format(model_id))
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
@@ -27,12 +27,12 @@ class ViewerTest(TestCase):
         self.client = Client()
 
     def test_model_details_page_ok(self):
-        model_id = "model-id"
+        model_id = "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6"
         response = self.client.get(reverse('model_details', kwargs={"model_id": model_id}))
         context = response.context
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(3, len(context['diagrams']))
+        self.assertEqual(2, len(context['diagrams']))
         self.assertEqual(model_id, context['model_id'])
 
     def test_model_details_page_model_not_found(self):
