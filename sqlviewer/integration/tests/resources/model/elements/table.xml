@@ -1,0 +1,43 @@
+<value type="object" struct-name="db.mysql.Table" id="{3709F0EB-A274-4A70-8119-7A3D198CC00D}"
+       struct-checksum="0xc705f521">
+    <value type="string" key="avgRowLength"></value>
+    <value type="int" key="checksum">0</value>
+    <value type="string" key="keyBlockSize"></value>
+    <value type="string" key="maxRows"></value>
+    <value type="string" key="mergeInsert"></value>
+    <value type="string" key="mergeUnion"></value>
+    <value type="string" key="minRows"></value>
+    <value type="string" key="nextAutoInc"></value>
+    <value type="string" key="packKeys"></value>
+    <value type="int" key="partitionCount">0</value>
+    <value _ptr_="00000000235C9810" type="list" content-type="object" content-struct-name="db.mysql.PartitionDefinition"
+           key="partitionDefinitions"/>
+    <value type="string" key="partitionExpression"></value>
+    <value type="string" key="partitionType"></value>
+    <value type="string" key="password"></value>
+    <link type="object" struct-name="db.mysql.Index" key="primaryKey">{8D832E05-0E3B-4E97-891E-46413C5782A2}</link>
+    <value type="string" key="raidChunkSize"></value>
+    <value type="string" key="raidChunks"></value>
+    <value type="string" key="raidType"></value>
+    <value type="string" key="rowFormat"></value>
+    <value type="int" key="subpartitionCount">0</value>
+    <value type="string" key="subpartitionExpression"></value>
+    <value type="string" key="subpartitionType"></value>
+    <value type="string" key="tableDataDir"></value>
+    <value type="string" key="tableEngine">InnoDB</value>
+    <value type="string" key="tableIndexDir"></value>
+    <value type="int" key="isStub">0</value>
+    <value type="int" key="isSystem">0</value>
+    <value type="int" key="isTemporary">0</value>
+    <value type="string" key="temporaryScope"></value>
+    <value type="int" key="commentedOut">0</value>
+    <value type="string" key="createDate">2013-12-16 17:43</value>
+    <value _ptr_="00000000235C8F50" type="dict" key="customData"/>
+    <value type="string" key="lastChangeDate">2014-11-05 13:15</value>
+    <value type="int" key="modelOnly">0</value>
+    <value type="string" key="name">CMN_PRO_Products</value>
+    <link type="object" struct-name="GrtNamedObject" key="owner">{F69B5B33-5F42-4CB0-A438-09DBE974F294}</link>
+    <value type="string" key="temp_sql"></value>
+    <value type="string" key="comment">This is a COMMENT!</value>
+    <value type="string" key="oldName">CMN_PRO_Products</value>
+</value>

@@ -1,0 +1,21 @@
+<value type="object" struct-name="workbench.physical.TableFigure" id="{CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB}"
+       struct-checksum="0x3b14eccb">
+    <value type="int" key="columnsExpanded">1</value>
+    <value type="int" key="foreignKeysExpanded">0</value>
+    <value type="int" key="indicesExpanded">0</value>
+    <value type="int" key="summarizeDisplay">-1</value>
+    <link type="object" struct-name="db.Table" key="table">{3709F0EB-A274-4A70-8119-7A3D198CC00D}</link>
+    <value type="int" key="triggersExpanded">0</value>
+    <value type="string" key="color">#98BFDA</value>
+    <value type="int" key="expanded">1</value>
+    <value type="real" key="height">1.9e+002</value>
+    <link type="object" struct-name="model.Layer" key="layer">{58A8526D-4C44-4896-A18E-EDBFFC7E7E4A}</link>
+    <value type="real" key="left">8.7e+001</value>
+    <value type="int" key="locked">0</value>
+    <value type="int" key="manualSizing">1</value>
+    <value type="real" key="top">3.7e+001</value>
+    <value type="real" key="width">3.3e+002</value>
+    <link type="object" struct-name="model.Diagram" key="owner">{1ABE0B5E-152C-48A0-AF62-B865324F28FC}</link>
+    <value type="int" key="visible">1</value>
+    <value type="string" key="name">CMN_PRO_Products</value>
+</value>
