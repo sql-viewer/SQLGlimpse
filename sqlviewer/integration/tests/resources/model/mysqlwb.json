@@ -1,764 +1,925 @@
 {
   "model": {
-    "name": "name",
+    "diagrams": [
+      {
+        "layers": [
+          {
+            "tables": [
+              {
+                "element": {
+                  "x": 730,
+                  "width": 330,
+                  "y": 1090,
+                  "height": 190,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB",
+                "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
+              },
+              {
+                "element": {
+                  "x": 200,
+                  "width": 330,
+                  "y": 470,
+                  "height": 300,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "A781FF65-81E6-4F7B-B9EC-C584BF2E7337",
+                "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
+              },
+              {
+                "element": {
+                  "x": 200,
+                  "width": 330,
+                  "y": 819,
+                  "height": 210,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "48BC5FE3-FCC2-4A28-87EE-CBBA31738A7A",
+                "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
+              },
+              {
+                "element": {
+                  "x": 1760,
+                  "width": 330,
+                  "y": 459,
+                  "height": 270,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "75973AC9-0B4F-40B6-8886-7953B4B3D458",
+                "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
+              },
+              {
+                "element": {
+                  "x": 1350,
+                  "width": 280,
+                  "y": 459,
+                  "height": 130,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "AEE69412-0F7E-4062-AD34-66BE14E5B24F",
+                "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E"
+              },
+              {
+                "element": {
+                  "x": 1350,
+                  "width": 280,
+                  "y": 610,
+                  "height": 120,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "E6C4DB12-9318-410E-86CD-94E6026498B0",
+                "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874"
+              },
+              {
+                "element": {
+                  "x": 740,
+                  "width": 320,
+                  "y": 459,
+                  "height": 190,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "C88FADFC-AF65-4BA4-88CA-9F991F3EA423",
+                "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
+              },
+              {
+                "element": {
+                  "x": 730,
+                  "width": 330,
+                  "y": 730,
+                  "height": 120,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "C50C81C5-2192-4738-B85D-3D55DA5E75A5",
+                "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
+              },
+              {
+                "element": {
+                  "x": 200,
+                  "width": 330,
+                  "y": 280,
+                  "height": 130,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "CAC3E4DE-7E21-4D8D-B25C-2FEDFF3D7D8A",
+                "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
+              }
+            ],
+            "element": {
+              "x": 0,
+              "width": 3944,
+              "y": 0,
+              "height": 2761,
+              "color": "#FFFFFF"
+            },
+            "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
+            "description": null,
+            "name": "rootLayer"
+          }
+        ],
+        "id": "1ABE0B5E-152C-48A0-AF62-B865324F28FC",
+        "name": "Core"
+      },
+      {
+        "layers": [
+          {
+            "tables": [
+              {
+                "element": {
+                  "x": 222,
+                  "width": 362,
+                  "y": 195,
+                  "height": 212,
+                  "color": "#98BFDA",
+                  "collapsed": false
+                },
+                "id": "D66F8CA2-081E-42BD-80EA-CA17DCEACA18",
+                "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E"
+              }
+            ],
+            "element": {
+              "x": 0,
+              "width": 1972,
+              "y": 0,
+              "height": 1380,
+              "color": "#FFFFFF"
+            },
+            "id": "0912B28A-1DD1-42B2-B051-517F79A4C66A",
+            "description": null,
+            "name": "rootLayer"
+          }
+        ],
+        "id": "E2711908-D8F4-4BF2-BE15-7FF62FAD5A5D",
+        "name": "EER Diagram"
+      }
+    ],
+    "version": "version",
+    "id": "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6",
     "data": {
       "tables": [
         {
           "comment": null,
-          "name": "CMN_PRO_Products",
+          "id": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_PRO_ProductID",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "70A39AC0-1194-4831-94B2-B663A2118C42",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "ProductITL",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "DD0E4803-9F70-4B9B-97BE-A4F53D58F3DD",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "2D248548-8BDB-4D89-884E-717111605447",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SourceJSONHash",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "CEC8E2CB-1525-4CB7-93CF-B6025AD90C70",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SourceJSON",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "E24BAC76-8F24-430D-ACC9-208DA2208096",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Version",
-              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+              "comment": null,
               "id": "2DCCF8C3-F032-477E-8F69-25681DE3204C",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
             }
           ],
-          "id": "3709F0EB-A274-4A70-8119-7A3D198CC00D"
+          "name": "CMN_PRO_Products"
         },
         {
           "comment": null,
-          "name": "CMN_PRO_Catalogs",
+          "id": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_PRO_CatalogID",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "CD5BC7F1-2CDA-425D-8F4F-E224BCC94067",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": "Catalog code, unique to the catalog, used for updating the catalog, subscribing and unsubscribing from the catalog.",
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CatalogCode",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": "Catalog code, unique to the catalog, used for updating the catalog, subscribing and unsubscribing from the catalog.",
               "id": "8EBD65CF-782E-49CF-A6E4-B16E565B3A49",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Name",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "4623788B-76D3-46FA-A24D-572000ADD44D",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SourceJSON",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "3E3F3458-377B-4CE6-BBDD-3417D8112152",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Description",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "26AC2CBF-BAB2-46AD-949E-D63F9B9EBCB5",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": "http://en.wikipedia.org/wiki/ISO_4217",
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "CurrencyISO",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": "http://en.wikipedia.org/wiki/ISO_4217",
               "id": "919A62E1-8FAB-4B0F-B19A-D53CE1F62117",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": "http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\n639-1, 2 letter code",
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "LanguageISO",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": "http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\n639-1, 2 letter code",
               "id": "0FBD180C-2CFB-48A1-91A6-C4892B55568B",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "PublishingSupplier_RefID",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "BBD9F285-ED39-4D4D-BEEA-1611D6AE15F2",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "ActiveCatalogRevision_RefID",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "517ED398-4033-4AA5-9946-BC9FD30A994B",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": "0 - Public \n1 - Private",
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CatalogType",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": "0 - Public \n1 - Private",
               "id": "26893A11-A730-42F6-A2B8-1A09233C8041",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": null,
               "id": "CFAF7D9F-8152-4683-AE5D-DA0D37D309BE",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             },
             {
-              "comment": "Used for indexing server to pinpoint the index that this server is located on. Defaults to \"catalogs\". Is used for building the location of this catalog within the catalog server such as -> endpoing/catalogs/CatalogCode/_search",
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "IndexName",
-              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B",
+              "comment": "Used for indexing server to pinpoint the index that this server is located on. Defaults to \"catalogs\". Is used for building the location of this catalog within the catalog server such as -> endpoing/catalogs/CatalogCode/_search",
               "id": "11428662-2628-4A14-8862-A09EA78F50A7",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
             }
           ],
-          "id": "F4F23142-C34C-4B1F-84A3-05B766CEF69B"
+          "name": "CMN_PRO_Catalogs"
         },
         {
           "comment": null,
-          "name": "CMN_PRO_CatalogRevisions",
+          "id": "CF37A726-40B9-4524-90A9-9D08C129D282",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_PRO_CatalogRevisionID",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "68B1721D-85C3-442A-BBBF-DBAE7D5C9A28",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Catalog_RefID",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "A7E52FBF-BECD-4478-8A18-05CF6CFFE9FF",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Valid_From",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "5DF15641-7163-4AEA-BA4B-9F7C713CB08E",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Valid_Through",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "13E0801F-2228-4111-BF8E-CF83718875A4",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Version",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "4154B269-63A6-4AEF-B58E-FCE1F1B354DF",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "PublishedOn_Date",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "788837B7-B60E-412A-B880-305965CC3B39",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "PublishedBy_BusinessParticipant_RefID",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "ADBE566C-B1AC-4F27-9B3B-880761CF5F6B",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282",
+              "comment": null,
               "id": "B1136249-3693-4E50-9120-6477A479BEA1",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "CF37A726-40B9-4524-90A9-9D08C129D282"
             }
           ],
-          "id": "CF37A726-40B9-4524-90A9-9D08C129D282"
+          "name": "CMN_PRO_CatalogRevisions"
         },
         {
           "comment": null,
-          "name": "CMN_BPT_BusinessParticipants",
+          "id": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_BPT_BusinessParticipantID",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "1193F8B6-9760-4B70-B5DA-EAC90C8D00D4",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "BusinessParticipantITL",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "95C00FBA-E0DC-4C56-9901-3ACE5D817173",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "TenantITL",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "FB241DAB-E268-4961-874B-155D68E482C0",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "DisplayName",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "9EEC337E-9511-42B4-8DE4-448B7EFF312B",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SourceRealmID",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "D9283DBD-D1E0-41AD-B6ED-78EBF9D9F609",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "2B086A5D-45CF-41D8-BFB5-75C750E42026",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SourceJSON",
-              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B",
+              "comment": null,
               "id": "7984FAC6-C2C4-447E-8F3D-803EE16DBD56",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
             }
           ],
-          "id": "12AAE865-97A8-4A3F-9C1B-C72056EE762B"
+          "name": "CMN_BPT_BusinessParticipants"
         },
         {
           "comment": null,
-          "name": "CMN_BPT_Suppliers",
+          "id": "A2555342-B966-4751-BD9B-9146541FDA8E",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_BPT_SupplierID",
-              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E",
+              "comment": null,
               "id": "A155FD92-0FDB-4518-B8F3-165B0F4C6A54",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CMN_BPT_BusinessParticipant_RefID",
-              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E",
+              "comment": null,
               "id": "ED433C1E-C541-4DED-8844-1D972B485997",
-              "flags": {
-                "reference": true,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E",
+              "comment": null,
               "id": "227655F4-2D58-45AD-8D1B-DAB1EC320377",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "A2555342-B966-4751-BD9B-9146541FDA8E"
             }
           ],
-          "id": "A2555342-B966-4751-BD9B-9146541FDA8E"
+          "name": "CMN_BPT_Suppliers"
         },
         {
           "comment": null,
-          "name": "CMN_BPT_Customer",
+          "id": "6290B13A-5D62-41A2-98F2-D9785D31C874",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_BPT_CustomerID",
-              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874",
+              "comment": null,
               "id": "9EC54F54-A293-4738-AD77-B24F900626C0",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CMN_BPT_BusinessParticipant_RefID",
-              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874",
+              "comment": null,
               "id": "5C85DD9A-BB75-468C-AF87-CCA659BD259E",
-              "flags": {
-                "reference": true,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874",
+              "comment": null,
               "id": "B4C52D28-60B9-4123-AD65-D0B0CA6E8FE5",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "6290B13A-5D62-41A2-98F2-D9785D31C874"
             }
           ],
-          "id": "6290B13A-5D62-41A2-98F2-D9785D31C874"
+          "name": "CMN_BPT_Customer"
         },
         {
           "comment": null,
-          "name": "CMN_PRO_CatalogSubscriptions",
+          "id": "F44443DB-9C01-4C10-89A5-9721474952F5",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_PRO_CatalogSubscriptionID",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "84DBE0F7-FA65-4C6F-9E2F-9A5021AB196F",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SubscriptionCode",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "626D7628-1C81-47DD-B1F8-ABA8BD4313C4",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Catalog_RefID",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "F560B4A2-B33B-4338-9744-EA984B864CD7",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SubscribedCustomer_RefID",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "FDD3C833-E1A7-4125-A8D1-5323AF0F970D",
-              "flags": {
-                "reference": true,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "SubscribedOn_Date",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "1D614FA5-C3F1-463B-8865-965CB5C260B6",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "IsSubscriptionActive",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "7F9B0863-B49D-422D-BF19-83716FDE87BE",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": true,
+                "key": false,
+                "hidden": false
+              },
               "name": "Created_Timestamp",
-              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5",
+              "comment": null,
               "id": "3CDDA516-218A-42AF-AE9F-66277557ED12",
-              "flags": {
-                "reference": false,
-                "nullable": true,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "F44443DB-9C01-4C10-89A5-9721474952F5"
             }
           ],
-          "id": "F44443DB-9C01-4C10-89A5-9721474952F5"
+          "name": "CMN_PRO_CatalogSubscriptions"
         },
         {
           "comment": null,
-          "name": "CMN_PRO_Catalog_Products",
+          "id": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
           "columns": [
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": true,
+                "hidden": false
+              },
               "name": "CMN_PRO_Catalog_ProductsID",
-              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+              "comment": null,
               "id": "89731E3B-D5E6-4923-A9AB-97E04459D9C9",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": true,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CMN_PRO_Catalog_RefID",
-              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+              "comment": null,
               "id": "0CA2D3E5-7AF4-446D-9D4B-ADFD65DD2699",
-              "flags": {
-                "reference": true,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
             },
             {
-              "comment": null,
-              "name": "CMN_PRO_Product_RefID",
-              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
-              "id": "C9AC6FCD-3B74-458C-B551-3C62AAAC42E8",
               "flags": {
+                "autoIncrement": false,
                 "reference": true,
                 "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+                "key": false,
+                "hidden": false
+              },
+              "name": "CMN_PRO_Product_RefID",
+              "comment": null,
+              "id": "C9AC6FCD-3B74-458C-B551-3C62AAAC42E8",
+              "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
             }
           ],
-          "id": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D"
+          "name": "CMN_PRO_Catalog_Products"
         },
         {
           "comment": null,
-          "name": "CMN_PRO_Catalog_CustomAttributes",
+          "id": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
           "columns": [
             {
-              "comment": null,
-              "name": "CMN_PRO_Catalog_CustomAttributeID",
-              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
-              "id": "C493C318-FC47-4E47-9CEF-3AE43D625396",
               "flags": {
+                "autoIncrement": false,
                 "reference": false,
                 "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": true
-              }
+                "key": true,
+                "hidden": false
+              },
+              "name": "CMN_PRO_Catalog_CustomAttributeID",
+              "comment": null,
+              "id": "C493C318-FC47-4E47-9CEF-3AE43D625396",
+              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
             },
             {
-              "comment": null,
-              "name": "Catalog_RefID",
-              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
-              "id": "498A23B7-AD35-4174-A4A9-9848D3792752",
               "flags": {
+                "autoIncrement": false,
                 "reference": true,
                 "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+                "key": false,
+                "hidden": false
+              },
+              "name": "Catalog_RefID",
+              "comment": null,
+              "id": "498A23B7-AD35-4174-A4A9-9848D3792752",
+              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
             },
             {
-              "comment": null,
+              "flags": {
+                "autoIncrement": false,
+                "reference": false,
+                "nullable": false,
+                "key": false,
+                "hidden": false
+              },
               "name": "CustomAttribute_Key",
-              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
+              "comment": null,
               "id": "4F6281B6-82A1-4D45-8833-399ECD5867BE",
-              "flags": {
-                "reference": false,
-                "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
             },
             {
-              "comment": null,
-              "name": "CustomAttribute_Value",
-              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
-              "id": "FA1BD921-85BD-42FF-853E-CDF7C25DB121",
               "flags": {
+                "autoIncrement": false,
                 "reference": false,
                 "nullable": false,
-                "hidden": false,
-                "autoIncrement": false,
-                "key": false
-              }
+                "key": false,
+                "hidden": false
+              },
+              "name": "CustomAttribute_Value",
+              "comment": null,
+              "id": "FA1BD921-85BD-42FF-853E-CDF7C25DB121",
+              "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
             }
           ],
-          "id": "8E9F97EE-E5E2-4811-A28C-274D053F565F"
+          "name": "CMN_PRO_Catalog_CustomAttributes"
         }
       ]
     },
-    "id": "EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6",
-    "diagrams": [],
-    "version": "version"
+    "name": "name"
   }
 }
