@@ -1,0 +1,18 @@
+<value type="object" struct-name="workbench.physical.Layer" id="{58A8526D-4C44-4896-A18E-EDBFFC7E7E4A}"
+       struct-checksum="0x1d14ca4b">
+    <value type="string" key="color">#F0F1FE</value>
+    <value type="string" key="description">LayerDescription</value>
+    <value _ptr_="00000000235E1C20" type="list" content-type="object" content-struct-name="model.Figure" key="figures">
+        <link type="object">{CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB}</link>
+    </value>
+    <value _ptr_="00000000235E17C0" type="list" content-type="object" content-struct-name="model.Group" key="groups"/>
+    <value type="real" key="height">3.e+002</value>
+    <value type="real" key="left">6.41e+002</value>
+    <value _ptr_="00000000235E1D00" type="list" content-type="object" content-struct-name="model.Layer"
+           key="subLayers"/>
+    <value type="real" key="top">9.43e+002</value>
+    <value type="real" key="width">5.12e+002</value>
+    <link type="object" struct-name="model.Diagram" key="owner">{1ABE0B5E-152C-48A0-AF62-B865324F28FC}</link>
+    <value type="int" key="visible">1</value>
+    <value type="string" key="name">LayerName</value>
+</value>

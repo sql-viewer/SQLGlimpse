@@ -1,0 +1,15 @@
+<value type="object" struct-name="workbench.physical.Diagram" id="{1ABE0B5E-152C-48A0-AF62-B865324F28FC}"
+       struct-checksum="0x232c2434">
+    <value type="int" key="closed">0</value>
+    <value type="string" key="description">Model Description</value>
+    <value type="string" key="name">Core</value>
+    <value _ptr_="00000000235E1360" type="dict" key="options">
+        <value type="int" key="AlignToGrid">1</value>
+    </value>
+    <link type="object" struct-name="model.Model" key="owner">{6EADDF99-75AF-4E5D-9175-2BB8C03A4717}</link>
+    <value type="int" key="updateBlocked">0</value>
+    <value type="real" key="width">3.9440000000000005e+003</value>
+    <value type="real" key="x">0.e+000</value>
+    <value type="real" key="y">0.e+000</value>
+    <value type="real" key="zoom">1.e+000</value>
+</value>

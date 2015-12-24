@@ -1,0 +1,50 @@
+  <value type="object" struct-name="workbench.Document" id="{06355BC2-5C85-4F69-8949-02FCA7E71A1E}" struct-checksum="0x7131bf99">
+    <value type="object" struct-name="workbench.logical.Model" id="{EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6}" struct-checksum="0xf4220370" key="logicalModel">
+      <value _ptr_="00000000235C8000" type="list" content-type="object" content-struct-name="workbench.logical.Diagram" key="diagrams"/>
+      <value _ptr_="00000000235C7E40" type="dict" key="customData"/>
+      <value _ptr_="00000000235C93B0" type="list" content-type="object" content-struct-name="model.Marker" key="markers"/>
+      <value _ptr_="00000000235C9490" type="dict" key="options"/>
+      <value type="string" key="name"></value>
+      <link type="object" struct-name="GrtObject" key="owner">{06355BC2-5C85-4F69-8949-02FCA7E71A1E}</link>
+    </value>
+    <value _ptr_="00000000235C6C50" type="list" content-type="object" content-struct-name="workbench.OverviewPanel" key="overviewPanels"/>
+      <value _ptr_="00000000235C6B70" type="dict" key="customData">
+          <value type="int" key="MySQLDbModule:GenerateCreateIndex">0</value>
+          <value type="int" key="MySQLDbModule:GenerateDrops">1</value>
+          <value type="int" key="MySQLDbModule:GenerateInserts">0</value>
+          <value type="int" key="MySQLDbModule:GenerateSchemaDrops">0</value>
+          <value type="int" key="MySQLDbModule:GenerateUse">1</value>
+          <value type="int" key="MySQLDbModule:GenerateWarnings">0</value>
+          <value type="int" key="MySQLDbModule:NoFKForInserts">0</value>
+          <value type="int" key="MySQLDbModule:NoUsersJustPrivileges">0</value>
+          <value type="int" key="MySQLDbModule:NoViewPlaceholders">0</value>
+          <value type="int" key="MySQLDbModule:OmitSchemata">1</value>
+          <value type="int" key="MySQLDbModule:SkipFKIndexes">0</value>
+          <value type="int" key="MySQLDbModule:SkipForeignKeys">1</value>
+      </value>
+      <value type="object" struct-name="app.DocumentInfo" id="{7BE91BF0-21C7-4D29-AA7C-02C5CD127F1B}"
+             struct-checksum="0xbba780b8" key="info">
+          <value type="string" key="author">Danulabs</value>
+          <value type="string" key="caption">New Model</value>
+          <value type="string" key="dateChanged">2015-12-21 20:28</value>
+          <value type="string" key="dateCreated">2013-12-16 17:42</value>
+          <value type="string" key="description"></value>
+          <value type="string" key="project">Name of the project</value>
+          <value type="string" key="version">1.0</value>
+          <value type="string" key="name">Properties</value>
+          <link type="object" struct-name="GrtObject" key="owner">{06355BC2-5C85-4F69-8949-02FCA7E71A1E}</link>
+      </value>
+      <value type="object" struct-name="app.PageSettings" id="{119269E9-512A-40C6-9AC8-1B17E7BDA900}"
+             struct-checksum="0x7dc77977" key="pageSettings">
+          <value type="real" key="marginBottom">1.4460000000000001e+001</value>
+          <value type="real" key="marginLeft">6.3499999999999996e+000</value>
+          <value type="real" key="marginRight">6.3499999999999996e+000</value>
+          <value type="real" key="marginTop">6.3499999999999996e+000</value>
+          <value type="string" key="orientation">portrait</value>
+          <link type="object" struct-name="app.PaperType" key="paperType">com.mysql.wb.papertype.a4</link>
+          <value type="real" key="scale">5.e+000</value>
+          <value type="string" key="name"></value>
+          <link type="object" struct-name="GrtObject" key="owner">{06355BC2-5C85-4F69-8949-02FCA7E71A1E}</link>
+      </value>
+    <value type="string" key="name"></value>
+  </value>
