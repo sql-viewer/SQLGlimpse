@@ -1,15 +1,13 @@
+import json
+from os.path import dirname, join
 from sqlviewer.viewer.models import Diagram
 
-__author__ = 'smartinov'
+__author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
+with open(join(dirname(dirname(__file__)), 'integration/tests/resources/model/mysqlwb.json')) as fin:
+    model = json.load(fin)
 
 models = {
-    "model-id": {
-        "diagrams": [
-            Diagram("1", "commons"),
-            Diagram("2", "healthcare"),
-            Diagram("3", "logistics")
-        ]
-    }
+    model["model"]["id"]: model["model"]
 }
 
 
