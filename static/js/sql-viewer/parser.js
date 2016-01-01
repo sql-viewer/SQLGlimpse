@@ -50,24 +50,13 @@ SqlViewer.Parser.prototype.drawTables = function(tables) {
 	for (var i = 0; i < tables.length; i++) {
 		var table = tables[i];
 		var tableData = this.tableData[table.id];
-		var tabRows = this.getTableColumns(tableData.columns);
 
 		var tab = new SqlViewer.Table(
 			table.element.x,
 			table.element.y,
-			tableData.name,
-			tabRows
+			tableData
 		);
 
 		tab.draw();		
 	}
-}
-
-SqlViewer.Parser.prototype.getTableColumns = function(columns) {
-
-	var r = [];
-	for (var i = 0; i < columns.length; i++) {
-		r.push(columns[i].name);
-	}
-	return r;
 }
