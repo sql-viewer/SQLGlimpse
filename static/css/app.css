@@ -60,3 +60,10 @@ html,body {
 	color: #34495e;
 }
 
+.svg-link {
+	stroke: #c0392b;
+}
+
+.svg-link:hover {
+	stroke: black;
+}
