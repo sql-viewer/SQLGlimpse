@@ -5,16 +5,13 @@ SqlViewer.Parser = function (data, diagram) {
     }
 
     this.tableData = this.getTableData(data);
+    this.links = this.getLinksData(data);
 	this.diagram = diagram;
 };
 
-/** 
- * get table data from json model
- */
 SqlViewer.Parser.prototype.getTableData = function(data) {
 
 	var retVal = [];
-
 	for (var i = 0; i < data.tables.length; i++) {
 		retVal[data.tables[i].tableId] = data.tables[i];
 	}
@@ -22,15 +19,26 @@ SqlViewer.Parser.prototype.getTableData = function(data) {
 	return retVal;
 }
 
-SqlViewer.Parser.prototype.draw = function() {
+SqlViewer.Parser.prototype.getLinksData = function(data) {
 
-    this.drawLayers(this.diagram.layers);
+    var retVal = [];
+    for (var i = 0; i < data.links.length; i++) {
+        retVal[data.links[i].id] = data.links[i];
+    }
+
+    return retVal;
 }
 
-SqlViewer.Parser.prototype.drawLayers = function(layers) {
+SqlViewer.Parser.prototype.draw = function() {
+
+    this.drawLayers();
+    this.drawLinks();
+}
+
+SqlViewer.Parser.prototype.drawLayers = function() {
     
-    for (var i = 0; i < layers.length; i++) {
-        var layer = layers[i];
+    for (var i = 0; i < this.diagram.layers.length; i++) {
+        var layer = this.diagram.layers[i];
         var canvas = new SqlViewer.Canvas(
             layer.element.x,
             layer.element.y,
@@ -50,24 +58,35 @@ SqlViewer.Parser.prototype.drawTables = function(tables) {
 	for (var i = 0; i < tables.length; i++) {
 		var table = tables[i];
 		var tableData = this.tableData[table.id];
-		var tabRows = this.getTableColumns(tableData.columns);
 
 		var tab = new SqlViewer.Table(
 			table.element.x,
 			table.element.y,
-			tableData.name,
-			tabRows
+			tableData
 		);
 
 		tab.draw();		
 	}
 }
 
-SqlViewer.Parser.prototype.getTableColumns = function(columns) {
+SqlViewer.Parser.prototype.drawLinks = function() {
+    //console.log(this.links);
 
-	var r = [];
-	for (var i = 0; i < columns.length; i++) {
-		r.push(columns[i].name);
-	}
-	return r;
+    //id,source, destination, type, draw
+
+    for (var linkId in this.links) {
+        var l = this.links[linkId];
+
+        var link = new SqlViewer.Link(
+            l.id,
+            l.source,
+            l.destination,
+            l.type,
+            null
+        );
+
+        link.draw();
+    }
 }
+
+
