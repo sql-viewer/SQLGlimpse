@@ -1,6 +1,5 @@
 import json
 from os.path import dirname, join
-from sqlviewer.viewer.models import Diagram
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 with open(join(dirname(dirname(__file__)), 'integration/tests/resources/model/mysqlwb.json')) as fin:

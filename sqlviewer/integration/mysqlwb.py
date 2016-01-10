@@ -1,5 +1,6 @@
 from zipfile import ZipFile
 from xml.etree import ElementTree as ET
+from sqlviewer.integration.tests.util import get_resource_path
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
@@ -223,3 +224,11 @@ def convert_workbench_size(value):
 def read_model_from_zip(path):
     zip_file = ZipFile(path)
     return zip_file.read("document.mwb.xml")
+
+
+if __name__ == '__main__':
+    import json
+
+    model_path = get_resource_path('model/mysqlwb.mwb')
+    data = import_model(model_path, 'name', 'version')
+    print(json.dumps(data, separators=(',', ':')))
