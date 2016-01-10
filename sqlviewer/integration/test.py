@@ -87,6 +87,7 @@ class TestMySQLWbImport(TestCase):
         self.assertEqual("1ABE0B5E-152C-48A0-AF62-B865324F28FC", diagram["id"])
         self.assertEqual("Core", diagram["name"])
         self.assertEqual([], diagram["layers"])
+        self.assertEqual([], diagram["connections"])
 
     def test_parse_model_information(self):
         element = ET.fromstring(get_resource_content('model/elements/model.xml'))
@@ -95,13 +96,17 @@ class TestMySQLWbImport(TestCase):
         self.assertEqual("06355BC2-5C85-4F69-8949-02FCA7E71A1E", model["id"])
         self.assertEqual("name", model["name"])
         self.assertEqual("version", model["version"])
+        self.assertEqual([], model["diagrams"])
+        self.assertIsNotNone(model["data"])
+        self.assertEqual([], model["data"]["tables"])
+        self.assertEqual([], model["data"]["foreignKeys"])
 
     def test_parse_index_information(self):
         element = ET.fromstring(get_resource_content('model/elements/foreign-key.xml'))
         model = parse_index_information(element)
 
         self.assertEqual("50509361-E961-41DC-A7CB-E9267D4238C4", model["id"])
-        self.assertEqual("COLUMN", model["type"])
+        self.assertEqual("column", model["type"])
         self.assertEqual("6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D", model["source"]["tableId"])
         self.assertEqual("C9AC6FCD-3B74-458C-B551-3C62AAAC42E8", model["source"]["columnId"])
         self.assertEqual("3709F0EB-A274-4A70-8119-7A3D198CC00D", model["target"]["tableId"])

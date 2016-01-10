@@ -23,14 +23,18 @@ def import_model(model_path, name, version):
         query = '.value[@key="foreignKeys"]/value[@struct-name="db.mysql.ForeignKey"]'
         for index_element in table_element.findall(query):
             index = parse_index_information(index_element)
-            model['data']['links'].append(index)
+            model['data']['foreignKeys'].append(index)
 
     for diagram_element in root.findall('.//value[@type="object"][@struct-name="workbench.physical.Diagram"]'):
         diagram = parse_diagram_information(diagram_element)
         model['diagrams'].append(diagram)
+        query = './/value[@type="object"][@struct-name="workbench.physical.Connection"]'
+        for connection_element in diagram_element.findall(query):
+            connection = parse_connection_information(connection_element)
+            diagram['connections'].append(connection)
 
-        for layer_element in diagram_element.findall(
-                './/value[@type="object"][@struct-name="workbench.physical.Layer"]'):
+        query = './/value[@type="object"][@struct-name="workbench.physical.Layer"]'
+        for layer_element in diagram_element.findall(query):
             layer = parse_layer_information(layer_element)
             diagram['layers'].append(layer)
 
@@ -58,7 +62,7 @@ def parse_model_information(element, name, version):
         'diagrams': [],
         'data': {
             'tables': [],
-            'links': []
+            'foreignKeys': []
         }
     }
 
@@ -73,7 +77,8 @@ def parse_diagram_information(element):
     return {
         "id": element.get('id').strip('{}'),
         "name": element.find('.value[@key="name"]').text,
-        "layers": []
+        "layers": [],
+        "connections": []
     }
 
 
