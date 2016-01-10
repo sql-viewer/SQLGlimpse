@@ -1,26 +1,23 @@
 # Create your views here.
 from django.http.response import HttpResponse, Http404, HttpResponseNotAllowed
-import jsonpickle as jsonpickle
-
+import json
 from rest_framework import status
+from rest_framework.decorators import api_view
 
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from django.shortcuts import render
 
 from sqlviewer.viewer.services import get_diagrams_for_model
 from sqlviewer.viewer.services import get_diagram_details
 
 
-class DiagramsAPI(APIView):
-    def get(self, request, model_id, diagram_id=None, *args, **kw):
-        diagrams = get_diagrams_for_model(model_id)
-        if diagrams:
-            data = jsonpickle.dumps(diagrams)
-            response = Response(data=data, status=status.HTTP_200_OK)
-            return response
-        else:
-            raise Http404("Model not found")
+@api_view(["GET"])
+def diagram_list_view(request, model_id):
+    diagrams = get_diagrams_for_model(model_id)
+    if diagrams:
+        return Response(data=diagrams, status=status.HTTP_200_OK)
+    else:
+        raise Http404("Model not found")
 
 
 def model_details_view(request, model_id):

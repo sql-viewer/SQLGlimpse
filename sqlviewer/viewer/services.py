@@ -2,11 +2,11 @@ import json
 from os.path import dirname, join
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
-with open(join(dirname(dirname(__file__)), 'integration/tests/resources/model/mysqlwb.json')) as fin:
-    model = json.load(fin)
+with open(join(dirname(__file__), 'resources/model.json')) as fin:
+    data = json.load(fin)
 
 models = {
-    model["model"]["id"]: model["model"]
+    data["model"]["id"]: data["model"]
 }
 
 

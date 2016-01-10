@@ -21,18 +21,15 @@ from django.conf.urls import url
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 from django.views.generic import RedirectView
-import sqlviewer
-from sqlviewer.viewer.views import DiagramsAPI
+from sqlviewer.viewer.views import diagram_details_view, model_details_view, diagram_list_view
 
 urlpatterns = [
-    url(r'^api/v1/models/(?P<model_id>[\w\-]+)/diagrams/(?P<diagram_id>[\w\-]+)[/]?$',
-        DiagramsAPI.as_view(), name='diagrams_view'),
     url(r'^api/v1/models/(?P<model_id>[\w\-]+)/diagrams[/]?$',
-        DiagramsAPI.as_view(), name='diagrams_view'),
+        diagram_list_view, name='diagram_list'),
 
     url(r'^$', RedirectView.as_view(url='/models/EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6/')),
     url(r'^models/(?P<model_id>[\w\-]+)[/]?$',
-        sqlviewer.viewer.views.model_details_view, name='model_details'),
+        model_details_view, name='model_details'),
     url(r'^models/(?P<model_id>[\w\-]+)/diagrams/(?P<diagram_id>[\w\-]+)[/]?$',
-        sqlviewer.viewer.views.diagram_details_view, name='diagram_details')
+        diagram_details_view, name='diagram_details')
 ]
