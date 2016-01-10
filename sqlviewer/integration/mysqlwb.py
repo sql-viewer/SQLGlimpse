@@ -20,6 +20,11 @@ def import_model(model_path, name, version):
             column = parse_column_information(column_element, table['id'], idx)
             table['columns'].append(column)
 
+        query = '.value[@key="foreignKeys"]/value[@struct-name="db.mysql.ForeignKey"]'
+        for index_element in table_element.findall(query):
+            index = parse_index_information(index_element)
+            model['data']['links'].append(index)
+
     for diagram_element in root.findall('.//value[@type="object"][@struct-name="workbench.physical.Diagram"]'):
         diagram = parse_diagram_information(diagram_element)
         model['diagrams'].append(diagram)
@@ -52,7 +57,8 @@ def parse_model_information(element, name, version):
         'version': version,
         'diagrams': [],
         'data': {
-            'tables': []
+            'tables': [],
+            'links': []
         }
     }
 
@@ -155,6 +161,53 @@ def parse_column_information(element, table_id, ordinal):
     column['flags'] = flags
 
     return column
+
+
+def parse_index_information(element):
+    """
+    Parses the foreign key element in mysqlworkbench
+
+    :type element: _elementtree.Element
+    :return:
+    """
+    return {
+        "id": element.get('id').strip('{}'),
+        "type": "column",
+        "source": {
+            "tableId": element.find('.link[@key="owner"]').text.strip('{}'),
+            "columnId": element.find('.value[@key="columns"]/link').text.strip('{}')
+        },
+        "target": {
+            "tableId": element.find('.link[@key="referencedTable"]').text.strip('{}'),
+            "columnId": element.find('.value[@key="referencedColumns"]/link').text.strip('{}')
+        }
+    }
+
+
+def parse_connection_information(element):
+    """
+    Parses the foreign key element in mysqlworkbench
+
+    :type element: _elementtree.Element
+    :return: parsed element as dictionary
+    :rtype: dict
+    """
+    # split hidden full
+    draw_split = element.find('.value[@key="drawSplit"]').text.strip() == "1"
+    visible = element.find('.value[@key="visible"]').text.strip() == "1"
+
+    if visible:
+        draw = "split" if draw_split else "full"
+    else:
+        draw = "hidden"
+
+    return {
+        "id": element.get('id').strip('{}'),
+        "foreignKeyId": element.find('.link[@key="foreignKey"]').text.strip('{}'),
+        "element": {
+            "draw": draw
+        }
+    }
 
 
 def convert_workbench_size(value):

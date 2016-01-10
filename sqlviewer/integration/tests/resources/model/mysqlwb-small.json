@@ -61,9 +61,26 @@
             ]
           }
         ]
+        "connections":[
+
+        ]
       }
     ],
     "data": {
+      "foreignKeys": [
+        {
+          "id": "50509361-E961-41DC-A7CB-E9267D4238C4",
+          "type": "column",
+          "source": {
+            "tableId": "6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D",
+            "columnId": "C9AC6FCD-3B74-458C-B551-3C62AAAC42E8"
+          },
+          "target": {
+            "tableId": "3709F0EB-A274-4A70-8119-7A3D198CC00D",
+            "columnId": "70A39AC0-1194-4831-94B2-B663A2118C42"
+          }
+        }
+      ],
       "tables": [
         {
           "comment": "This is a COMMENT!",

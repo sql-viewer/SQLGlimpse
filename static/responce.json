@@ -43,7 +43,7 @@
                 }
               }             
             ],
-            "links": [
+            "foreignKeys": [
               {
                 "id": "39678F83-EB7A-4848-84E2-A568D27FB0C6",
                 "linkId": "DE954174-8A6C-4977-BD28-E93C72D9F776",
@@ -180,7 +180,7 @@
         ]
       },       
       ],
-      "links": [
+      "foreignKeys": [
         {
           "id": "LINKID",
           "type": "COLUMN | TABLE",

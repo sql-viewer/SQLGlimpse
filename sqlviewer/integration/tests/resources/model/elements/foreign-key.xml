@@ -1,0 +1,24 @@
+<value type="object" struct-name="db.mysql.ForeignKey" id="{50509361-E961-41DC-A7CB-E9267D4238C4}"
+       struct-checksum="0x70a8fc40">
+    <link type="object" struct-name="db.mysql.Table" key="referencedTable">{3709F0EB-A274-4A70-8119-7A3D198CC00D}</link>
+    <value _ptr_="00000000235E01E0" type="list" content-type="object" content-struct-name="db.Column" key="columns">
+        <link type="object">{C9AC6FCD-3B74-458C-B551-3C62AAAC42E8}</link>
+    </value>
+    <value _ptr_="00000000235E06B0" type="dict" key="customData"/>
+    <value type="int" key="deferability">0</value>
+    <value type="string" key="deleteRule">NO ACTION</value>
+    <link type="object" struct-name="db.Index" key="index">{F7A651F6-650E-41A4-A0D7-440C9DA40ED1}</link>
+    <value type="int" key="mandatory">1</value>
+    <value type="int" key="many">1</value>
+    <value type="int" key="modelOnly">0</value>
+    <link type="object" struct-name="db.Table" key="owner">{6A2C07B6-8DAD-4FF9-B5E7-85C3E34C136D}</link>
+    <value _ptr_="00000000235E0870" type="list" content-type="object" content-struct-name="db.Column"
+           key="referencedColumns">
+        <link type="object">{70A39AC0-1194-4831-94B2-B663A2118C42}</link>
+    </value>
+    <value type="int" key="referencedMandatory">1</value>
+    <value type="string" key="updateRule">NO ACTION</value>
+    <value type="string" key="comment"></value>
+    <value type="string" key="name">fk_CMN_PRO_Catalog_Products_CMN_PRO_Products1</value>
+    <value type="string" key="oldName">fk_CMN_PRO_Catalog_Products_CMN_PRO_Products1</value>
+</value>

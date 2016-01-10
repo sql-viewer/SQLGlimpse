@@ -1,0 +1,22 @@
+<value type="object" struct-name="workbench.physical.Connection" id="{2AC90AD8-4D61-47E8-A274-3D840C65558B}"
+       struct-checksum="0x9baebc92">
+    <value type="string" key="caption">fk_CMN_PRO_Catalog_Products_CMN_PRO_Products1</value>
+    <value type="real" key="captionXOffs">0.e+000</value>
+    <value type="real" key="captionYOffs">0.e+000</value>
+    <value type="string" key="comment"></value>
+    <value type="real" key="endCaptionXOffs">0.e+000</value>
+    <value type="real" key="endCaptionYOffs">0.e+000</value>
+    <value type="string" key="extraCaption"></value>
+    <value type="real" key="extraCaptionXOffs">0.e+000</value>
+    <value type="real" key="extraCaptionYOffs">0.e+000</value>
+    <link type="object" struct-name="db.ForeignKey" key="foreignKey">{50509361-E961-41DC-A7CB-E9267D4238C4}</link>
+    <value type="real" key="middleSegmentOffset">0.e+000</value>
+    <value type="real" key="startCaptionXOffs">0.e+000</value>
+    <value type="real" key="startCaptionYOffs">0.e+000</value>
+    <value type="int" key="drawSplit">0</value>
+    <link type="object" struct-name="model.Figure" key="endFigure">{CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB}</link>
+    <link type="object" struct-name="model.Figure" key="startFigure">{C50C81C5-2192-4738-B85D-3D55DA5E75A5}</link>
+    <link type="object" struct-name="model.Diagram" key="owner">{1ABE0B5E-152C-48A0-AF62-B865324F28FC}</link>
+    <value type="int" key="visible">1</value>
+    <value type="string" key="name"></value>
+</value>
