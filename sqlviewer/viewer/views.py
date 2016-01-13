@@ -20,7 +20,7 @@ def diagram_list_api_view(request, model_id):
         raise Http404("Model not found")
 
 @api_view(["GET"])
-def diagram_details_api_view(request, model_id):
+def diagram_details_api_view(request, model_id, diagram_id):
     diagrams = get_diagrams_for_model(model_id)
     if diagrams:
         return Response(data=diagrams, status=status.HTTP_200_OK)
