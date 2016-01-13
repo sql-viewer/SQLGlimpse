@@ -17,3 +17,4 @@ Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewe
 ## How To Contribute
 
 Slack group link https://sql-viewer.slack.com/messages/general/
+
