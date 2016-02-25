@@ -1,0 +1,10 @@
+{
+  "id": "A40EC320-032E-499E-8654-E9FC97952C5F",
+  "name": "Some Diagram",
+  "description": "Description",
+  "layers": [],
+  "data": {
+    "tables": [],
+    "foreignKeys": []
+  }
+}
