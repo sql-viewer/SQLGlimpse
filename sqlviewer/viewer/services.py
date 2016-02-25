@@ -1,6 +1,7 @@
 import copy
 import json
 from os.path import dirname, join
+from sqlviewer.viewer.models import Model, Table, Column
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
@@ -35,5 +36,37 @@ def get_diagram_details(model_id, diagram_id):
     return None
 
 
-def get_diagram_data(model_id, diagram_id):
-    pass
+def save_model(model):
+    """
+    Model imported from one of our importers
+    :type model: dict
+    :return:
+    """
+    dbmodel = Model.objects.create(
+        id=model['id'],
+        name=model['name'],
+        version=model['version']
+    )
+
+    tables = []
+    for table in model['data']['tables']:
+        dbtable = Table.objects.create(
+            id=table['id'],
+            name=table['name'],
+            comment=table['comment'],
+            model=dbmodel
+        )
+        tables.append(dbtable)
+
+        for col in table['columns']:
+            Column.objects.create(
+                id=col['id'],
+                name=col['name'],
+                comment=col['comment'],
+                table=dbtable,
+                is_key=col['flags']['key'],
+                is_auto_increment=col['flags']['autoIncrement'],
+                is_nullable=col['flags']['nullable'],
+                is_reference=col['flags']['reference'],
+                is_hidden=col['flags']['hidden'],
+            )
