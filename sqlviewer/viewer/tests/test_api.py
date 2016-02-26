@@ -1,13 +1,22 @@
 # Create your tests here.
-import unittest
+import json
+import os
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
+from sqlviewer.viewer.services import save_imported_model
+
+
+def import_model():
+    with open(os.path.join(os.path.dirname(__file__), 'resources/model.json')) as fin:
+        data = json.load(fin)
+    save_imported_model(data['model'])
 
 
 class RestAPITest(TestCase):
     def setUp(self):
         # Every test needs a client.
         self.client = Client()
+        import_model()
 
     def test_get_diagrams_ok(self):
         # Issue a GET request.

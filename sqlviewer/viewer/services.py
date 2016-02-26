@@ -1,42 +1,10 @@
-import copy
-import json
-from os.path import dirname, join
-from sqlviewer.viewer.models import Model, Table, Column
+from sqlviewer.viewer.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
+    TableElement
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
-with open(join(dirname(__file__), 'resources/model.json')) as fin:
-    data = json.load(fin)
 
-models = {
-    data["model"]["id"]: data["model"]
-}
-
-
-def get_diagrams_for_model(model_id):
-    if model_id in models:
-        return models[model_id]["diagrams"]
-    else:
-        return None
-
-
-def get_diagram_details(model_id, diagram_id):
-    diagrams = get_diagrams_for_model(model_id)
-    for dia in diagrams:
-        if dia['id'].lower() == diagram_id.lower():
-            diagram = copy.deepcopy(dia)
-            tbids = []
-            for layer in diagram['layers']:
-                for table in layer['tables']:
-                    tbids.append(table['id'])
-
-            fkids = [c['foreignKeyId'] for c in diagram['connections']]
-
-            return diagram
-    return None
-
-
-def save_model(model):
+def save_imported_model(model):
     """
     Model imported from one of our importers
     :type model: dict
@@ -48,7 +16,11 @@ def save_model(model):
         version=model['version']
     )
 
-    tables = []
+    dbtables = {}
+    dbcolumns = {}
+    dbfks = {}
+    dbdiagrams = {}
+
     for table in model['data']['tables']:
         dbtable = Table.objects.create(
             id=table['id'],
@@ -56,10 +28,10 @@ def save_model(model):
             comment=table['comment'],
             model=dbmodel
         )
-        tables.append(dbtable)
+        dbtables[str(dbtable.id).lower()] = dbtable
 
         for col in table['columns']:
-            Column.objects.create(
+            dbcol = Column.objects.create(
                 id=col['id'],
                 name=col['name'],
                 comment=col['comment'],
@@ -70,3 +42,58 @@ def save_model(model):
                 is_reference=col['flags']['reference'],
                 is_hidden=col['flags']['hidden'],
             )
+            dbcolumns[str(dbcol.id).lower()] = dbcol
+
+    for fk in model['data']['foreignKeys']:
+        dbfk = ForeignKey.objects.create(
+            id=fk['id'],
+            type=fk['type'],
+            target_table=dbtables[str(fk['target']['tableId']).lower()],
+            target_column=dbcolumns[str(fk['target']['columnId']).lower()],
+            source_table=dbtables[str(fk['source']['tableId']).lower()],
+            source_column=dbcolumns[str(fk['source']['columnId']).lower()],
+            model=dbmodel
+        )
+        dbfks[str(dbfk.id).lower()] = dbfk
+
+    for dia in model['diagrams']:
+        dbdiagram = Diagram.objects.create(
+            id=dia['id'],
+            name=dia['name'],
+            model=dbmodel
+        )
+        dbdiagrams[str(dbdiagram.id).lower()] = dbdiagram
+
+        for con in dia['connections']:
+            ConnectionElement.objects.create(
+                id=con['id'],
+                draw=con['element']['draw'],
+                foreignKey=dbfks[str(con['foreignKeyId']).lower()],
+                diagram=dbdiagram
+            )
+
+        for layer in dia['layers']:
+            dblayer = LayerElement.objects.create(
+                id=layer['id'],
+                name=layer['name'],
+                description=layer['description'],
+                pos_x=layer['element']['x'],
+                pos_y=layer['element']['y'],
+                height=layer['element']['height'],
+                width=layer['element']['width'],
+                color=layer['element']['color'],
+                diagram=dbdiagram
+            )
+
+            for table in layer['tables']:
+                TableElement.objects.create(
+                    id=table['id'],
+                    table=dbtables[str(table['tableId']).lower()],
+                    pos_x=table['element']['x'],
+                    pos_y=table['element']['y'],
+                    height=table['element']['height'],
+                    width=table['element']['width'],
+                    color=table['element']['color'],
+                    collapsed=table['element']['collapsed'],
+                    layer_element=dblayer
+                )

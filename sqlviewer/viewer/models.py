@@ -13,10 +13,12 @@ class Model(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
     version = models.CharField(max_length=128, blank=False, null=False)
 
+    def diagrams(self):
+        return Diagram.objects.filter(model=self)
+
 
 class Diagram(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
-    description = models.TextField(blank=True, null=True)
     model = models.ForeignKey(Model)
 
 
@@ -53,6 +55,7 @@ class ForeignKey(UUIDModel):
     target_column = models.ForeignKey(Column, null=True, related_name='target_column')
     source_table = models.ForeignKey(Table, related_name='source_table')
     source_column = models.ForeignKey(Column, null=True, related_name='source_column')
+    model = models.ForeignKey(Model)
 
 
 class AbstractElement(UUIDModel):
@@ -74,6 +77,7 @@ class LayerElement(AbstractElement):
 
 class TableElement(AbstractElement):
     table = models.ForeignKey(Table)
+    layer_element = models.ForeignKey(LayerElement)
     collapsed = models.BooleanField(default=False)
 
 
@@ -86,5 +90,6 @@ class ConnectionElement(UUIDModel):
         (DRAW_FULL, "full"),
         (DRAW_HIDDEN, "hidden")
     )
+    diagram = models.ForeignKey(Diagram)
     foreignKey = models.ForeignKey(ForeignKey)
     draw = models.CharField(max_length=10, choices=DRAW_CHOICES, default=DRAW_FULL)
