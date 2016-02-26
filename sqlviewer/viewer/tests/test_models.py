@@ -86,7 +86,10 @@ class ModelSerializationTest(TestCase):
         self.assertEqual('Core', data['name'])
         self.assertEqual(2, len(data['layers']))
         self.assertEqual(1, len(data['connections']))
+        self.assertEqual(2, len(data['data']['tables']))
+        self.assertEqual(1, len(data['data']['foreignKeys']))
 
         data = diagram_element.to_json(shallow=True)
         self.assertFalse('layers' in data)
         self.assertFalse('connections' in data)
+        self.assertFalse('data' in data)

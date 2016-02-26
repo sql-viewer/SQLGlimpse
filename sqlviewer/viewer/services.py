@@ -4,32 +4,6 @@ from sqlviewer.viewer.models import Model, Table, Column, ForeignKey, Diagram, C
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
 
-def get_diagram_list(model_id):
-    diagrams = []
-    for dia in Diagram.objects.filter(model__id=model_id):
-        diagrams.append({
-            "id": dia.id,
-            "name": dia.name
-        })
-
-    return diagrams
-
-
-def get_diagram_details(model_id, diagram_id):
-    dbdia = Diagram.objects.get(model__id=model_id, id=diagram_id)
-    diagram = {
-        "id": dbdia.id,
-        "name": dbdia.name,
-        "description": "",
-        "layers": [],
-        "data": {
-            "tables": [],
-            "foreignKeys": []
-        }
-    }
-
-
-
 def save_imported_model(model):
     """
     Model imported from one of our importers

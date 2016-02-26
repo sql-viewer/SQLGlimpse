@@ -27,12 +27,19 @@ class Diagram(UUIDModel):
     def connection_elements(self):
         return ConnectionElement.objects.filter(diagram=self)
 
+    def table_elements(self):
+        return TableElement.objects.filter(layer_element__diagram=self)
+
     def to_json(self, shallow=False):
         data = {'id': str(self.id),
                 'name': self.name}
         if not shallow:
             data['layers'] = [layer.to_json() for layer in self.layer_elements()]
             data['connections'] = [conn.to_json() for conn in self.connection_elements()]
+            data['data'] = {
+                'tables': [tel.table.to_json() for tel in self.table_elements()],
+                'foreignKeys': [cel.foreignKey.to_json() for cel in self.connection_elements()]
+            }
         return data
 
 
