@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 
 from rest_framework.response import Response
-from sqlviewer.viewer.models import Model, Diagram
+from sqlviewer.glimpse.models import Model, Diagram
 
 
 @api_view(["GET"])

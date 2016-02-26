@@ -38,7 +38,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    'sqlviewer.viewer',
+    'sqlviewer.glimpse',
 ]
 
 THIRD_PARTY_APPS = [

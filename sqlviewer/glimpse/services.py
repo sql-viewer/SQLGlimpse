@@ -1,4 +1,4 @@
-from sqlviewer.viewer.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
+from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
     TableElement
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'

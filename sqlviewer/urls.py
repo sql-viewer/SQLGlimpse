@@ -21,7 +21,7 @@ from django.conf.urls import url
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 from django.views.generic import RedirectView
-from sqlviewer.viewer.views import diagram_details_view, model_details_view, diagram_list_api_view, \
+from sqlviewer.glimpse.views import diagram_details_view, model_details_view, diagram_list_api_view, \
     diagram_details_api_view
 
 api = [

@@ -1,10 +1,10 @@
 import json
 from django.test import TestCase
 from os.path import dirname, join
-from sqlviewer.viewer.models import Model, Table, Column, ForeignKey
+from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey
 from django.db.models import Q
 
-from sqlviewer.viewer.services import save_imported_model
+from sqlviewer.glimpse.services import save_imported_model
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 

@@ -3,7 +3,7 @@ import json
 import os
 from django.core.urlresolvers import reverse
 from django.test import TestCase, Client
-from sqlviewer.viewer.services import save_imported_model
+from sqlviewer.glimpse.services import save_imported_model
 
 
 def import_model():

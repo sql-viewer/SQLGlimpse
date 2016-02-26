@@ -1,8 +1,8 @@
 import json
 import os
 from django.test import TestCase
-from sqlviewer.viewer.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram
-from sqlviewer.viewer.services import save_imported_model
+from sqlviewer.glimpse.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram
+from sqlviewer.glimpse.services import save_imported_model
 
 
 class ModelSerializationTest(TestCase):
