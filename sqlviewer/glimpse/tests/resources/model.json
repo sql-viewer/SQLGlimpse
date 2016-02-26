@@ -90,6 +90,9 @@
               "x": 0,
               "height": 2761
             },
+            "description": null,
+            "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
+            "name": "rootLayer",
             "tables": [
               {
                 "element": {
@@ -199,10 +202,7 @@
                 "tableId": "8E9F97EE-E5E2-4811-A28C-274D053F565F",
                 "id": "CAC3E4DE-7E21-4D8D-B25C-2FEDFF3D7D8A"
               }
-            ],
-            "description": null,
-            "id": "DFA75DCE-DBD1-4C45-87FF-5891F71648DD",
-            "name": "rootLayer"
+            ]
           }
         ],
         "id": "1ABE0B5E-152C-48A0-AF62-B865324F28FC",
