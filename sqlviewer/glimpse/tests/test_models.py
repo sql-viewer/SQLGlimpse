@@ -1,7 +1,8 @@
 import json
 import os
 from django.test import TestCase
-from sqlviewer.glimpse.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram
+from sqlviewer.glimpse.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram, \
+    Model
 from sqlviewer.glimpse.services import save_imported_model
 
 
@@ -93,3 +94,11 @@ class ModelSerializationTest(TestCase):
         self.assertFalse('layers' in data)
         self.assertFalse('connections' in data)
         self.assertFalse('data' in data)
+
+    def test_model_serialization(self):
+        model = Model.objects.get(id="EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6")
+
+        data = model.to_json(shallow=True)
+        self.assertEqual('EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6'.lower(), data['id'])
+        self.assertEqual('name', data['name'])
+        self.assertEqual('version', data['version'])

@@ -1,14 +1,31 @@
+from sqlviewer.glimpse.services import save_imported_model
+from sqlviewer.integration.mysqlwb import import_model
+
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
+import os
 from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
-    help = 'Closes the specified poll for voting'
+    help = 'Imports the specified file into the database'
 
     def add_arguments(self, parser):
         parser.add_argument('model_path', type=str, help='path to model to import')
+        parser.add_argument('name', type=str, help='name of the model')
+        parser.add_argument('version', type=str, help='version of the model')
 
     def handle(self, *args, **options):
         path = str(options['model_path'])
-        print(path)
+        filename, file_extension = os.path.splitext(path)
+        supported_extensions = ['.mwb']
+        if os.path.exists(path):
+            if file_extension in supported_extensions:
+                self.stdout.write(self.style.SUCCESS('Starting import of model at "%s"' % path))
+                model = import_model(path, options['name'], options['version'])
+                save_imported_model(model['model'])
+                self.stdout.write(self.style.SUCCESS('Successfully imported  model from "%s"' % path))
+            else:
+                raise CommandError('Only files of type %s are supported' % ",".join(supported_extensions))
+        else:
+            raise CommandError('File does not exist at path %s' % path)

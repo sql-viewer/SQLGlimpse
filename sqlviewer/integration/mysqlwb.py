@@ -32,7 +32,8 @@ def import_model(model_path, name, version):
         query = './/value[@type="object"][@struct-name="workbench.physical.Connection"]'
         for connection_element in diagram_element.findall(query):
             connection = parse_connection_information(connection_element)
-            diagram['connections'].append(connection)
+            if connection:
+                diagram['connections'].append(connection)
 
         query = './/value[@type="object"][@struct-name="workbench.physical.Layer"]'
         for layer_element in diagram_element.findall(query):
@@ -206,14 +207,16 @@ def parse_connection_information(element):
         draw = "split" if draw_split else "full"
     else:
         draw = "hidden"
-
-    return {
-        "id": element.get('id').strip('{}'),
-        "foreignKeyId": element.find('.link[@key="foreignKey"]').text.strip('{}'),
-        "element": {
-            "draw": draw
+    try:
+        return {
+            "id": element.get('id').strip('{}'),
+            "foreignKeyId": element.find('.link[@key="foreignKey"]').text.strip('{}'),
+            "element": {
+                "draw": draw
+            }
         }
-    }
+    except AttributeError as e:
+        print("Could not parse element with id %s, could not find foreignKey link" % element.get('id'))
 
 
 def convert_workbench_size(value):

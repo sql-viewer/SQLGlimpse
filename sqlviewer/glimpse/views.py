@@ -11,6 +11,13 @@ from sqlviewer.glimpse.models import Model, Diagram
 
 
 @api_view(["GET"])
+def models_list_api_view(request):
+    models = Model.objects.all()
+    data = [m.to_json(shallow=True) for m in models]
+    return Response(data=data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
 def diagram_list_api_view(request, model_id):
     model = get_object_or_404(Model, id=model_id)
     data = [d.to_json(shallow=True) for d in model.diagrams()]

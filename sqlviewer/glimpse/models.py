@@ -16,6 +16,14 @@ class Model(UUIDModel):
     def diagrams(self):
         return Diagram.objects.filter(model=self)
 
+    def to_json(self, shallow=False):
+        data = {"id": str(self.id),
+                "name": self.name,
+                "version": self.version}
+        if not shallow:
+            raise NotImplementedError("Deep serialization not implemented")
+        return data
+
 
 class Diagram(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
