@@ -30,6 +30,14 @@ class Table(UUIDModel):
     def columns(self):
         return Column.objects.filter(table=self)
 
+    def to_json(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "comment": self.comment,
+            "columns": [col.to_json() for col in self.columns()]
+        }
+
 
 class Column(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
@@ -40,6 +48,20 @@ class Column(UUIDModel):
     is_nullable = models.BooleanField(default=False)
     is_reference = models.BooleanField(default=False)
     is_hidden = models.BooleanField(default=False)
+
+    def to_json(self):
+        return {
+            "id": str(self.id),
+            "name": self.name,
+            "comment": self.comment,
+            "flags": {
+                "reference": self.is_reference,
+                "nullable": self.is_nullable,
+                "hidden": self.is_hidden,
+                "autoIncrement": self.is_auto_increment,
+                "key": self.is_key
+            }
+        }
 
 
 class ForeignKey(UUIDModel):
@@ -56,6 +78,20 @@ class ForeignKey(UUIDModel):
     source_table = models.ForeignKey(Table, related_name='source_table')
     source_column = models.ForeignKey(Column, null=True, related_name='source_column')
     model = models.ForeignKey(Model)
+
+    def to_json(self):
+        return {
+            "id": str(self.id),
+            "type": self.type,
+            "source": {
+                "tableId": str(self.source_table.id),
+                "columnId": str(self.source_column.id)
+            },
+            "target": {
+                "tableId": str(self.target_table.id),
+                "columnId": str(self.target_column.id)
+            }
+        }
 
 
 class AbstractElement(UUIDModel):
@@ -74,11 +110,43 @@ class LayerElement(AbstractElement):
     description = models.TextField(blank=True, null=True)
     diagram = models.ForeignKey(Diagram)
 
+    def tables(self):
+        return TableElement.objects.filter(layer_element=self)
+
+    def to_json(self):
+        return {
+            'id': str(self.id),
+            'name': self.name,
+            'description': self.description,
+            'tables': [tab.to_json() for tab in self.tables()],
+            'element': {
+                'color': self.color,
+                'height': self.height,
+                'width': self.width,
+                'x': self.pos_x,
+                'y': self.pos_y
+            }
+        }
+
 
 class TableElement(AbstractElement):
     table = models.ForeignKey(Table)
     layer_element = models.ForeignKey(LayerElement)
     collapsed = models.BooleanField(default=False)
+
+    def to_json(self):
+        return {
+            'id': str(self.id),
+            'tableId': str(self.table.id),
+            'element': {
+                'collapsed': self.collapsed,
+                'color': self.color,
+                'height': self.height,
+                'width': self.width,
+                'x': self.pos_x,
+                'y': self.pos_y
+            }
+        }
 
 
 class ConnectionElement(UUIDModel):

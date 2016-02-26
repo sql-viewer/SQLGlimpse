@@ -1,29 +1,22 @@
 # Create your views here.
 from django.http.response import HttpResponse, Http404, HttpResponseNotAllowed
-import json
+from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 
 from rest_framework.response import Response
-from django.shortcuts import render
 from sqlviewer.viewer.models import Model
+from sqlviewer.viewer.services import get_diagram_list
 
 
 @api_view(["GET"])
 def diagram_list_api_view(request, model_id):
-    model = get_object_or_404(Model, id=model_id)
-
-    diagrams = []
-    for dia in model.diagrams():
-        diagrams.append(
-            {
-                "id": dia.id,
-                "name": dia.name
-            }
-        )
-
-    return Response(data=diagrams, status=status.HTTP_200_OK)
+    diagrams = get_diagram_list(model_id)
+    if diagrams:
+        return Response(data=diagrams, status=status.HTTP_200_OK)
+    else:
+        raise Http404("Model not found")
 
 
 @api_view(["GET"])
@@ -31,14 +24,21 @@ def diagram_details_api_view(request, model_id, diagram_id):
     pass
 
 
-@api_view(["GET"])
 def model_details_view(request, model_id):
     if request.method == "GET":
-        pass
+        diagrams = get_diagram_list(model_id)
+        if diagrams:
+            data = {"diagrams": diagrams,
+                    "model_id": model_id}
+            return render(request, 'viewer/model.html', data)
+        else:
+            raise Http404("Model not found")
     else:
         raise HttpResponseNotAllowed(['GET'])
 
 
-@api_view(["GET"])
 def diagram_details_view(request, model_id, diagram_id):
-    pass
+    diagram = get_diagram_details(model_id, diagram_id)
+    data = {"diagram": diagram,
+            "model_id": model_id}
+    return render(request, 'viewer/diagram.html', data)

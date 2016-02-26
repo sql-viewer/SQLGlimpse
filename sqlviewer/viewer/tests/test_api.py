@@ -26,7 +26,7 @@ class RestAPITest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_get_diagrams_not_exist(self):
-        response = self.client.get('/api/v1/models/fake-id/diagrams')
+        response = self.client.get('/api/v1/models/123B3E5E-7DC4-4BC9-9D35-C9A75372A123/diagrams')
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 404)
 
@@ -45,6 +45,6 @@ class ViewerTest(TestCase):
         self.assertEqual(model_id, context['model_id'])
 
     def test_model_details_page_model_not_found(self):
-        model_id = "fake-model-id"
+        model_id = "23B3E5E-7DC4-4BC9-9D35-C9A75372A123"
         response = self.client.get(reverse('model_details', kwargs={"model_id": model_id}))
         self.assertEqual(response.status_code, 404)
