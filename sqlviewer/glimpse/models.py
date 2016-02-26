@@ -101,7 +101,7 @@ class ForeignKey(UUIDModel):
         (TYPE_TABLE, 'table')
     )
 
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES, default=TYPE_COLUMN)
+    type = models.CharField(max_length=10, choices=TYPE_CHOICES, default=TYPE_COLUMN)
     target_table = models.ForeignKey(Table, related_name='target_table')
     target_column = models.ForeignKey(Column, null=True, related_name='target_column')
     source_table = models.ForeignKey(Table, related_name='source_table')

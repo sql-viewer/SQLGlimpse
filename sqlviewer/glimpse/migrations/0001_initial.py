@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name='ForeignKey',
             fields=[
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('type', models.CharField(choices=[('column', 'column'), ('table', 'table')], default='column', max_length=1)),
+                ('type', models.CharField(choices=[('column', 'column'), ('table', 'table')], default='column', max_length=10)),
             ],
             options={
                 'abstract': False,
