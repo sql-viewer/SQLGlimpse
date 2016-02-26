@@ -1,7 +1,7 @@
 import json
 import os
 from django.test import TestCase
-from sqlviewer.viewer.models import Column, Table, ForeignKey, TableElement, LayerElement
+from sqlviewer.viewer.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram
 from sqlviewer.viewer.services import save_imported_model
 
 
@@ -69,3 +69,24 @@ class ModelSerializationTest(TestCase):
         self.assertEqual(641, data['element']['x'])
         self.assertEqual(943, data['element']['y'])
         self.assertEqual(1, len(data['tables']))
+
+    def test_connection_element_serialization(self):
+        connection_element = ConnectionElement.objects.get(id='2AC90AD8-4D61-47E8-A274-3D840C65558B')
+
+        data = connection_element.to_json()
+        self.assertEqual('2AC90AD8-4D61-47E8-A274-3D840C65558B'.lower(), data['id'])
+        self.assertEqual('50509361-E961-41DC-A7CB-E9267D4238C4'.lower(), data['foreignKeyId'])
+        self.assertEqual('full', data['element']['draw'])
+
+    def test_diagram_element_serialization(self):
+        diagram_element = Diagram.objects.get(id="1ABE0B5E-152C-48A0-AF62-B865324F28FC")
+
+        data = diagram_element.to_json()
+        self.assertEqual('1ABE0B5E-152C-48A0-AF62-B865324F28FC'.lower(), data['id'])
+        self.assertEqual('Core', data['name'])
+        self.assertEqual(2, len(data['layers']))
+        self.assertEqual(1, len(data['connections']))
+
+        data = diagram_element.to_json(shallow=True)
+        self.assertFalse('layers' in data)
+        self.assertFalse('connections' in data)

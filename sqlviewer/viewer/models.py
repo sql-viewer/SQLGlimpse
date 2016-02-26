@@ -21,6 +21,20 @@ class Diagram(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
     model = models.ForeignKey(Model)
 
+    def layer_elements(self):
+        return LayerElement.objects.filter(diagram=self)
+
+    def connection_elements(self):
+        return ConnectionElement.objects.filter(diagram=self)
+
+    def to_json(self, shallow=False):
+        data = {'id': str(self.id),
+                'name': self.name}
+        if not shallow:
+            data['layers'] = [layer.to_json() for layer in self.layer_elements()]
+            data['connections'] = [conn.to_json() for conn in self.connection_elements()]
+        return data
+
 
 class Table(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
@@ -161,3 +175,12 @@ class ConnectionElement(UUIDModel):
     diagram = models.ForeignKey(Diagram)
     foreignKey = models.ForeignKey(ForeignKey)
     draw = models.CharField(max_length=10, choices=DRAW_CHOICES, default=DRAW_FULL)
+
+    def to_json(self):
+        return {
+            'id': str(self.id),
+            'foreignKeyId': str(self.foreignKey.id),
+            'element': {
+                'draw': self.draw
+            }
+        }
