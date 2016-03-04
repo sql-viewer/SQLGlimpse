@@ -1,9 +1,10 @@
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
     TableElement
+from django.db.transaction import atomic
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
-
+@atomic
 def save_imported_model(model):
     """
     Model imported from one of our importers
@@ -20,6 +21,9 @@ def save_imported_model(model):
     dbcolumns = {}
     dbfks = {}
     dbdiagrams = {}
+    dblayers = {}
+    dbconnections = {}
+    dbtable_elements = {}
 
     for table in model['data']['tables']:
         dbtable = Table.objects.create(
@@ -65,12 +69,13 @@ def save_imported_model(model):
         dbdiagrams[str(dbdiagram.id).lower()] = dbdiagram
 
         for con in dia['connections']:
-            ConnectionElement.objects.create(
+            dbconn = ConnectionElement.objects.create(
                 id=con['id'],
                 draw=con['element']['draw'],
                 foreignKey=dbfks[str(con['foreignKeyId']).lower()],
                 diagram=dbdiagram
             )
+            dbconnections[str(dbconn.id)] = dbconn
 
         for layer in dia['layers']:
             dblayer = LayerElement.objects.create(
@@ -84,9 +89,10 @@ def save_imported_model(model):
                 color=layer['element']['color'],
                 diagram=dbdiagram
             )
+            dblayers[str(dblayer.id)] = dblayer
 
             for table in layer['tables']:
-                TableElement.objects.create(
+                dbtable_element = TableElement.objects.create(
                     id=table['id'],
                     table=dbtables[str(table['tableId']).lower()],
                     pos_x=table['element']['x'],
@@ -97,3 +103,5 @@ def save_imported_model(model):
                     collapsed=table['element']['collapsed'],
                     layer_element=dblayer
                 )
+                dbtable_elements[str(dbtable_element.id)] = dbtable_element
+
