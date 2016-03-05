@@ -1,19 +1,5 @@
-{% extends 'viewer/base.html' %}
-{% load staticfiles %}
-
-{% block title %}Model{% endblock %}
-
-{% block custom_css %}
-{% endblock %}
-
-{% block custom_js %}
-{% endblock %}
-
-{% block body %}
-    <ul>
-        {% for dia in diagrams %}
-            <li><a href="{% url 'diagram_details' model_id dia.id %}">{{ dia.name }}</a></li>
-        {% endfor %}
-
-    </ul>
-{% endblock %}
+<ul class="list-unstyled">
+	{% for dia in diagrams %}
+  		<li ><a href="{% url 'diagram_details' model_id dia.id %}">{{ dia.name }}</a></li>
+  	{% endfor %}
+</ul>
