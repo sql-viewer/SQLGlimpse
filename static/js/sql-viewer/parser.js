@@ -68,7 +68,7 @@ SqlViewer.Parser.prototype.getLinksData = function(data) {
 
 SqlViewer.Parser.prototype.createMain = function() {
    var height = this.getHeight() + this.getHeight()*0.2;
-   var widht = this.getWidht()+ this.getHeight()*0.2;
+   var widht = this.getWidht()+ this.getHeight()*0.27;
 
    $("#main").width(widht).height(height );
 }

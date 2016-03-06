@@ -25,23 +25,23 @@ SqlViewer.Table.prototype.createTable = function() {
         this.table.element.height
     );
 
-    table += SqlViewer.stringFormat("<table class='sqlv-table' data-toggle='tooltip' title='{1}' id='{2}' >"
-        + "<tr><th style='background-color: {3}'>{0}</th></tr>", 
+    table += SqlViewer.stringFormat("<div style='width:{4}px; height:{5}px;'class='sqlv-table'data-toggle='tooltip'title='{1}'id='{2}'>"
+        + "<ul><li style='background-color: {3}' class='sqlv-tableHeader'>{0}</li><ul>", 
         this.data.name, 
         this.data.comment,
         this.data.id,
-        this.table.element.color
+        this.table.element.color,
+        this.table.element.width,
+        this.table.element.height   
     );
-    console.log(this.table.element.collapsed);
-
     for (var i = 0; i < this.data.columns.length; i++) {
 
         var column = this.data.columns[i];
-        table += SqlViewer.stringFormat("<tr data-toggle='tooltip'><td id='{1}'>{0}</td></tr>", 
+        table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{0}</li>", 
             column.name, 
             column.id);
     };
-    table += "</table></foreignobject>";
+    table += "</div></foreignobject>";
 
     return table;
 }
