@@ -1,14 +1,15 @@
 SqlViewer.namespace("SqlViewer.Table"); 
-SqlViewer.Table = function (x, y, data) {
+SqlViewer.Table = function (table, canvasX, canvasY, data) {
     if (!(this instanceof SqlViewer.Table)) {
-        return new SqlViewer.Table(x, y, data);
+        return new SqlViewer.Table(table, canvasX, canvasY, data);
     }
 
     // Properties:
-    this.id = SqlViewer.generateGuid();
-    this.x = x;
-    this.y = y;
+    this.id = table.tableId;
+    this.table = table;
     this.data = data;
+    this.canvasX = canvasX;
+    this.canvasY = canvasY;
 };
 
 SqlViewer.Table.prototype.draw = function() {
@@ -17,37 +18,34 @@ SqlViewer.Table.prototype.draw = function() {
 
 SqlViewer.Table.prototype.createTable = function() {
 
-    table = SqlViewer.stringFormat('<foreignobject x="{0}" y="{1}">', this.x, this.y);
-
-    table += SqlViewer.stringFormat("<table class='sqlv-table' data-toggle='tooltip' title='{1}' id='{2}'>"
-        + "<tr><th>{0}</th></tr>", 
-        this.data.name, 
-        this.data.comment,
-        this.data.id
+    table = SqlViewer.stringFormat('<foreignobject x="{0}" y="{1}" width="{2}" height="{3}">', 
+        this.table.element.x + this.canvasX, 
+        this.table.element.y + this.canvasY,
+        this.table.element.width,
+        this.table.element.height
     );
 
+    table += SqlViewer.stringFormat("<div style='width:{4}px; height:{5}px;'class='sqlv-table'data-toggle='tooltip'title='{1}'id='{2}'>"
+        + "<ul><li style='background-color: {3}' class='sqlv-tableHeader'>{0}</li>", 
+        this.data.name, 
+        this.data.comment,
+        this.data.id,
+        this.table.element.color,
+        this.table.element.width,
+        this.table.element.height   
+    );
     for (var i = 0; i < this.data.columns.length; i++) {
 
         var column = this.data.columns[i];
-
-        table += SqlViewer.stringFormat("<tr data-toggle='tooltip'title='{1}' ><td id='{2}'>{0}</td></tr>", 
+        var icon = (column.flags.key) ? "<i class='fa fa-key key'></i>" : "<i class='fa fa-circle-o'></i>";
+        table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{2} {0}</li>", 
             column.name, 
-            this.createRowTitle(column),
-            column.id);
-    };
-    table += "</table></foreignobject>";
+            column.id,
+            icon
+        );
+
+    }
+    table += "<ul></div></foreignobject>";
 
     return table;
-}
-
-SqlViewer.Table.prototype.createRowTitle = function(column) {
-
-    var type = column.customType || column.dataType;
-
-    separator = "";
-    for (var i = type.length+5; i >= 0; i--) {
-        separator += "- ";
-    };
-
-    return SqlViewer.stringFormat("{0}&#xA;{1}&#xA;{2}", type, separator, column.comment.replace("\n", "&#xA;"));
 }

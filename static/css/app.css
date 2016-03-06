@@ -3,7 +3,29 @@ html,body {
 	margin: 0px; 
 	padding: 0px; 
 }
+.glimpse-container {
+	width: 100%;
+	height: 850px;
+	overflow: auto;
+	cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: -o-grab;
+    cursor: grab;
+}
 
+/*.noselect {
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none;   
+  -khtml-user-select: none;    
+  -moz-user-select: none;      
+  -ms-user-select: none;       
+  user-select: none;                                    
+}*/
+
+.navbar {
+	border-radius: 0px;
+	margin: 0px;
+}
 .container-full {
   	margin: 0 auto;
 	width: 100%;
@@ -17,19 +39,6 @@ html,body {
 	user-select: none;	
 }
 
-.sqlv-svg {
-	background-color: #9DEBFF;
-	cursor: pointer;
-	cursor: grab;
-	cursor: -webkit-grab;
-}
-
-.sqlv-svg-grabing {
-	cursor: move;
-	cursor: grabing;
-	cursor: -webkit-grabing;
-}
-
 .main {
 	width: 100%;
 	height: 100%;
@@ -37,12 +46,37 @@ html,body {
 
 .sqlv-table {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
+	overflow: hidden;
 	border: 1px solid #7f8c8d;
 	border-radius: 5px;
 	margin: 0;
 	padding: 0;
 	background-color: #ecf0f1;
+	font-size: 13px;
+}
+
+.sqlv-table li {
+	height: 21px;
+	padding-left: 5px;
+}
+
+.sqlv-table .fa {
+	font-size: 9px;
+	color: #9E9EFF;
+}
+.sqlv-table .key {
+	color: #CA5454;
+}
+
+.sqlv-tableHeader {
+	text-align: center;
+	font-weight: bold;
+}
+
+.sqlv-table ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 
 .sqlv-table td {
@@ -60,10 +94,25 @@ html,body {
 	color: #34495e;
 }
 
+.sqlv-table-selected {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	}
+
 .svg-link {
 	stroke: #c0392b;
 }
 
 .svg-link:hover {
 	stroke: black;
+}
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
 }

@@ -1,24 +1,9 @@
-var curYPos = 0,
-    curXPos = 0,
-    curDown = false;
+$( document ).click(function(e) {
+	$(".sqlv-table-selected").removeClass("sqlv-table-selected");
 
-window.addEventListener('mousemove', function(e){ 
-	if(curDown === true){
-		window.scrollTo(document.body.scrollLeft + (curXPos - e.pageX), document.body.scrollTop + (curYPos - e.pageY));
+ 	$(e.target).parents(".sqlv-table").addClass("sqlv-table-selected");
+
+	if ($(e.target).hasClass("sqlv-table")) {
+		$(e.target).addClass("sqlv-table-selected");
 	}
-});
-
-window.addEventListener('mousedown', function(e){ 
-	curDown = true; 
-	curYPos = e.pageY; 
-	curXPos = e.pageX;
-
-	var el = document.getElementsByClassName("sqlv-svg");
-	el[0].setAttribute("class", "sqlv-svg sqlv-svg-grabing");
-});
-
-window.addEventListener('mouseup', function(e){ 
-	curDown = false;
-	var el = document.getElementsByClassName("sqlv-svg");
-	el[0].setAttribute("class", "sqlv-svg");
 });

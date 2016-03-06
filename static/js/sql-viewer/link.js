@@ -1,44 +1,55 @@
 SqlViewer.namespace("SqlViewer.Link"); 
-SqlViewer.Link = function (id,source, destination, type, visible) {
+SqlViewer.Link = function (link, data) {
     if (!(this instanceof SqlViewer.Link)) {
-        return new SqlViewer.Link(id,source, destination, type, visible);
+        return new SqlViewer.Link(link, data);
     }
 
-    this.id = id;
-    this.source = source
-    this.destination = destination;
-    this.type = type;
-    this.visible = visible || "full";
+    this.link = link;
+    this.data = data;
 };
 
 
 SqlViewer.Link.prototype.draw = function() {
-    
-    if (this.type === "COLUMN") {
+    if (this.data.type = "column") {
         this.drawColumnLink();
-    }
-    else if (this.type === "TABLE") {
-        this.drawTableLink();
     }
 }
 
 SqlViewer.Link.prototype.drawColumnLink = function() {
+    var correction = $(".glimpse-container").position();
 
-    var sourceColumn = $("#" + this.source.columnId);
-    var sx = sourceColumn.parent().position().left;
-    var sy = sourceColumn.position().top + (sourceColumn.height() / 2);
+    var sourceColumn = $("li[id^='" + this.data.source.columnId +"']");
+    var sx = sourceColumn.parent().position().left - correction.left;
+    var sy = sourceColumn.position().top + (sourceColumn.height() / 2) - correction.top;
     
-
-    var destinationColumn = $("#" + this.destination.columnId);
-    var dx = destinationColumn.parent().position().left + destinationColumn.width()+10;
-    var dy = destinationColumn.position().top + (destinationColumn.height() / 2);
+    var targetColumn = $("li[id^='" + this.data.target.columnId +"']");
+    var tx = targetColumn.parent().position().left - correction.left;
+    var ty = targetColumn.position().top + (targetColumn.height() / 2)- correction.top;
     
+    var sxCorrection = 0;
+    var txCorrection = 0;
 
-    SqlViewer.draw.line(sx,sy,dx,dy).stroke({ width: 5 }).attr({ "stroke-dasharray" : "10 5", class : "svg-link" });
-    SqlViewer.draw.rect(10,4).attr({ x: sx-10, y: sy, class : "svg-link"});
-    SqlViewer.draw.rect(10,4).attr({ x: dx, y: dy, class : "svg-link"});
-}
+    
+    if (sx < tx) {
+        sx = sx + sourceColumn.width() + 5;
 
-SqlViewer.Link.prototype.drawTableLink = function() {
-    console.log('TODO: drawTableLink');
+    }
+    else {
+        sx = sx - 10;
+    }
+
+    if (tx < sx) {
+        tx = tx + targetColumn.width() + 5;
+        txCorrection = 10;
+    }
+    else {
+        tx = tx - 10; 
+    }
+
+
+    if (this.link.element.draw == "full") {
+        SqlViewer.draw.line(sx,sy,tx + txCorrection ,ty).stroke({ width: 1 }).attr({ "stroke-dasharray" : "10 5", class : "svg-link" });
+    }
+    SqlViewer.draw.rect(10,4).attr({ x: sx, y: sy, class : "svg-link"});
+    SqlViewer.draw.rect(10,4).attr({ x: tx, y: ty, class : "svg-link"});
 }

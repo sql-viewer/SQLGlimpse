@@ -1,0 +1,33 @@
+{% extends 'viewer/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Model{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block custom_js %}
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    	<div class="row">
+    		<dir class="col-md-2">
+    			<h3>Select model: </h3>
+    			<ul class="list-unstyled">
+				{% for m in models %}
+					<li>
+						<a class="btn btn-primary" onclick="showModels('{{ m.id }}')">
+		  					{{ m.name }} <span class="badge">version {{ m.version }}</span>
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+			</dir>
+			<div class="col-md-10 models">
+				<!-- list of models ajax load -->
+			</div>
+    	</div>
+{% endblock %}

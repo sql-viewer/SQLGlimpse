@@ -32,6 +32,12 @@ def diagram_details_api_view(request, model_id, diagram_id):
 
 
 @require_http_methods(["GET"])
+def models_list_view(request):
+    models = Model.objects.all()
+    data = {"models" : models}
+    return render(request, 'viewer/index.html', data)
+
+@require_http_methods(["GET"])
 def model_details_view(request, model_id):
     model = get_object_or_404(Model, id=model_id)
     data = {"diagrams": model.diagrams(),
