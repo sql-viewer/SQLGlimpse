@@ -12,6 +12,8 @@ SqlViewer.Parser.prototype.draw = function() {
     this.setTableData();
     this.createMain();
     this.drawLayersAndTables();
+    
+    this.heightCorrection();
     this.drawLinks();
 }
 
@@ -28,11 +30,17 @@ SqlViewer.Parser.prototype.drawLayersAndTables = function() {
             layer.name);
         canvas.draw();
 
-        this.drawTables(layer.tables, layer.element.x, layer.element.y);
-    }; 
+        /**
+         * hot fix for collapsed bug
+         * TODO: delete
+        **/
+        var collapsed = (layer.name == "Imports");
+
+        this.drawTables(layer.tables, layer.element.x, layer.element.y, collapsed);
+    }
 }
 
-SqlViewer.Parser.prototype.drawTables = function(tables, canvasX, canvasY) {
+SqlViewer.Parser.prototype.drawTables = function(tables, canvasX, canvasY, collapsed) {
     if (tables.length > 0) {
         for (var i = 0; i < tables.length; i++) {
             var table = tables[i];
@@ -42,7 +50,8 @@ SqlViewer.Parser.prototype.drawTables = function(tables, canvasX, canvasY) {
                 table,
                 canvasX,
                 canvasY,
-                tableData
+                tableData,
+                collapsed
             );
             tab.draw();
         }
@@ -120,4 +129,16 @@ SqlViewer.Parser.prototype.getWidht = function() {
 
     return sortedArray[sortedArray.length-1].element.x + 
         sortedArray[sortedArray.length-1].element.width;
+}
+
+SqlViewer.Parser.prototype.heightCorrection = function() {
+    var uls = $(".sqlv-table ul");
+    for (var i = uls.length - 1; i >= 0; i--) {
+        var ul = uls[i];
+        var divH = $(ul).parent().height();
+        
+        var lis = $(ul).find("li");
+        var lisCount = lis.size();
+        $(lis).height(divH / lis.size());
+    }
 }

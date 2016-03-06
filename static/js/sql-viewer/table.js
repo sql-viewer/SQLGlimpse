@@ -1,7 +1,7 @@
 SqlViewer.namespace("SqlViewer.Table"); 
-SqlViewer.Table = function (table, canvasX, canvasY, data) {
+SqlViewer.Table = function (table, canvasX, canvasY, data, collapsed) {
     if (!(this instanceof SqlViewer.Table)) {
-        return new SqlViewer.Table(table, data);
+        return new SqlViewer.Table(table, canvasX, canvasY, data, collapsed);
     }
 
     // Properties:
@@ -10,6 +10,7 @@ SqlViewer.Table = function (table, canvasX, canvasY, data) {
     this.data = data;
     this.canvasX = canvasX;
     this.canvasY = canvasY;
+    this.collapsed = collapsed;
 };
 
 SqlViewer.Table.prototype.draw = function() {
@@ -26,7 +27,7 @@ SqlViewer.Table.prototype.createTable = function() {
     );
 
     table += SqlViewer.stringFormat("<div style='width:{4}px; height:{5}px;'class='sqlv-table'data-toggle='tooltip'title='{1}'id='{2}'>"
-        + "<ul><li style='background-color: {3}' class='sqlv-tableHeader'>{0}</li><ul>", 
+        + "<ul><li style='background-color: {3}' class='sqlv-tableHeader'>{0}</li>", 
         this.data.name, 
         this.data.comment,
         this.data.id,
@@ -40,8 +41,13 @@ SqlViewer.Table.prototype.createTable = function() {
         table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{0}</li>", 
             column.name, 
             column.id);
-    };
-    table += "</div></foreignobject>";
+
+        if (this.collapsed == true) {
+            break;
+        }
+
+    }
+    table += "<ul></div></foreignobject>";
 
     return table;
 }
