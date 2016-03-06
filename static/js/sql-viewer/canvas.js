@@ -16,7 +16,7 @@ SqlViewer.Canvas = function (x, y, h, w, color, text) {
 
 
 SqlViewer.Canvas.prototype.draw = function() {
-    SqlViewer.draw.rect(this.height, this.weight).attr({ x:this.x, y:this.y, fill: this.color, class: "sqlv-canvas" });
+    SqlViewer.draw.rect(this.weight, this.height).attr({ x:this.x, y:this.y, fill: this.color, class: "sqlv-canvas" });
 
     if (this.text != "")
         SqlViewer.draw.text(this.text).attr({ x:this.x, y:this.y, class: "sqlv-canvasText"});
