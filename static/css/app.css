@@ -24,6 +24,7 @@ html,body {
 
 .navbar {
 	border-radius: 0px;
+	margin: 0px;
 }
 .container-full {
   	margin: 0 auto;
@@ -54,7 +55,7 @@ html,body {
 }
 
 .sqlv-table li {
-	height: 24px;
+	height: 21px;
 }
 
 .sqlv-tableHeader {
@@ -82,6 +83,12 @@ html,body {
 	font-size: 20px;	
 	color: #34495e;
 }
+
+.sqlv-table-selected {
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	-moz-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+	}
 
 .svg-link {
 	stroke: #c0392b;

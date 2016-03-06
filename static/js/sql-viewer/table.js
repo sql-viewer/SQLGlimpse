@@ -1,7 +1,7 @@
 SqlViewer.namespace("SqlViewer.Table"); 
-SqlViewer.Table = function (table, canvasX, canvasY, data, collapsed) {
+SqlViewer.Table = function (table, canvasX, canvasY, data) {
     if (!(this instanceof SqlViewer.Table)) {
-        return new SqlViewer.Table(table, canvasX, canvasY, data, collapsed);
+        return new SqlViewer.Table(table, canvasX, canvasY, data);
     }
 
     // Properties:
@@ -10,7 +10,6 @@ SqlViewer.Table = function (table, canvasX, canvasY, data, collapsed) {
     this.data = data;
     this.canvasX = canvasX;
     this.canvasY = canvasY;
-    this.collapsed = collapsed;
 };
 
 SqlViewer.Table.prototype.draw = function() {
@@ -41,10 +40,6 @@ SqlViewer.Table.prototype.createTable = function() {
         table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{0}</li>", 
             column.name, 
             column.id);
-
-        if (this.collapsed == true) {
-            break;
-        }
 
     }
     table += "<ul></div></foreignobject>";
