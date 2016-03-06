@@ -109,10 +109,21 @@ html,body {
 }
 
 footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
-   background:#999;
+	background: #fff;
+	position:fixed;
+	left:0px;
+	bottom:0px;
+	height:30px;
+	width:100%;
+}
+
+footer .header {
+	font-size: 12px;
+	height: 30px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	text-align: center;
+	top: 0;
+	cursor: pointer;
 }
