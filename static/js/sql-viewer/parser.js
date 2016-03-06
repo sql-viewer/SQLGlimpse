@@ -12,7 +12,7 @@ SqlViewer.Parser.prototype.draw = function() {
     this.setTableData();
     this.createMain();
     this.drawLayersAndTables();
-    //this.drawLinks();
+    this.drawLinks();
 }
 
 SqlViewer.Parser.prototype.drawLayersAndTables = function() {
@@ -28,7 +28,7 @@ SqlViewer.Parser.prototype.drawLayersAndTables = function() {
             layer.name);
         canvas.draw();
 
-        this.drawTables(layer.tables, layer.element.x, layer.element.y );
+        this.drawTables(layer.tables, layer.element.x, layer.element.y);
     }; 
 }
 
@@ -67,10 +67,21 @@ SqlViewer.Parser.prototype.getLinksData = function(data) {
 }
 
 SqlViewer.Parser.prototype.createMain = function() {
-   var height = this.getHeight() + this.getHeight()*0.2;
-   var widht = this.getWidht()+ this.getHeight()*0.27;
 
-   $("#main").width(widht).height(height );
+    var rootFound = false;
+    for (var i = 0; i < this.diagram.layers.length; i++) {
+        var layer = this.diagram.layers[i];
+        if (layer.name === "rootLayer") {
+            $("#main").width(layer.element.width).height(layer.element.height);
+            rootFound = true;
+        }
+    }
+    
+    if (!rootFound) {
+        var height = this.getHeight() + this.getHeight()*0.2;
+        var widht = this.getWidht()+ this.getHeight()*0.27;
+        $("#main").width(widht).height(height);        
+    }
 }
 
 SqlViewer.Parser.prototype.drawLinks = function() {
@@ -78,9 +89,9 @@ SqlViewer.Parser.prototype.drawLinks = function() {
 
     //id,source, destination, type, draw
 
-    for (var linkId in this.links) {
-        var l = this.links[linkId];
-
+    for (var i = 0; i < this.diagram.connections.length; i++) {
+        l = this.diagram.connections[i];
+        
         var link = new SqlViewer.Link(
             l.id,
             l.source,

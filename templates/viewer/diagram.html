@@ -11,6 +11,8 @@
 {% block custom_js %}
     <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/svg.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/dragscroll/dragscroll.js' %}"></script>
+
     <script type="text/javascript" src="{% static 'js/sql-viewer/init.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sql-viewer/events.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/sql-viewer/canvas.js' %}"></script>
@@ -21,7 +23,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="glimpse-container">
+    <div class="glimpse-container dragscroll">
         <div class="main" id="main"></div>
     </div>
 {% endblock %}

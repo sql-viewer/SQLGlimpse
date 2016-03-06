@@ -16,6 +16,9 @@ SqlViewer.Canvas = function (x, y, h, w, color, text) {
 
 
 SqlViewer.Canvas.prototype.draw = function() {
+    if (this.text == "rootLayer") 
+        return;
+
     SqlViewer.draw.rect(this.weight, this.height).attr({ x:this.x, y:this.y, fill: this.color, class: "sqlv-canvas" });
 
     if (this.text != "")
