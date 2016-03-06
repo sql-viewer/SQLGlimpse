@@ -6,14 +6,18 @@ SqlViewer.Parser = function ( diagram ) {
     }
 	this.diagram = diagram;
     this.tablesData = [];
+    this.linkData = [];
 };
 
 SqlViewer.Parser.prototype.draw = function() {
     this.setTableData();
+    this.setLinksData();
+
     this.createMain();
     this.drawLayersAndTables();
     
     this.drawLinks();
+    this.adjustHeight();
 }
 
 SqlViewer.Parser.prototype.drawLayersAndTables = function() {
@@ -57,14 +61,11 @@ SqlViewer.Parser.prototype.setTableData = function() {
 	}
 }
 
-SqlViewer.Parser.prototype.getLinksData = function(data) {
-
-    var retVal = [];
-    for (var i = 0; i < data.links.length; i++) {
-        retVal[data.links[i].id] = data.links[i];
+SqlViewer.Parser.prototype.setLinksData = function() {
+    var foreignKeys = this.diagram.data.foreignKeys;
+    for (var i = 0; i < foreignKeys.length; i++) {
+        this.linkData[foreignKeys[i].id] = foreignKeys[i];
     }
-
-    return retVal;
 }
 
 SqlViewer.Parser.prototype.createMain = function() {
@@ -88,14 +89,12 @@ SqlViewer.Parser.prototype.createMain = function() {
 SqlViewer.Parser.prototype.drawLinks = function() {
     //id,source, destination, type, draw
     for (var i = 0; i < this.diagram.connections.length; i++) {
-        l = this.diagram.connections[i];
-        
+        var l = this.diagram.connections[i];
+        var data = this.linkData[l.foreignKeyId];
+
         var link = new SqlViewer.Link(
-            l.id,
-            l.source,
-            l.destination,
-            l.type,
-            null
+            l,
+            data
         );
 
         link.draw();
@@ -118,4 +117,22 @@ SqlViewer.Parser.prototype.getWidht = function() {
 
     return sortedArray[sortedArray.length-1].element.x + 
         sortedArray[sortedArray.length-1].element.width;
+}
+
+SqlViewer.Parser.prototype.isOverflowing = function(element) {
+    if (element.offsetHeight < element.scrollHeight 
+        ||element.offsetWidth < element.scrollWidth) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+SqlViewer.Parser.prototype.adjustHeight = function() {
+    var scope = this;
+    $(".sqlv-table").each(function( index ) {
+        if (scope.isOverflowing(this)) {
+            //TODO deal with overflowing
+        }
+    });
 }

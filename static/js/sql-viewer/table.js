@@ -37,9 +37,12 @@ SqlViewer.Table.prototype.createTable = function() {
     for (var i = 0; i < this.data.columns.length; i++) {
 
         var column = this.data.columns[i];
-        table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{0}</li>", 
+        var icon = (column.flags.key) ? "<i class='fa fa-key key'></i>" : "<i class='fa fa-circle-o'></i>";
+        table += SqlViewer.stringFormat("<li data-toggle='tooltip'id='{1}'>{2} {0}</li>", 
             column.name, 
-            column.id);
+            column.id,
+            icon
+        );
 
     }
     table += "<ul></div></foreignobject>";
