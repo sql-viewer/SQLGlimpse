@@ -12,8 +12,9 @@ Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewe
 
 ## How To Run
 
-`python3 manage.py migrate`
-`python3 manage.py runserver`
+1. Run python migration `python3 manage.py migrate`
+2. [Import model](#how-to-import-a-model)
+3. `python3 manage.py runserver`
 
 ## How To Contribute
 
