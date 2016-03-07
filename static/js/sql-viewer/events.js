@@ -21,36 +21,42 @@ $("#footer-header").click(function() {
 
 function setEvents() {
     
+    var hoverClass = "sqlv-selected-row-hover";
+    var selectedClass = "sqlv-selected-row";
+
     $(".svg-hoverlink").mouseover(function() {
         var data = $(this).data();
-        selectLink(data);
+        selectLink(data,hoverClass);
     }); 
 
     $(".svg-hoverlink").mouseout(function() {
         var data = $(this).data();
-        deselectLink(data);
+        deselectLink(data, hoverClass);
     });
 
-    // $(".svg-hoverlink").click(function() {
-    //     var data = $(this).data();
-    //     selectLink(data); 
-    // });
+    $(".svg-hoverlink").click(function() {
+        var data = $(this).data();
+        var hasSelectedClass = sessionStorage.getItem($(this).attr('id'));
 
-    // $(".svg-hoverlink").dblclick()(function() {
-    //     var data = $(this).data();
-    //     console.log(data);
-    //     deselectLink(data); 
-    // });
+        if (hasSelectedClass == null || hasSelectedClass == "false") {
+            selectLink(data, selectedClass); 
+            sessionStorage.setItem($(this).attr('id'), "true");
+        }
+        else {
+            sessionStorage.setItem($(this).attr('id'), "false");
+            deselectLink(data, selectedClass);
+        }
+    });
 }
 
-function selectLink(data) {
+function selectLink(data, c) {
     $("#" + data.linkid).attr("class", "svg-link svg-link-hover"); 
-    $("#" + data.targetid).addClass("sqlv-selected-row"); 
-    $("#" + data.sourceid).addClass("sqlv-selected-row"); 
+    $("#" + data.targetid).addClass(c); 
+    $("#" + data.sourceid).addClass(c); 
 }
 
-function deselectLink(data) {
+function deselectLink(data, c) {
     $("#" + data.linkid).attr("class", "svg-link"); 
-    $("#" + data.targetid).removeClass("sqlv-selected-row"); 
-    $("#" + data.sourceid).removeClass("sqlv-selected-row"); 
+    $("#" + data.targetid).removeClass(c); 
+    $("#" + data.sourceid).removeClass(c); 
 }

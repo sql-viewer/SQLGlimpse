@@ -120,6 +120,10 @@ html,body {
 	background-color: #eb8c00;
 }
 
+.sqlv-selected-row-hover {
+	background-color: #eb8c00;
+}
+
 .svg-link {
 	stroke: #5A5A5A;
 	fill: #5A5A5A;
