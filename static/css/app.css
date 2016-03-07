@@ -3,6 +3,13 @@ html,body {
 	margin: 0px; 
 	padding: 0px; 
 }
+
+.navbar-header a{
+	color: #fff;
+}
+.navbar-header a:hover{
+	text-decoration: none;
+}
 .glimpse-container {
 	width: 100%;
 	height: 850px;
