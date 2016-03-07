@@ -1,4 +1,4 @@
-$( document ).click(function(e) {
+$(".glimpse-container").click(function(e) {
 	$(".sqlv-table-selected").removeClass("sqlv-table-selected");
 
  	$(e.target).parents(".sqlv-table").addClass("sqlv-table-selected");
@@ -10,12 +10,12 @@ $( document ).click(function(e) {
 
 $("#footer-header").click(function() {
     if ( $("#footer").height() != 30) {
-    	$( this ).text('see more');
+    	$( "footer-header" ).text('see more');
         $( "#footer" ).animate({ height: 30 }, 600 );
     }
     else {
-    	$( this ).text('see less');
-    	$( "#footer" ).animate({ height: 350 }, 600 );
+    	$( "footer-header" ).text('see less');
+    	$( "#footer" ).animate({ height: 500 }, 600 );
     }
 });
 

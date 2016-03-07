@@ -53,8 +53,7 @@ SqlViewer.Link.prototype.drawColumnLink = function() {
             "class" : "svg-hoverlink",
             "data-linkid" : this.link.id,
             "data-sourceid" : this.data.source.columnId,
-            "data-targetid" : this.data.target.columnId,
-            "data-linkselected" : "f"
+            "data-targetid" : this.data.target.columnId
         });
 
         SqlViewer.draw.line(sx,sy,tx + txCorrection ,ty).stroke({ width: 1 }).attr({ 
