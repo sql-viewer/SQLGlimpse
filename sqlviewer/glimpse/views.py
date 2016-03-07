@@ -8,7 +8,7 @@ from rest_framework.generics import get_object_or_404
 
 from rest_framework.response import Response
 from sqlviewer.glimpse.models import Model, Diagram
-
+import base64
 
 @api_view(["GET"])
 def models_list_api_view(request):
@@ -48,6 +48,5 @@ def model_details_view(request, model_id):
 @require_http_methods(["GET"])
 def diagram_details_view(request, model_id, diagram_id):
     diagram = get_object_or_404(Diagram, id=diagram_id, model__id=model_id)
-    data = {"diagram": diagram,
-            "model_id": model_id}
+    data = diagram.to_json()
     return render(request, 'viewer/diagram.html', data)

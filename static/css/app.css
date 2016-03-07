@@ -12,6 +12,15 @@ html,body {
     cursor: -o-grab;
     cursor: grab;
 }
+#loading {
+	position: absolute;
+	width: 64px;
+	height: 64px;
+	z-index: 15;
+	top: 50%;
+	left: 50%;
+	margin: -32px 0 0 -32px;
+}
 
 /*.noselect {
   -webkit-touch-callout: none; 
