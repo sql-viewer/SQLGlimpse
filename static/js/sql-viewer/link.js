@@ -48,7 +48,20 @@ SqlViewer.Link.prototype.drawColumnLink = function() {
 
 
     if (this.link.element.draw == "full") {
-        SqlViewer.draw.line(sx,sy,tx + txCorrection ,ty).stroke({ width: 1 }).attr({ "stroke-dasharray" : "10 5", class : "svg-link" });
+
+        SqlViewer.draw.line(sx,sy,tx + txCorrection ,ty).stroke({ width: 15, opacity: 0 }).attr({ 
+            "class" : "svg-hoverlink",
+            "data-linkid" : this.link.id,
+            "data-sourceid" : this.data.source.columnId,
+            "data-targetid" : this.data.target.columnId,
+            "data-linkselected" : "f"
+        });
+
+        SqlViewer.draw.line(sx,sy,tx + txCorrection ,ty).stroke({ width: 1 }).attr({ 
+            "stroke-dasharray" : "10 5", 
+            "class" : "svg-link",
+            "id"    : this.link.id
+        });
     }
     SqlViewer.draw.rect(10,4).attr({ x: sx, y: sy, class : "svg-link"});
     SqlViewer.draw.rect(10,4).attr({ x: tx, y: ty, class : "svg-link"});

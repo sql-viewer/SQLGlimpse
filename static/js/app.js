@@ -10,9 +10,8 @@ $( document ).ready(function() {
 			var p = new SqlViewer.Parser(d)
 			p.draw();
         	$('#loading').html("");
+
+            setEvents();
         }
     });
-
-
-
 });
