@@ -13,7 +13,11 @@ class Model(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
 
     def latest_version(self):
-        return Version.objects.filter(model=self).order_by('created_at').first()
+        """
+        Returns the latest version of this model
+        :rtype: Version
+        """
+        return Version.objects.filter(model=self).order_by('-number').first()
 
     def to_json(self, shallow=True):
         data = {
@@ -21,7 +25,7 @@ class Model(UUIDModel):
             "name": self.name,
         }
         if not shallow:
-            data['versions'] = [v.to_json(shallow=True) for v in Version.objects.filter(model=self).all()]
+            data['versions'] = [v.to_json() for v in Version.objects.filter(model=self).all()]
         return data
 
 
