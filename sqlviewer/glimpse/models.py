@@ -3,7 +3,7 @@ from django.db import models
 
 
 class UUIDModel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    extid = models.UUIDField(db_index=True, default=uuid.uuid4, editable=False)
 
     class Meta:
         abstract = True
@@ -11,23 +11,42 @@ class UUIDModel(models.Model):
 
 class Model(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
-    version = models.CharField(max_length=128, blank=False, null=False)
+
+    def latest_version(self):
+        return Version.objects.filter(model=self).order_by('created_at').first()
+
+    def to_json(self, shallow=True):
+        data = {
+            "id": str(self.extid),
+            "name": self.name,
+        }
+        if not shallow:
+            data['versions'] = [v.to_json(shallow=True) for v in Version.objects.filter(model=self).all()]
+        return data
+
+
+class Version(models.Model):
+    number = models.IntegerField()
+    label = models.CharField(max_length=128, blank=False, null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    model = models.ForeignKey(Model)
 
     def diagrams(self):
         return Diagram.objects.filter(model=self)
 
-    def to_json(self, shallow=False):
-        data = {"id": str(self.id),
-                "name": self.name,
-                "version": self.version}
-        if not shallow:
-            raise NotImplementedError("Deep serialization not implemented")
-        return data
+    def save(self, *args, **kwargs):
+        if not self.number:
+            self.number = Version.objects.filter(model=self.model).count()
+        super(Version, self).save(*args, **kwargs)
+
+    def to_json(self):
+        return {"id": self.number,
+                "label": self.label}
 
 
 class Diagram(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
-    model = models.ForeignKey(Model)
+    model_version = models.ForeignKey(Version)
 
     def layer_elements(self):
         return LayerElement.objects.filter(diagram=self)
@@ -39,7 +58,7 @@ class Diagram(UUIDModel):
         return TableElement.objects.filter(layer_element__diagram=self)
 
     def to_json(self, shallow=False):
-        data = {'id': str(self.id),
+        data = {'id': str(self.extid),
                 'name': self.name}
         if not shallow:
             data['layers'] = [layer.to_json() for layer in self.layer_elements()]
@@ -54,14 +73,14 @@ class Diagram(UUIDModel):
 class Table(UUIDModel):
     name = models.CharField(max_length=128, blank=False, null=False)
     comment = models.TextField(blank=True, null=True)
-    model = models.ForeignKey(Model)
+    model_version = models.ForeignKey(Version)
 
     def columns(self):
         return Column.objects.filter(table=self)
 
     def to_json(self):
         return {
-            "id": str(self.id),
+            "id": str(self.extid),
             "name": self.name,
             "comment": self.comment,
             "columns": [col.to_json() for col in self.columns()]
@@ -80,7 +99,7 @@ class Column(UUIDModel):
 
     def to_json(self):
         return {
-            "id": str(self.id),
+            "id": str(self.extid),
             "name": self.name,
             "comment": self.comment,
             "flags": {
@@ -106,19 +125,19 @@ class ForeignKey(UUIDModel):
     target_column = models.ForeignKey(Column, null=True, related_name='target_column')
     source_table = models.ForeignKey(Table, related_name='source_table')
     source_column = models.ForeignKey(Column, null=True, related_name='source_column')
-    model = models.ForeignKey(Model)
+    model_version = models.ForeignKey(Version)
 
     def to_json(self):
         return {
-            "id": str(self.id),
+            "id": str(self.extid),
             "type": self.type,
             "source": {
-                "tableId": str(self.source_table.id),
-                "columnId": str(self.source_column.id)
+                "tableId": str(self.source_table.extid),
+                "columnId": str(self.source_column.extid)
             },
             "target": {
-                "tableId": str(self.target_table.id),
-                "columnId": str(self.target_column.id)
+                "tableId": str(self.target_table.extid),
+                "columnId": str(self.target_column.extid)
             }
         }
 
@@ -144,7 +163,7 @@ class LayerElement(AbstractElement):
 
     def to_json(self):
         return {
-            'id': str(self.id),
+            'id': str(self.extid),
             'name': self.name,
             'description': self.description,
             'tables': [tab.to_json() for tab in self.tables()],
@@ -165,8 +184,8 @@ class TableElement(AbstractElement):
 
     def to_json(self):
         return {
-            'id': str(self.id),
-            'tableId': str(self.table.id),
+            'id': str(self.extid),
+            'tableId': str(self.table.extid),
             'element': {
                 'collapsed': self.collapsed,
                 'color': self.color,
@@ -193,8 +212,8 @@ class ConnectionElement(UUIDModel):
 
     def to_json(self):
         return {
-            'id': str(self.id),
-            'foreignKeyId': str(self.foreignKey.id),
+            'id': str(self.extid),
+            'foreignKeyId': str(self.foreignKey.extid),
             'element': {
                 'draw': self.draw
             }

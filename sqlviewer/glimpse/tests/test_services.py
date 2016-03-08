@@ -15,6 +15,7 @@ class TestViewerServices(TestCase):
             data = json.load(fin)
         save_imported_model(data['model'])
 
+
     def test_get_diagram_details(self):
         model = Model.objects.get(id='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
         self.assertEqual('name', model.name)

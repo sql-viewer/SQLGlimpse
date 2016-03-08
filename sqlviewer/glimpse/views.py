@@ -7,14 +7,31 @@ from rest_framework.decorators import api_view
 from rest_framework.generics import get_object_or_404
 
 from rest_framework.response import Response
-from sqlviewer.glimpse.models import Model, Diagram
-import base64
+from rest_framework.views import APIView
+from sqlviewer.glimpse.models import Model, Diagram, Version
 
-@api_view(["GET"])
-def models_list_api_view(request):
-    models = Model.objects.all()
-    data = [m.to_json(shallow=True) for m in models]
-    return Response(data=data, status=status.HTTP_200_OK)
+
+class ModelView(APIView):
+    def get(self, request, format=None, model_id=None):
+        if not model_id:
+            models = Model.objects.all()
+            data = [m.to_json(shallow=True) for m in models]
+        else:
+            model = get_object_or_404(Model, id=model_id)
+            data = [d.to_json(shallow=True) for d in model.diagrams()]
+        return Response(data=data, status=status.HTTP_200_OK)
+
+
+class VersionView(APIView):
+    def get(self, request, model_id, version_id, format=None):
+        if version_id:
+            version = get_object_or_404(Version, model_id=model_id, pk=version_id)
+        else:
+            pass
+
+
+class DiagramsView(APIView):
+    pass
 
 
 @api_view(["GET"])
@@ -34,8 +51,9 @@ def diagram_details_api_view(request, model_id, diagram_id):
 @require_http_methods(["GET"])
 def models_list_view(request):
     models = Model.objects.all()
-    data = {"models" : models}
+    data = {"models": models}
     return render(request, 'viewer/index.html', data)
+
 
 @require_http_methods(["GET"])
 def model_details_view(request, model_id):
