@@ -19,13 +19,21 @@ class Model(UUIDModel):
         """
         return Version.objects.filter(model=self).order_by('-number').first()
 
+    def versions(self):
+        """
+        Returns the list of versions bound to this model
+        :return: list of versions
+        :rtype: list of Version
+        """
+        return Version.objects.filter(model=self).all()
+
     def to_json(self, shallow=True):
         data = {
             "id": str(self.extid),
             "name": self.name,
         }
         if not shallow:
-            data['versions'] = [v.to_json() for v in Version.objects.filter(model=self).all()]
+            data['versions'] = [v.to_json(shallow=True) for v in Version.objects.filter(model=self).all()]
         return data
 
 
@@ -36,16 +44,20 @@ class Version(models.Model):
     model = models.ForeignKey(Model)
 
     def diagrams(self):
-        return Diagram.objects.filter(model=self)
+        return Diagram.objects.filter(model_version=self)
 
     def save(self, *args, **kwargs):
         if not self.number:
             self.number = Version.objects.filter(model=self.model).count()
         super(Version, self).save(*args, **kwargs)
 
-    def to_json(self):
-        return {"id": self.number,
+    def to_json(self, shallow=False):
+        data = {"id": self.id,
+                "number": self.number,
                 "label": self.label}
+        if not shallow:
+            data['diagrams'] = [d.to_json(shallow=True) for d in self.diagrams()]
+        return data
 
 
 class Diagram(UUIDModel):

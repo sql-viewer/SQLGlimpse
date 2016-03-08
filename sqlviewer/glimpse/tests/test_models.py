@@ -105,5 +105,5 @@ class ModelSerializationTest(TestCase):
     def test_version_serialization(self):
         version = Version.objects.get(model__extid="EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6")
         data = version.to_json()
-        self.assertEqual(0, data['id'])
+        self.assertEqual(0, data['number'])
         self.assertEqual(version.label, data['label'])
