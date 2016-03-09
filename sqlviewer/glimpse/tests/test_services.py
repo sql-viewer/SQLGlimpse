@@ -12,25 +12,39 @@ __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 class TestViewerServices(TestCase):
     def setUp(self):
         with open(join(dirname(__file__), 'resources/model.json')) as fin:
-            data = json.load(fin)
-        save_imported_model(data['model'])
+            self.model_data = json.load(fin)['model']
+        save_imported_model(self.model_data)
+
+    def test_save_multiple_model_versions(self):
+        model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
+        version = model.latest_version()
+
+        self.assertEqual(0, version.number)
+        self.assertEqual('version', version.label)
+
+        self.model_data['version'] = 'new version'
+        save_imported_model(self.model_data)
+        version = model.latest_version()
+        self.assertEqual(1, version.number)
+        self.assertEqual('new version', version.label)
 
     def test_get_diagram_details(self):
-        model = Model.objects.get(id='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
+        model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
         self.assertEqual('name', model.name)
-        self.assertEqual('version', model.version)
 
-        tables = Table.objects.filter(model=model)
+        version = model.latest_version()
+
+        tables = Table.objects.filter(model_version=version)
         self.assertEqual(9, len(tables))
 
-        product_table = Table.objects.filter(model=model, name='CMN_PRO_Products').first()
+        product_table = Table.objects.filter(model_version=version, name='CMN_PRO_Products').first()
         self.assertEqual(6, len(product_table.columns()))
         primary_key = Column.objects.get(table=product_table, is_key=True)
-        self.assertEqual('70A39AC0-1194-4831-94B2-B663A2118C42', str(primary_key.id).upper())
+        self.assertEqual('70A39AC0-1194-4831-94B2-B663A2118C42', str(primary_key.extid).upper())
         self.assertEqual(None, primary_key.comment)
         self.assertEqual('CMN_PRO_ProductID', primary_key.name)
 
-        foreign_key = ForeignKey.objects.filter(model=model)
+        foreign_key = ForeignKey.objects.filter(model_version=version)
         self.assertEqual(11, len(foreign_key))
         pk_references = ForeignKey.objects.filter(Q(source_column=primary_key) | Q(target_column=primary_key))
         self.assertEqual(1, len(pk_references))

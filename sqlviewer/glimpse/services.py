@@ -1,8 +1,9 @@
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
-    TableElement
+    TableElement, Version
 from django.db.transaction import atomic
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
+
 
 @atomic
 def save_imported_model(model):
@@ -11,10 +12,17 @@ def save_imported_model(model):
     :type model: dict
     :return:
     """
-    dbmodel = Model.objects.create(
-        id=model['id'],
-        name=model['name'],
-        version=model['version']
+
+    dbmodel = Model.objects.filter(extid=model['id']).first()
+    if not dbmodel:
+        dbmodel = Model.objects.create(
+            extid=model['id'],
+            name=model['name']
+        )
+
+    dbversion = Version.objects.create(
+        label=model['version'],
+        model=dbmodel,
     )
 
     dbtables = {}
@@ -27,16 +35,16 @@ def save_imported_model(model):
 
     for table in model['data']['tables']:
         dbtable = Table.objects.create(
-            id=table['id'],
+            extid=table['id'],
             name=table['name'],
             comment=table['comment'],
-            model=dbmodel
+            model_version=dbversion
         )
-        dbtables[str(dbtable.id).lower()] = dbtable
+        dbtables[str(dbtable.extid).lower()] = dbtable
 
         for col in table['columns']:
             dbcol = Column.objects.create(
-                id=col['id'],
+                extid=col['id'],
                 name=col['name'],
                 comment=col['comment'],
                 table=dbtable,
@@ -46,40 +54,40 @@ def save_imported_model(model):
                 is_reference=col['flags']['reference'],
                 is_hidden=col['flags']['hidden'],
             )
-            dbcolumns[str(dbcol.id).lower()] = dbcol
+            dbcolumns[str(dbcol.extid).lower()] = dbcol
 
     for fk in model['data']['foreignKeys']:
         dbfk = ForeignKey.objects.create(
-            id=fk['id'],
+            extid=fk['id'],
             type=fk['type'],
             target_table=dbtables[str(fk['target']['tableId']).lower()],
             target_column=dbcolumns[str(fk['target']['columnId']).lower()],
             source_table=dbtables[str(fk['source']['tableId']).lower()],
             source_column=dbcolumns[str(fk['source']['columnId']).lower()],
-            model=dbmodel
+            model_version=dbversion
         )
-        dbfks[str(dbfk.id).lower()] = dbfk
+        dbfks[str(dbfk.extid).lower()] = dbfk
 
     for dia in model['diagrams']:
         dbdiagram = Diagram.objects.create(
-            id=dia['id'],
+            extid=dia['id'],
             name=dia['name'],
-            model=dbmodel
+            model_version=dbversion
         )
-        dbdiagrams[str(dbdiagram.id).lower()] = dbdiagram
+        dbdiagrams[str(dbdiagram.extid).lower()] = dbdiagram
 
         for con in dia['connections']:
             dbconn = ConnectionElement.objects.create(
-                id=con['id'],
+                extid=con['id'],
                 draw=con['element']['draw'],
                 foreignKey=dbfks[str(con['foreignKeyId']).lower()],
                 diagram=dbdiagram
             )
-            dbconnections[str(dbconn.id)] = dbconn
+            dbconnections[str(dbconn.extid)] = dbconn
 
         for layer in dia['layers']:
             dblayer = LayerElement.objects.create(
-                id=layer['id'],
+                extid=layer['id'],
                 name=layer['name'],
                 description=layer['description'],
                 pos_x=layer['element']['x'],
@@ -89,11 +97,11 @@ def save_imported_model(model):
                 color=layer['element']['color'],
                 diagram=dbdiagram
             )
-            dblayers[str(dblayer.id)] = dblayer
+            dblayers[str(dblayer.extid)] = dblayer
 
             for table in layer['tables']:
                 dbtable_element = TableElement.objects.create(
-                    id=table['id'],
+                    extid=table['id'],
                     table=dbtables[str(table['tableId']).lower()],
                     pos_x=table['element']['x'],
                     pos_y=table['element']['y'],
@@ -103,5 +111,4 @@ def save_imported_model(model):
                     collapsed=table['element']['collapsed'],
                     layer_element=dblayer
                 )
-                dbtable_elements[str(dbtable_element.id)] = dbtable_element
-
+                dbtable_elements[str(dbtable_element.extid)] = dbtable_element
