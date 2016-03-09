@@ -1,15 +1,19 @@
 # Create your views here.
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_list_or_404
 from django.views.decorators.http import require_http_methods
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from django.core.cache import cache
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from sqlviewer.glimpse.models import Model, Diagram, Version
 
 
 class ModelView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, format=None, model_id=None):
         if not model_id:
             model_list = Model.objects.all()
@@ -21,6 +25,8 @@ class ModelView(APIView):
 
 
 class VersionView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, model_id, version_id, format=None):
         if not version_id:
             version_list = get_list_or_404(Version, model__id=model_id)
@@ -32,6 +38,8 @@ class VersionView(APIView):
 
 
 class DiagramView(APIView):
+    permission_classes = (IsAuthenticated,)
+
     def get(self, request, model_id, version_id, diagram_id, format=None):
         if not diagram_id:
             diagram_list = get_list_or_404(Diagram, model_version__id=version_id)
@@ -47,6 +55,7 @@ class DiagramView(APIView):
 
 
 @require_http_methods(["GET"])
+@login_required
 def models_list_view(request):
     models = Model.objects.all()
     data = {"models": models}
@@ -54,6 +63,7 @@ def models_list_view(request):
 
 
 @require_http_methods(["GET"])
+@login_required
 def model_version_details_view(request, model_id, version_id):
     version = get_object_or_404(Version, model__id=model_id, pk=version_id)
     data = {"diagrams": version.diagrams(),
@@ -63,6 +73,7 @@ def model_version_details_view(request, model_id, version_id):
 
 
 @require_http_methods(["GET"])
+@login_required
 def diagram_details_view(request, model_id, version_id, diagram_id):
     diagram = get_object_or_404(Diagram, id=diagram_id, model_version__id=version_id)
     data = diagram.to_json()
