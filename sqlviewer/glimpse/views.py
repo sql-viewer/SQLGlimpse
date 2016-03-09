@@ -71,7 +71,6 @@ def model_version_details_view(request, model_id, version_id):
             "model_id": model_id}
     return render(request, 'viewer/model.html', data)
 
-
 @require_http_methods(["GET"])
 @login_required
 def diagram_details_view(request, model_id, version_id, diagram_id):

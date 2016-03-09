@@ -38,5 +38,5 @@ pages = [
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', model_version_details_view, name='model_details'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details')
 ]
-
+# 
 urlpatterns = pages + api
