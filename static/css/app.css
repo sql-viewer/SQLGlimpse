@@ -136,6 +136,23 @@ html,body {
 	fill: #000;
 }
 
+.svg-link-hidden {
+	stroke: rgba(0,0,0,0);
+}
+.svg-link-hidden-hover {
+	stroke: rgba(248, 148, 6, 0.6);
+	fill: #000;
+}
+.svg-link-hidden-selected {
+	stroke: rgba(248, 148, 6, 0.6);
+	fill: #000;
+}
+
+.svg-link-split {
+	stroke: #5A5A5A;
+	fill: #5A5A5A;	
+}
+
 footer {
 	background: #fff;
 	position:fixed;
