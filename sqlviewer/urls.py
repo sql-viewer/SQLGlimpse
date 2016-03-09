@@ -21,7 +21,8 @@ from django.contrib import admin
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-from django.contrib.auth.views import login as django_login_view
+from django.contrib.auth.views import login as login_view
+from django.contrib.auth.views import logout as logout_view
 from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView
 
 api = [
@@ -32,7 +33,8 @@ api = [
 pages = [
     url(r'^$', models_list_view, name="model"),
     url(r'^admin/', admin.site.urls),
-    url(r'^accounts/login/$', django_login_view),
+    url(r'^accounts/login/$', login_view, name='login'),
+    url(r'^accounts/logout/$', logout_view, name='logout'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', model_version_details_view, name='model_details'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details')
 ]

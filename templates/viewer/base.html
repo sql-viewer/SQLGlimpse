@@ -20,13 +20,23 @@
 </head>
 <body>
 <nav class="navbar navbar-dark bg-primary">
-  <div class="container-fluid">
-    <div class="navbar-header">
-        <h1> <a href="/"> SQLGlimpse</a></h1>
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <h1><a href="/"> SQLGlimpse</a></h1>
+        </div>
+
+        {% if request.user.is_staff %}
+            <div>
+                <a href="{% url 'admin:index' %}"><h3>Admin</h3></a>
+            </div>
+        {% endif %}
+
+        {% block header_search %}
+        {% endblock %}
+        <div class="navbar-right">
+            <a href="{% url 'logout' %}?next=/"><h3>Logout</h3></a>
+        </div>
     </div>
-    {% block header_search %}
-    {% endblock %}
-  </div>
 </nav>
 <div class="container-fluid">
     {% block body %}
