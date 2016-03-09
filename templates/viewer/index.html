@@ -1,5 +1,6 @@
 {% extends 'viewer/base.html' %}
 {% load staticfiles %}
+{% load humanize %}
 
 {% block title %}Model{% endblock %}
 
@@ -9,25 +10,36 @@
 {% endblock %}
 
 {% block custom_js %}
-	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 {% endblock %}
 
 {% block body %}
-    	<div class="row">
-    		<dir class="col-md-2">
-    			<h3>Select model: </h3>
-    			<ul class="list-unstyled">
-				{% for m in models %}
-					<li>
-						<a class="btn btn-primary" onclick="showModels('{{ m.id }}')">
-		  					{{ m.name }} <span class="badge">version {{ m.version }}</span>
-						</a>
-					</li>
-				{% endfor %}
-				</ul>
-			</dir>
-			<div class="col-md-10 models">
-				<!-- list of models ajax load -->
-			</div>
-    	</div>
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1">
+            {% for m in models %}
+                <div class="row model-row">
+                    <a href="{% url 'model_details' m.id m.latest_version.id %}">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="col-xs-1">
+
+                                    <img class="model-image" src="{% static 'img/workbench/logo.png' %}"/>
+
+                                </div>
+                                <div class="col-xs-10">
+                                    <h3>{{ m.name }}</h3>
+                                    <h4>Version {{ m.latest_version.number }}, uploaded {{ m.latest_version.created_at | naturaltime }}</h4>
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-md-10 models">
+        <!-- list of models ajax load -->
+    </div>
+    </div>
 {% endblock %}

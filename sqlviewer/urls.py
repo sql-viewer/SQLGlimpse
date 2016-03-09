@@ -20,17 +20,17 @@ from django.conf.urls import url
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
-from sqlviewer.glimpse.views import diagram_details_view, model_details_view, models_list_view, ModelView, VersionView, DiagramView
+from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView
 
 api = [
     url(r'^api/v1/models/(?P<model_id>\d+)?$', ModelView.as_view()),
-    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)?$', VersionView.as_view()),
+    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', VersionView.as_view()),
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$', DiagramView.as_view()),
 ]
 pages = [
     url(r'^$', models_list_view, name="model"),
-    url(r'^models/(?P<model_id>[\w\-]+)[/]?$', model_details_view, name='model_details'),
-    url(r'^models/(?P<model_id>[\w\-]+)/diagrams/(?P<diagram_id>[\w\-]+)[/]?$', diagram_details_view, name='diagram_details')
+    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', model_version_details_view, name='model_details'),
+    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details')
 ]
 
 urlpatterns = pages + api
