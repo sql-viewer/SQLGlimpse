@@ -15,6 +15,7 @@ Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewe
 1. Run python migration `python3 manage.py migrate`
 2. [Import model](#how-to-import-a-model)
 3. `python3 manage.py runserver`
+4. manage.py createsuperuser (to access the content)
 
 ## How To Contribute
 
