@@ -26,7 +26,7 @@ from sqlviewer.glimpse.views import diagram_details_view, model_version_details_
 
 api = [
     url(r'^api/v1/models/(?P<model_id>\d+)?$', ModelView.as_view()),
-    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', VersionView.as_view()),
+    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)?$', VersionView.as_view()),
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$', DiagramView.as_view()),
 ]
 pages = [

@@ -1,6 +1,7 @@
 # Create your tests here.
 import json
 import os
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from sqlviewer.glimpse.models import Model
 
@@ -16,8 +17,11 @@ def import_model():
 
 class ViewTests(TestCase):
     def setUp(self):
+        user = User.objects.create(username='test', password='test')
+
         # Every test needs a client.
         self.client = Client()
+        self.client.force_login(user)
         import_model()
 
     def test_api_get_model_list(self):
