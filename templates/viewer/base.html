@@ -19,22 +19,23 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-dark bg-primary">
+<nav class="navbar navbar-default bg-primary">
     <div class="container-fluid">
         <div class="navbar-header">
-            <h1><a href="/"> SQLGlimpse</a></h1>
+            <a class="navbar-brand" href="#">SQLGlimpse</a>
         </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                {% if request.user.is_staff %}
+                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
+            </ul>
+            {% block header_search %}
+            {% endblock %}
 
-        {% if request.user.is_staff %}
-            <div>
-                <a href="{% url 'admin:index' %}"><h3>Admin</h3></a>
-            </div>
-        {% endif %}
-
-        {% block header_search %}
-        {% endblock %}
-        <div class="navbar-right">
-            <a href="{% url 'logout' %}?next=/"><h3>Logout</h3></a>
         </div>
     </div>
 </nav>
