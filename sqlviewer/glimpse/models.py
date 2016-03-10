@@ -36,6 +36,9 @@ class Model(UUIDModel):
             data['versions'] = [v.to_json(shallow=True) for v in Version.objects.filter(model=self).all()]
         return data
 
+    def __str__(self):
+        return "{0}".format(self.name)
+
 
 class Version(models.Model):
     number = models.IntegerField()
