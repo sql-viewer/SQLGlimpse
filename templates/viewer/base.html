@@ -28,6 +28,7 @@
             <ul class="nav navbar-nav">
                 {% if request.user.is_staff %}
                     <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                    <li><a href="{% url 'model_upload' %}">Upload</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
