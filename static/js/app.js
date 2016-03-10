@@ -14,4 +14,16 @@ $( document ).ready(function() {
             setEvents();
         }
     });
+
+    var urlSplit = window.location.pathname.split("/");
+    $.get( "/api/v1/models/" + urlSplit[2] + "/versions/" + urlSplit[4], function( data ) {
+
+        for(var i=0;i<data.diagrams.length;i++) {
+            var option = "<li><a href='/models/" +urlSplit[2] 
+                + "/versions/" +urlSplit[4] 
+                + "/diagrams/" + data.diagrams[i].id + "'>" + data.diagrams[i].name + "</a></li>"
+
+            $('.models').append(option);
+        }
+    });
 });
