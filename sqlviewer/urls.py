@@ -23,6 +23,7 @@ from django.contrib import admin
 # Additionally, we include login URLs for the browsable API.
 from django.contrib.auth.views import login as login_view
 from django.contrib.auth.views import logout as logout_view
+from django.views.static import serve as django_static_serve
 from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView, model_upload_view
 from sqlviewer.settings.common import STATIC_ROOT
 
@@ -42,7 +43,7 @@ pages = [
 ]
 
 heroku_statics = [
-    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT})
+    url(r'^static/(?P<path>.*)$', django_static_serve, {'document_root': STATIC_ROOT})
 ]
 # 
 urlpatterns = pages + api + heroku_statics
