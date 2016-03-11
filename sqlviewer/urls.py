@@ -23,7 +23,8 @@ from django.contrib import admin
 # Additionally, we include login URLs for the browsable API.
 from django.contrib.auth.views import login as login_view
 from django.contrib.auth.views import logout as logout_view
-from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView
+from django.views.static import serve as django_static_serve
+from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView, model_upload_view
 from sqlviewer.settings.common import STATIC_ROOT
 
 api = [
@@ -32,16 +33,17 @@ api = [
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$', DiagramView.as_view()),
 ]
 pages = [
-    url(r'^$', models_list_view, name="model"),
+    url(r'^$', models_list_view, name="home"),
     url(r'^admin/', admin.site.urls),
+    url(r'^models/upload$', model_upload_view, name='model_upload'),
     url(r'^accounts/login/$', login_view, name='login'),
     url(r'^accounts/logout/$', logout_view, name='logout'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', model_version_details_view, name='model_details'),
-    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details')
+    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details'),
 ]
 
 heroku_statics = [
-		(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT})
+    url(r'^static/(?P<path>.*)$', django_static_serve, {'document_root': STATIC_ROOT})
 ]
 # 
 urlpatterns = pages + api + heroku_statics
