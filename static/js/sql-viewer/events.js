@@ -1,5 +1,5 @@
 $(".glimpse-container").click(function(e) {
-	$(".sqlv-table-selected").removeClass("sqlv-table-selected");
+	$(".sqlv-table-selected").("sqlv-table-selected");
 
  	$(e.target).parents(".sqlv-table").addClass("sqlv-table-selected");
 
