@@ -1,5 +1,0 @@
-<ul class="list-unstyled">
-	{% for dia in diagrams %}
-  		<li ><a href="{% url 'diagram_details' model_id dia.id %}">{{ dia.name }}</a></li>
-  	{% endfor %}
-</ul>

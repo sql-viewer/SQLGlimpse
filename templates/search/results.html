@@ -1,0 +1,48 @@
+{% extends 'viewer/base.html' %}
+
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search/results.css' %}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header">
+            <h1>
+                {% if results %}
+                    Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %} for <i>'{{ query }}'</i>
+                {% else %}
+                    No results found or <i>'{{ query }}'</i>
+                {% endif %}
+            </h1>
+            {% if  message %}
+                <small>{{ message }}</small>
+            {% endif %}
+        </div>
+        {% for res in results %}
+            <a href="{% url 'diagram_details' version.model.id version.id res.diagram.id %}#{{ res.id }}">
+                <div class="well well-sm result">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <b>{{ res.name }}</b>
+                                <small>
+                                    found in diagram {{ res.diagram.name }}, located in layer {{ res.layer.name }} with the color
+                                </small>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="color-circle pull-right" style="background-color: {{ res.layer.color }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    </div>
+{% endblock %}
+

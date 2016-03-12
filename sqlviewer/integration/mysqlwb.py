@@ -5,7 +5,7 @@ from sqlviewer.integration.tests.util import get_resource_path
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
 
-def import_model(model_path, name, version):
+def import_model(model_path, name, version="unknown"):
     content = read_model_from_zip(model_path)
     root = ET.ElementTree(ET.fromstring(content))
 

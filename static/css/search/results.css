@@ -1,0 +1,16 @@
+.result {
+    margin: 5px;
+    vertical-align: middle;
+
+}
+
+.color-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border: thin solid;
+    font-size: 20px;
+    color: #000000;
+    background-color: #AAAAAA;
+    text-align: center;
+}

@@ -1,32 +1,45 @@
-html,body { 
-	height: 100%; 
-	margin: 0px; 
-	padding: 0px; 
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }
 
-.navbar-header a{
-	color: #fff;
+.model-image {
+    height: 96px;
+    width: 96px;
 }
-.navbar-header a:hover{
-	text-decoration: none;
+
+.model-row {
+    margin: 5px;
 }
+
+
+.navbar-header a {
+    color: #fff;
+}
+
+.navbar-header a:hover {
+    text-decoration: none;
+}
+
 .glimpse-container {
-	width: 100%;
-	height: 850px;
-	overflow: auto;
-	cursor: -webkit-grab;
+    width: 100%;
+    height: 850px;
+    overflow: auto;
+    cursor: -webkit-grab;
     cursor: -moz-grab;
     cursor: -o-grab;
     cursor: grab;
 }
+
 #loading {
-	position: absolute;
-	width: 64px;
-	height: 64px;
-	z-index: 15;
-	top: 50%;
-	left: 50%;
-	margin: -32px 0 0 -32px;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    z-index: 15;
+    top: 50%;
+    left: 50%;
+    margin: -32px 0 0 -32px;
 }
 
 /*.noselect {
@@ -39,123 +52,144 @@ html,body {
 }*/
 
 .navbar {
-	border-radius: 0px;
-	margin: 0px;
+    border-radius: 0px;
+    margin: 0px;
 }
-.container-full {
-  	margin: 0 auto;
-	width: 100%;
-	height: 100%;
 
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;	
+.container-full {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .main {
-	width: 100%;
-	height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .sqlv-table {
-	font-family: 'Open Sans', sans-serif;
-	overflow: hidden;
-	border: 1px solid #7f8c8d;
-	border-radius: 5px;
-	margin: 0;
-	padding: 0;
-	background-color: #ecf0f1;
-	font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    overflow: hidden;
+    border: 1px solid #7f8c8d;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    background-color: #ecf0f1;
+    font-size: 13px;
 }
 
 .sqlv-table li {
-	height: 21px;
-	padding-left: 5px;
+    height: 21px;
+    padding-left: 5px;
 }
 
 .sqlv-table .fa {
-	font-size: 9px;
-	color: #9E9EFF;
+    font-size: 9px;
+    color: #9E9EFF;
 }
+
 .sqlv-table .key {
-	color: #CA5454;
+    color: #CA5454;
 }
 
 .sqlv-tableHeader {
-	text-align: center;
-	font-weight: bold;
+    text-align: center;
+    font-weight: bold;
 }
 
 .sqlv-table ul {
-	padding: 0;
-	margin: 0;
-	list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .sqlv-table td {
-	padding: 5px;
+    padding: 5px;
 }
 
 .sqlv-table th {
-	text-align: center;
-	background-color: #1abc9c;
+    text-align: center;
+    background-color: #1abc9c;
 }
 
 .sqlv-canvasText {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;	
-	color: #34495e;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    color: #34495e;
 }
 
 .sqlv-table-selected {
-	-webkit-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
-	-moz-box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
-	box-shadow: 0px 0px 10px 0px rgba(222,33,33,1);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(222, 33, 33, 1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(222, 33, 33, 1);
+    box-shadow: 0px 0px 10px 0px rgba(222, 33, 33, 1);
 }
 
 .sqlv-selected-row {
-	background-color: #eb8c00;
+    background-color: #eb8c00;
 }
+
 .space {
-	height: 20px;
+    height: 20px;
 }
+
 .sqlv-selected-row-hover {
-	background-color: #eb8c00;
+    background-color: #9ce1b0;
 }
 
 .svg-link {
-	stroke: #5A5A5A;
-	fill: #5A5A5A;
+    stroke: #5A5A5A;
+    fill: #5A5A5A;
 }
 
 .svg-link-hover {
-	stroke: #000;
+    stroke: #000;
+    fill: #000;
+}
+
+.svg-link-hidden {
+	stroke: rgba(0,0,0,0);
+}
+.svg-link-hidden-hover {
+	stroke: rgba(248, 148, 6, 0.6);
+	fill: #000;
+}
+.svg-link-hidden-selected {
+	stroke: rgba(248, 148, 6, 0.6);
 	fill: #000;
 }
 
+.svg-link-split {
+	stroke: #5A5A5A;
+	fill: #5A5A5A;	
+}
+
 footer {
-	background: #fff;
-	position:fixed;
-	left:0px;
-	bottom:0px;
-	height:30px;
-	width:100%;
+    background: #fff;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
 }
 
 footer .row {
-	padding: 0 20px;
+    padding: 0 20px;
 }
 
 footer .header {
-	font-size: 12px;
-	height: 30px;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	text-align: center;
-	top: 0;
-	cursor: pointer;
+    font-size: 12px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+    top: 0;
+    cursor: pointer;
 }

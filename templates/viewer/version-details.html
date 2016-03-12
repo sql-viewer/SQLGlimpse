@@ -1,0 +1,33 @@
+{% extends 'viewer/base.html' %}
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}Model Details{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/model/model-style.css' %}"/>
+{% endblock %}
+
+{% block body %}
+    <div class="row"></div>
+    {% for dia in diagrams %}
+        <div class="col-xs-2 diagram-item">
+            <a href="{% url 'diagram_details' version.model.id version.id dia.id %}">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div>
+                                <div class="col-xs-6">
+                                    <img src="{% static 'img/workbench/diagram.jpg' %}" class="diagram-element-image">
+                                </div>
+                                <div class="col-xs-6">
+                                    {{ dia.name }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

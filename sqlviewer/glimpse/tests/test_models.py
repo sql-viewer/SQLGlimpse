@@ -2,7 +2,7 @@ import json
 import os
 from django.test import TestCase
 from sqlviewer.glimpse.models import Column, Table, ForeignKey, TableElement, LayerElement, ConnectionElement, Diagram, \
-    Model
+    Model, Version
 from sqlviewer.glimpse.services import save_imported_model
 
 
@@ -13,7 +13,7 @@ class ModelSerializationTest(TestCase):
         save_imported_model(data['model'])
 
     def test_column_serialization(self):
-        column = Column.objects.get(id='70A39AC0-1194-4831-94B2-B663A2118C42')
+        column = Column.objects.get(extid='70A39AC0-1194-4831-94B2-B663A2118C42')
 
         data = column.to_json()
         self.assertEqual("70A39AC0-1194-4831-94B2-B663A2118C42".lower(), data['id'])
@@ -25,7 +25,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual(False, data['flags']['hidden'])
 
     def test_table_serialization(self):
-        table = Table.objects.get(id='6a2c07b6-8dad-4ff9-b5e7-85c3e34c136d')
+        table = Table.objects.get(extid='6a2c07b6-8dad-4ff9-b5e7-85c3e34c136d')
 
         data = table.to_json()
         self.assertEqual('6a2c07b6-8dad-4ff9-b5e7-85c3e34c136d', data['id'])
@@ -34,7 +34,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual(3, len(data['columns']))
 
     def test_foreign_key_serialization(self):
-        fk = ForeignKey.objects.get(id='50509361-E961-41DC-A7CB-E9267D4238C4')
+        fk = ForeignKey.objects.get(extid='50509361-E961-41DC-A7CB-E9267D4238C4')
 
         data = fk.to_json()
         self.assertEqual('50509361-e961-41dc-a7cb-e9267d4238c4', data['id'])
@@ -45,7 +45,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual("70A39AC0-1194-4831-94B2-B663A2118C42".lower(), data['target']['columnId'])
 
     def test_table_element_serialization(self):
-        table_element = TableElement.objects.get(id='CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB')
+        table_element = TableElement.objects.get(extid='CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB')
 
         data = table_element.to_json()
         self.assertEqual('CA8DEB78-99DD-4EB3-9F40-DDE75431D7BB'.lower(), data['id'])
@@ -58,7 +58,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual(37, data['element']['y'])
 
     def test_layer_element_serialization(self):
-        layer_element = LayerElement.objects.get(id='58A8526D-4C44-4896-A18E-EDBFFC7E7E4A')
+        layer_element = LayerElement.objects.get(extid='58A8526D-4C44-4896-A18E-EDBFFC7E7E4A')
 
         data = layer_element.to_json()
         self.assertEqual('58A8526D-4C44-4896-A18E-EDBFFC7E7E4A'.lower(), data['id'])
@@ -72,7 +72,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual(1, len(data['tables']))
 
     def test_connection_element_serialization(self):
-        connection_element = ConnectionElement.objects.get(id='2AC90AD8-4D61-47E8-A274-3D840C65558B')
+        connection_element = ConnectionElement.objects.get(extid='2AC90AD8-4D61-47E8-A274-3D840C65558B')
 
         data = connection_element.to_json()
         self.assertEqual('2AC90AD8-4D61-47E8-A274-3D840C65558B'.lower(), data['id'])
@@ -80,7 +80,7 @@ class ModelSerializationTest(TestCase):
         self.assertEqual('full', data['element']['draw'])
 
     def test_diagram_element_serialization(self):
-        diagram_element = Diagram.objects.get(id="1ABE0B5E-152C-48A0-AF62-B865324F28FC")
+        diagram_element = Diagram.objects.get(extid="1ABE0B5E-152C-48A0-AF62-B865324F28FC")
 
         data = diagram_element.to_json()
         self.assertEqual('1ABE0B5E-152C-48A0-AF62-B865324F28FC'.lower(), data['id'])
@@ -96,9 +96,14 @@ class ModelSerializationTest(TestCase):
         self.assertFalse('data' in data)
 
     def test_model_serialization(self):
-        model = Model.objects.get(id="EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6")
+        model = Model.objects.get(extid="EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6")
 
         data = model.to_json(shallow=True)
         self.assertEqual('EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6'.lower(), data['id'])
         self.assertEqual('name', data['name'])
-        self.assertEqual('version', data['version'])
+
+    def test_version_serialization(self):
+        version = Version.objects.get(model__extid="EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6")
+        data = version.to_json()
+        self.assertEqual(0, data['number'])
+        self.assertEqual(version.label, data['label'])
