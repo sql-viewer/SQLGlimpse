@@ -20,11 +20,11 @@ SqlViewer.Link.prototype.drawColumnLink = function() {
 
     var sourceColumn = $("li[id^='" + this.data.source.columnId +"']");
     var sx = sourceColumn.parent().position().left - correction.left;
-    var sy = sourceColumn.position().top + (sourceColumn.height() / 2) - correction.top;
+    var sy = this.getColumnTop(sourceColumn) + (sourceColumn.height() / 2) - correction.top;
     
     var targetColumn = $("li[id^='" + this.data.target.columnId +"']");
     var tx = targetColumn.parent().position().left - correction.left;
-    var ty = targetColumn.position().top + (targetColumn.height() / 2)- correction.top;
+    var ty =this.getColumnTop(targetColumn) + (targetColumn.height() / 2)- correction.top;
     
     var sxCorrection = 0;
     var txCorrection = 0;
@@ -86,4 +86,20 @@ SqlViewer.Link.prototype.drawColumnLink = function() {
             "data-sourceid" : this.data.source.columnId,
             "data-targetid" : this.data.target.columnId});
     }
+}
+
+
+SqlViewer.Link.prototype.getColumnTop = function(column) {
+    
+    var d = $(column).closest("div").position().top + $(column).closest("div").height();
+    var c = $(column).position().top + $(column).height();
+
+    if (d > c) {
+        return $(column).position().top;
+    }
+    else {
+        var fLi = $(column).parent().children()[0];
+        return $(fLi).position().top;
+    }
+
 }
