@@ -4,7 +4,7 @@ from os.path import dirname, join
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Version
 from django.db.models import Q
 
-from sqlviewer.glimpse.services import save_imported_model, search
+from sqlviewer.glimpse.services import save_imported_model, version_search
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
@@ -17,7 +17,7 @@ class TestViewerServices(TestCase):
 
     def test_search_service(self):
         version = Version.objects.first()
-        results = search(version, 'Product')
+        results = version_search(version, 'Product')
         self.assertEqual(1, len(results))
         self.assertDictEqual({
             "type": "table",

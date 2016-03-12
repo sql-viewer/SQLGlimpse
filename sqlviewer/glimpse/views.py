@@ -14,7 +14,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from sqlviewer.glimpse.models import Model, Diagram, Version, Table
 import logging
-from sqlviewer.glimpse.services import save_imported_model
+from sqlviewer.glimpse.services import save_imported_model, version_search
 from sqlviewer.integration.mysqlwb import import_model
 
 
@@ -74,16 +74,17 @@ def models_list_view(request):
 def model_version_details_view(request, model_id, version_id):
     version = get_object_or_404(Version, model__id=model_id, pk=version_id)
     data = {"diagrams": version.diagrams(),
-            "version_id": version_id,
-            "model_id": model_id}
-    return render(request, 'viewer/model.html', data)
+            "version": version}
+    return render(request, 'viewer/version-diagrams.html', data)
 
 
 @require_http_methods(["GET"])
 @login_required
 def diagram_details_view(request, model_id, version_id, diagram_id):
-    diagram = get_object_or_404(Diagram, id=diagram_id, model_version__id=version_id)
-    data = diagram.to_json()
+    version = get_object_or_404(Version, model__id=model_id, pk=version_id)
+    diagram = get_object_or_404(Diagram, id=diagram_id, model_version=version)
+    data = {"diagram": diagram.to_json(),
+            "version": version}
     return render(request, 'viewer/diagram.html', data)
 
 
@@ -105,17 +106,10 @@ def model_upload_view(request):
 
 @require_http_methods(["POST"])
 @login_required
-def model_search(request, model_id, version_id):
+def version_search_view(request, model_id, version_id):
     if request.method == "POST":
         version = get_object_or_404(Version, model__id=model_id, pk=version_id)
-        query = request.POST.get('query')
-
-        results = []
-        table_results = Table.objects.filter(name__contains=query).all()
-
-        for t in table_results:
-            results.append({
-
-            })
-
-        return render(request, 'search/results.html')
+        results = version_search(version, request.POST.get('query'))
+        data = {'results': results,
+                'version': version}
+        return render(request, 'search/results.html', data)

@@ -1,1 +1,18 @@
 {% extends 'viewer/base.html' %}
+
+{% load staticfiles %}
+{% load humanize %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block body %}
+    <div class="container-fluid col-xs-offset-2 col-xs-8">
+        {% if results|length > 0 %}
+            Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %}
+            {% for res in results %}
+
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
+

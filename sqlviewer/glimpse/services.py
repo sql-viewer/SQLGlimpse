@@ -5,7 +5,7 @@ from django.db.transaction import atomic
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
 
-def search(version: Version, query: str) -> list:
+def version_search(version: Version, query: str) -> list:
     """
     Searches the specified version with the specified query
     :param Version version: version to search
