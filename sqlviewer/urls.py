@@ -24,7 +24,8 @@ from django.contrib import admin
 from django.contrib.auth.views import login as login_view
 from django.contrib.auth.views import logout as logout_view
 from django.views.static import serve as django_static_serve
-from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView, model_upload_view
+from sqlviewer.glimpse.views import diagram_details_view, model_version_details_view, models_list_view, ModelView, VersionView, DiagramView, model_upload_view, \
+    version_search_view
 from sqlviewer.settings.common import STATIC_ROOT
 
 api = [
@@ -39,6 +40,7 @@ pages = [
     url(r'^accounts/login/$', login_view, name='login'),
     url(r'^accounts/logout/$', logout_view, name='logout'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', model_version_details_view, name='model_details'),
+    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/search$', version_search_view, name='version_search'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', diagram_details_view, name='diagram_details'),
 ]
 

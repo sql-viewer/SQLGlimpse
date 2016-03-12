@@ -1,6 +1,4 @@
 $(".glimpse-container").click(function(e) {
-	$(".sqlv-table-selected").("sqlv-table-selected");
-
  	$(e.target).parents(".sqlv-table").addClass("sqlv-table-selected");
 
 	if ($(e.target).hasClass("sqlv-table")) {
@@ -20,11 +18,8 @@ $("#footer-header").click(function() {
 });
 
 function setEvents() {
-    
     setEventsForFullConnections();
-
     setEventsForSplitConnections();
-
 }
 
 function setEventsForFullConnections() {
@@ -73,19 +68,15 @@ function setEventsForSplitConnections() {
     $(".svg-link-split").click(function() {
         var data = $(this).data();
         var hasSelectedClass = sessionStorage.getItem($(this).attr('id'));
-
         if (hasSelectedClass == null || hasSelectedClass == "false") {
             selectLinkSplit(data, selectedClass); 
             sessionStorage.setItem($(this).attr('id'), "true");
-
             //turn off mouseoff event
             $(this).off("mouseout");
-
         }
         else {
             sessionStorage.setItem($(this).attr('id'), "false");
             deselectLinkSplit(data, selectedClass);
-
             //turn back on mouseoff event
             $(".svg-link-split").mouseout(function() {
                 var data = $(this).data();

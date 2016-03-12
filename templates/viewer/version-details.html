@@ -8,15 +8,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/model/model-style.css' %}"/>
 {% endblock %}
 
-{% block navbar_items %}
-    {% include 'components/navbar-search.html' %}
-{% endblock %}
-
 {% block body %}
     <div class="row"></div>
     {% for dia in diagrams %}
         <div class="col-xs-2 diagram-item">
-            <a href="{% url 'diagram_details' model_id version_id dia.id %}">
+            <a href="{% url 'diagram_details' version.model.id version.id dia.id %}">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
