@@ -1,8 +1,23 @@
+from django.core.cache import cache
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
     TableElement, Version
 from django.db.transaction import atomic
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
+
+
+def get_diagram_data(diagram: Diagram) -> dict:
+    """
+    Get diagram data method for retrieval of diagram dictionary (json data)
+    Is cached to increase performance
+    :param Diagram diagram:
+    :return dict: diagram hierarchy with embedded json data
+    """
+    data = cache.get(diagram.id)
+    if not data:
+        data = diagram.to_json()
+        cache.set(diagram.id, data)
+    return data
 
 
 def version_search(version: Version, query: str) -> list:

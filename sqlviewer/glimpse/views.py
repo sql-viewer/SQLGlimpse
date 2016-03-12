@@ -8,13 +8,12 @@ from django.shortcuts import render, get_list_or_404, redirect
 from django.views.decorators.http import require_http_methods
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
-from django.core.cache import cache
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from sqlviewer.glimpse.models import Model, Diagram, Version, Table
 import logging
-from sqlviewer.glimpse.services import save_imported_model, version_search
+from sqlviewer.glimpse.services import save_imported_model, version_search, get_diagram_data
 from sqlviewer.integration.mysqlwb import import_model
 
 
@@ -52,11 +51,8 @@ class DiagramView(APIView):
             diagram_list = get_list_or_404(Diagram, model_version__id=version_id)
             data = [d.to_json() for d in diagram_list]
         else:
-            data = cache.get(diagram_id)
-            if not data:
-                diagram = get_object_or_404(Diagram, id=diagram_id)
-                data = diagram.to_json()
-                cache.set(diagram_id, data)
+            diagram = get_object_or_404(Diagram, id=diagram_id)
+            data = get_diagram_data(diagram)
 
         return Response(data=data, status=status.HTTP_200_OK)
 
@@ -75,7 +71,7 @@ def model_version_details_view(request, model_id, version_id):
     version = get_object_or_404(Version, model__id=model_id, pk=version_id)
     data = {"diagrams": version.diagrams(),
             "version": version}
-    return render(request, 'viewer/version-diagrams.html', data)
+    return render(request, 'viewer/version-details.html', data)
 
 
 @require_http_methods(["GET"])
@@ -83,7 +79,7 @@ def model_version_details_view(request, model_id, version_id):
 def diagram_details_view(request, model_id, version_id, diagram_id):
     version = get_object_or_404(Version, model__id=model_id, pk=version_id)
     diagram = get_object_or_404(Diagram, id=diagram_id, model_version=version)
-    data = {"diagram": diagram.to_json(),
+    data = {"diagram": get_diagram_data(diagram),
             "version": version}
     return render(request, 'viewer/diagram.html', data)
 
