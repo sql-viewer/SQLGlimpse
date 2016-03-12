@@ -105,7 +105,9 @@ def model_upload_view(request):
 def version_search_view(request, model_id, version_id):
     if request.method == "POST":
         version = get_object_or_404(Version, model__id=model_id, pk=version_id)
-        results = version_search(version, request.POST.get('query'))
+        query = request.POST.get('query')
+        results = version_search(version, query)
         data = {'results': results,
+                'query': query,
                 'version': version}
         return render(request, 'search/results.html', data)

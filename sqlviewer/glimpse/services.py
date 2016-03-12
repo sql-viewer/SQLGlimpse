@@ -2,6 +2,7 @@ from django.core.cache import cache
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
     TableElement, Version
 from django.db.transaction import atomic
+from django.conf import settings
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
@@ -20,7 +21,7 @@ def get_diagram_data(diagram: Diagram) -> dict:
     return data
 
 
-def version_search(version: Version, query: str, offset: int = 0, size: int = 1000) -> list:
+def version_search(version: Version, query: str, offset: int = 0, size: int = None) -> list:
     """
     Searches the specified version with the specified query
     :param Version version: version to search
@@ -29,9 +30,13 @@ def version_search(version: Version, query: str, offset: int = 0, size: int = 10
     :param int size: for result paging
     :return list of dict: search results for this query
     """
+    size = size or settings.VERSION_SEARCH_CONFIG['search_limit']
+    excluded_layers = settings.VERSION_SEARCH_CONFIG['exclude_layers'] or []
     search_results = []
+
     table_elements = TableElement.objects.filter(table__name__contains=query) \
                          .filter(table__model_version=version) \
+                         .exclude(layer_element__name__in=excluded_layers) \
                          .prefetch_related('table') \
                          .prefetch_related('layer_element') \
                          .prefetch_related('layer_element__diagram') \

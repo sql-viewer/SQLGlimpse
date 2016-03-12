@@ -14,11 +14,14 @@
         <div class="page-header">
             <h1>
                 {% if results %}
-                    Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %}
+                    Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %} for <i>'{{ query }}'</i>
                 {% else %}
                     No results found
                 {% endif %}
             </h1>
+            {% if  message %}
+                <small>{{ message }}</small>
+            {% endif %}
         </div>
         {% for res in results %}
             <a href="{% url 'diagram_details' version.model.id version.id res.diagram.id %}#{{ res.id }}">
