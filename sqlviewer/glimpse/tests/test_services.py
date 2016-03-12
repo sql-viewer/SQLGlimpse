@@ -18,7 +18,7 @@ class TestViewerServices(TestCase):
     def test_search_service(self):
         version = Version.objects.first()
         results = version_search(version, 'Product')
-        self.assertEqual(1, len(results))
+        self.assertEqual(2, len(results))
         self.assertDictEqual({
             "type": "table",
             "name": "CMN_PRO_Products",

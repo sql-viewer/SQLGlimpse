@@ -28,28 +28,27 @@ def version_search(version: Version, query: str) -> list:
     :return list of dict: search results for this query
     """
     search_results = []
-    table_elements = (TableElement.objects.filter(table__name__contains=query)
-                      .filter(table__model_version=version)
-                      .prefetch_related('table')
-                      .prefetch_related('layer_element')
-                      .prefetch_related('layer_element__diagram').all())
+    table_elements = TableElement.objects.filter(table__name__contains=query) \
+        .filter(table__model_version=version) \
+        .prefetch_related('table') \
+        .prefetch_related('layer_element') \
+        .prefetch_related('layer_element__diagram').all()
 
     for te in table_elements:
-        search_results.append({
-            'type': 'table',
-            'name': te.table.name,
-            'diagram': {
-                "id": te.layer_element.diagram.id,
-                "name": te.layer_element.diagram.name
-            },
-            'layer': {
-                "id": str(te.layer_element.extid),
-                "name": te.layer_element.name,
-                "color": te.layer_element.color
-            }
-        })
+        result = {'type': 'table',
+                  'name': te.table.name,
+                  'diagram': {
+                      "id": te.layer_element.diagram.id,
+                      "name": te.layer_element.diagram.name
+                  },
+                  'layer': {
+                      "id": str(te.layer_element.extid),
+                      "name": te.layer_element.name,
+                      "color": te.layer_element.color
+                  }}
+        search_results.append(result)
 
-        return search_results
+    return search_results
 
 
 @atomic
