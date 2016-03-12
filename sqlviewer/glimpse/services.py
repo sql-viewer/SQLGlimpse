@@ -20,22 +20,26 @@ def get_diagram_data(diagram: Diagram) -> dict:
     return data
 
 
-def version_search(version: Version, query: str) -> list:
+def version_search(version: Version, query: str, offset: int = 0, size: int = 1000) -> list:
     """
     Searches the specified version with the specified query
     :param Version version: version to search
     :param str query: query to search
+    :param int offset: for result paging
+    :param int size: for result paging
     :return list of dict: search results for this query
     """
     search_results = []
     table_elements = TableElement.objects.filter(table__name__contains=query) \
-        .filter(table__model_version=version) \
-        .prefetch_related('table') \
-        .prefetch_related('layer_element') \
-        .prefetch_related('layer_element__diagram').all()
+                         .filter(table__model_version=version) \
+                         .prefetch_related('table') \
+                         .prefetch_related('layer_element') \
+                         .prefetch_related('layer_element__diagram') \
+                         .all()[offset: size]
 
     for te in table_elements:
         result = {'type': 'table',
+                  'id': te.extid,
                   'name': te.table.name,
                   'diagram': {
                       "id": te.layer_element.diagram.id,

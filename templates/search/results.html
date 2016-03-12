@@ -5,19 +5,41 @@
 
 {% block title %}Search Results{% endblock %}
 
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/search/results.css' %}"/>
+{% endblock %}
+
 {% block body %}
-    <div class="container-fluid col-xs-offset-2 col-xs-8">
-        {% if results|length > 0 %}
-            <div>
-                Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %}
-            </div>
-            {% for res in results %}
-                <div></div>
-                {{ res.name }} found in diagram {{ res.diagram.name }}, located in layer {{ res.layer.name }} with the color {{ res.layer.color }}
-            {% endfor %}
-        {% else %}
-            No results found
-        {% endif %}
+    <div class="col-xs-offset-2 col-xs-8">
+        <div class="page-header">
+            <h1>
+                {% if results %}
+                    Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %}
+                {% else %}
+                    No results found
+                {% endif %}
+            </h1>
+        </div>
+        {% for res in results %}
+            <a href="{% url 'diagram_details' version.model.id version.id res.diagram.id %}#{{ res.id }}">
+                <div class="well well-sm result">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-11">
+                                <b>{{ res.name }}</b>
+                                <small>
+                                    found in diagram {{ res.diagram.name }}, located in layer {{ res.layer.name }} with the color
+                                </small>
+                            </div>
+                            <div class="col-xs-1">
+                                <div class="color-circle pull-right" style="background-color: {{ res.layer.color }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
     </div>
 {% endblock %}
 
