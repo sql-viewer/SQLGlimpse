@@ -1,10 +1,10 @@
 import json
 from django.test import TestCase
 from os.path import dirname, join
-from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey
+from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Version
 from django.db.models import Q
 
-from sqlviewer.glimpse.services import save_imported_model
+from sqlviewer.glimpse.services import save_imported_model, search
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
@@ -14,6 +14,25 @@ class TestViewerServices(TestCase):
         with open(join(dirname(__file__), 'resources/model.json')) as fin:
             self.model_data = json.load(fin)['model']
         save_imported_model(self.model_data)
+
+    def test_search_service(self):
+        version = Version.objects.first()
+        results = search(version, 'Product')
+        self.assertEqual(1, len(results))
+        self.assertDictEqual({
+            "type": "table",
+            "name": "CMN_PRO_Products",
+            "diagram": {
+                "id": 1,
+                "name": "Core"
+            },
+            "layer": {
+                "id": "dfa75dce-dbd1-4c45-87ff-5891f71648dd",
+                "color": "#FFFFFF",
+                "name": "rootLayer"
+            }
+
+        }, results[0])
 
     def test_save_multiple_model_versions(self):
         model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')

@@ -12,7 +12,7 @@ from django.core.cache import cache
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from sqlviewer.glimpse.models import Model, Diagram, Version
+from sqlviewer.glimpse.models import Model, Diagram, Version, Table
 import logging
 from sqlviewer.glimpse.services import save_imported_model
 from sqlviewer.integration.mysqlwb import import_model
@@ -101,3 +101,21 @@ def model_upload_view(request):
         imported_data = import_model(path, basename(path))
         save_imported_model(imported_data['model'])
         return redirect(reverse('home'))
+
+
+@require_http_methods(["POST"])
+@login_required
+def model_search(request, model_id, version_id):
+    if request.method == "POST":
+        version = get_object_or_404(Version, model__id=model_id, pk=version_id)
+        query = request.POST.get('query')
+
+        results = []
+        table_results = Table.objects.filter(name__contains=query).all()
+
+        for t in table_results:
+            results.append({
+
+            })
+
+        return render(request, 'search/results.html')

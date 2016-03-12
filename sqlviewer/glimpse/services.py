@@ -5,12 +5,43 @@ from django.db.transaction import atomic
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
 
+def search(version: Version, query: str) -> list:
+    """
+    Searches the specified version with the specified query
+    :param Version version: version to search
+    :param str query: query to search
+    :return list of dict: search results for this query
+    """
+    search_results = []
+    table_elements = (TableElement.objects.filter(table__name__contains=query)
+                      .filter(table__model_version=version)
+                      .prefetch_related('table')
+                      .prefetch_related('layer_element')
+                      .prefetch_related('layer_element__diagram').all())
+
+    for te in table_elements:
+        search_results.append({
+            'type': 'table',
+            'name': te.table.name,
+            'diagram': {
+                "id": te.layer_element.diagram.id,
+                "name": te.layer_element.diagram.name
+            },
+            'layer': {
+                "id": str(te.layer_element.extid),
+                "name": te.layer_element.name,
+                "color": te.layer_element.color
+            }
+        })
+
+        return search_results
+
+
 @atomic
-def save_imported_model(model):
+def save_imported_model(model: dict) -> None:
     """
     Model imported from one of our importers
-    :type model: dict
-    :return:
+    :param dict model: imported model
     """
 
     dbmodel = Model.objects.filter(extid=model['id']).first()
