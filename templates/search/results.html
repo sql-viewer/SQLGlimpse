@@ -16,7 +16,7 @@
                 {% if results %}
                     Found {{ results|length|apnumber }} result{% if results|length > 1 %}s{% endif %} for <i>'{{ query }}'</i>
                 {% else %}
-                    No results found
+                    No results found or <i>'{{ query }}'</i>
                 {% endif %}
             </h1>
             {% if  message %}

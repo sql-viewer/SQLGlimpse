@@ -1,5 +1,6 @@
 # Create your views here.
 from os.path import basename
+from django.conf import settings
 
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
@@ -106,8 +107,15 @@ def version_search_view(request, model_id, version_id):
     if request.method == "POST":
         version = get_object_or_404(Version, model__id=model_id, pk=version_id)
         query = request.POST.get('query')
-        results = version_search(version, query)
-        data = {'results': results,
-                'query': query,
-                'version': version}
+        data = {
+            'query': query,
+            'version': version,
+            'results': []
+        }
+        if query and len(query) > 2:
+            results = version_search(version, query)
+            data['results'] = results
+        else:
+            data['message'] = 'The provided query is too short!'
+
         return render(request, 'search/results.html', data)
