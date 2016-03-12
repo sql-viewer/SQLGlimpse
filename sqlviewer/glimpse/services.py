@@ -1,16 +1,70 @@
+from django.core.cache import cache
 from sqlviewer.glimpse.models import Model, Table, Column, ForeignKey, Diagram, ConnectionElement, LayerElement, \
     TableElement, Version
 from django.db.transaction import atomic
+from django.conf import settings
 
 __author__ = 'Stefan Martinov <stefan.martinov@gmail.com>'
 
 
+def get_diagram_data(diagram: Diagram) -> dict:
+    """
+    Get diagram data method for retrieval of diagram dictionary (json data)
+    Is cached to increase performance
+    :param Diagram diagram:
+    :return dict: diagram hierarchy with embedded json data
+    """
+    data = cache.get(diagram.id)
+    if not data:
+        data = diagram.to_json()
+        cache.set(diagram.id, data)
+    return data
+
+
+def version_search(version: Version, query: str, offset: int = 0, size: int = None) -> list:
+    """
+    Searches the specified version with the specified query
+    :param Version version: version to search
+    :param str query: query to search
+    :param int offset: for result paging
+    :param int size: for result paging
+    :return list of dict: search results for this query
+    """
+    size = size or settings.VERSION_SEARCH_CONFIG['search_limit']
+    excluded_layers = settings.VERSION_SEARCH_CONFIG['exclude_layers'] or []
+    search_results = []
+
+    table_elements = TableElement.objects.filter(table__name__contains=query) \
+                         .filter(table__model_version=version) \
+                         .exclude(layer_element__name__in=excluded_layers) \
+                         .prefetch_related('table') \
+                         .prefetch_related('layer_element') \
+                         .prefetch_related('layer_element__diagram') \
+                         .all()[offset: size]
+
+    for te in table_elements:
+        result = {'type': 'table',
+                  'id': str(te.extid),
+                  'name': te.table.name,
+                  'diagram': {
+                      "id": te.layer_element.diagram.id,
+                      "name": te.layer_element.diagram.name
+                  },
+                  'layer': {
+                      "id": str(te.layer_element.extid),
+                      "name": te.layer_element.name,
+                      "color": te.layer_element.color
+                  }}
+        search_results.append(result)
+
+    return search_results
+
+
 @atomic
-def save_imported_model(model):
+def save_imported_model(model: dict) -> None:
     """
     Model imported from one of our importers
-    :type model: dict
-    :return:
+    :param dict model: imported model
     """
 
     dbmodel = Model.objects.filter(extid=model['id']).first()

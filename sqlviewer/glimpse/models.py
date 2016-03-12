@@ -47,7 +47,7 @@ class Version(models.Model):
     model = models.ForeignKey(Model)
 
     def diagrams(self):
-        return Diagram.objects.filter(model_version=self)
+        return Diagram.objects.filter(model_version=self).all()
 
     def save(self, *args, **kwargs):
         if not self.number:
