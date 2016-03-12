@@ -1,6 +1,4 @@
 $(".glimpse-container").click(function(e) {
-	$(".sqlv-table-selected").("sqlv-table-selected");
-
  	$(e.target).parents(".sqlv-table").addClass("sqlv-table-selected");
 
 	if ($(e.target).hasClass("sqlv-table")) {
