@@ -44,7 +44,7 @@ def version_search(version: Version, query: str, offset: int = 0, size: int = No
 
     for te in table_elements:
         result = {'type': 'table',
-                  'id': te.extid,
+                  'id': str(te.extid),
                   'name': te.table.name,
                   'diagram': {
                       "id": te.layer_element.diagram.id,

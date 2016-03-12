@@ -32,7 +32,7 @@ class GlimpseViewTests(BaseViewTest):
         url = reverse('version_search', args=(version.model.id, version.id))
         resp = self.client.post(url, data={'query': 'Product'})
         self.assertEqual(200, resp.status_code)
-        self.assertEqual(1, len(resp.context['results']))
+        self.assertEqual(2, len(resp.context['results']))
 
     def test_search_view_uauthorized(self):
         version = Version.objects.first()

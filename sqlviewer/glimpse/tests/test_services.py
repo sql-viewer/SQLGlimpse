@@ -21,6 +21,7 @@ class TestViewerServices(TestCase):
         self.assertEqual(2, len(results))
         self.assertDictEqual({
             "type": "table",
+            "id": "ca8deb78-99dd-4eb3-9f40-dde75431d7bb",
             "name": "CMN_PRO_Products",
             "diagram": {
                 "id": 1,
@@ -34,39 +35,39 @@ class TestViewerServices(TestCase):
 
         }, results[0])
 
-    def test_save_multiple_model_versions(self):
-        model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
-        version = model.latest_version()
+        def test_save_multiple_model_versions(self):
+            model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
+            version = model.latest_version()
 
-        self.assertEqual(0, version.number)
-        self.assertEqual('version', version.label)
+            self.assertEqual(0, version.number)
+            self.assertEqual('version', version.label)
 
-        self.model_data['version'] = 'new version'
-        save_imported_model(self.model_data)
-        version = model.latest_version()
-        self.assertEqual(1, version.number)
-        self.assertEqual('new version', version.label)
+            self.model_data['version'] = 'new version'
+            save_imported_model(self.model_data)
+            version = model.latest_version()
+            self.assertEqual(1, version.number)
+            self.assertEqual('new version', version.label)
 
-    def test_get_diagram_details(self):
-        model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
-        self.assertEqual('name', model.name)
+        def test_get_diagram_details(self):
+            model = Model.objects.get(extid='EBDB3E5E-7DC4-4BC9-9D35-C9A75372A8E6')
+            self.assertEqual('name', model.name)
 
-        version = model.latest_version()
+            version = model.latest_version()
 
-        tables = Table.objects.filter(model_version=version)
-        self.assertEqual(9, len(tables))
+            tables = Table.objects.filter(model_version=version)
+            self.assertEqual(9, len(tables))
 
-        product_table = Table.objects.filter(model_version=version, name='CMN_PRO_Products').first()
-        self.assertEqual(6, len(product_table.columns()))
-        primary_key = Column.objects.get(table=product_table, is_key=True)
-        self.assertEqual('70A39AC0-1194-4831-94B2-B663A2118C42', str(primary_key.extid).upper())
-        self.assertEqual(None, primary_key.comment)
-        self.assertEqual('CMN_PRO_ProductID', primary_key.name)
+            product_table = Table.objects.filter(model_version=version, name='CMN_PRO_Products').first()
+            self.assertEqual(6, len(product_table.columns()))
+            primary_key = Column.objects.get(table=product_table, is_key=True)
+            self.assertEqual('70A39AC0-1194-4831-94B2-B663A2118C42', str(primary_key.extid).upper())
+            self.assertEqual(None, primary_key.comment)
+            self.assertEqual('CMN_PRO_ProductID', primary_key.name)
 
-        foreign_key = ForeignKey.objects.filter(model_version=version)
-        self.assertEqual(11, len(foreign_key))
-        pk_references = ForeignKey.objects.filter(Q(source_column=primary_key) | Q(target_column=primary_key))
-        self.assertEqual(1, len(pk_references))
-        pkref = pk_references.first()
-        self.assertEqual("CMN_PRO_Catalog_Products", pkref.source_table.name)
-        self.assertEqual("CMN_PRO_Products", pkref.target_table.name)
+            foreign_key = ForeignKey.objects.filter(model_version=version)
+            self.assertEqual(11, len(foreign_key))
+            pk_references = ForeignKey.objects.filter(Q(source_column=primary_key) | Q(target_column=primary_key))
+            self.assertEqual(1, len(pk_references))
+            pkref = pk_references.first()
+            self.assertEqual("CMN_PRO_Catalog_Products", pkref.source_table.name)
+            self.assertEqual("CMN_PRO_Products", pkref.target_table.name)
