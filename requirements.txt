@@ -2,8 +2,6 @@ django==1.9
 djangorestframework==3.3.1
 markdown==2.6.5
 django-filter==0.11.0
-mongoengine==0.10.6
-psycopg2==2.6.1
 
 # HEROKU Requirements
 gunicorn>=19.4.5
