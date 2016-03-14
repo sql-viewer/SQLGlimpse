@@ -6,6 +6,14 @@ import dj_database_url
 
 DEBUG = False
 
+ALLOWED_HOSTS = [
+    '*'
+]
+
+ADMINS = [
+    ('Stefan Martinov', '<stefan.martinov@gmail.com')
+]
+
 DATABASES = {
     "default": dj_database_url.config(default=os.environ['DATABASE_URL'])
 }
