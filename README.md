@@ -21,6 +21,8 @@ Integrated with travis CI, located on https://travis-ci.org/sql-viewer/sql-viewe
 
 Slack group link https://sql-viewer.slack.com/messages/general/
 
+## Demo
+https://sqlglimpse.herokuapp.com/
 
 ## How To Import A Model
 `python3 manage.py import [path-to-model] [model-name] [model-version]`
