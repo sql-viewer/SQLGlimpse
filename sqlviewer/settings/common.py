@@ -125,10 +125,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static/'
-
-STATICFILES_DIRS = [
-]
 
 VERSION_SEARCH_CONFIG = {
     "search_limit": 1000,
