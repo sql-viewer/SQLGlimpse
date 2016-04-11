@@ -23,11 +23,12 @@ from django.contrib import admin
 from django.contrib.auth.views import login as login_view
 from django.contrib.auth.views import logout as logout_view
 from sqlviewer.glimpse import views as glimpse_views
+from sqlviewer.connect import views as connect_views
 
 api = [
     url(r'^api/v1/models/(?P<model_id>\d+)?$', glimpse_views.ModelView.as_view()),
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)?$', glimpse_views.VersionView.as_view()),
-    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$',glimpse_views. DiagramView.as_view()),
+    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$', glimpse_views.DiagramView.as_view()),
 ]
 pages = [
     url(r'^$', glimpse_views.models_list_view, name="home"),
@@ -36,8 +37,10 @@ pages = [
     url(r'^accounts/login/$', login_view, name='login'),
     url(r'^accounts/logout/$', logout_view, name='logout'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)$', glimpse_views.model_version_details_view, name='model_details'),
+    url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/connect$', connect_views.connect_view, name='glimpse-connect'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/search$', glimpse_views.version_search_view, name='version_search'),
     url(r'^models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)$', glimpse_views.diagram_details_view, name='diagram_details'),
+
 ]
 
 urlpatterns = pages + api

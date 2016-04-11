@@ -19,29 +19,8 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">SQLGlimpse</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                {% if request.user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
-                    <li><a href="{% url 'model_upload' %}">Upload</a></li>
-                {% endif %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
-            </ul>
-            {% if version %}
-                {% include 'components/navbar-search.html' %}
-            {% endif %}
-            {% block navbar_items %}
-            {% endblock %}
-        </div>
-    </div>
-</nav>
+{% include 'components/navbar.html' %}
+
 <div class="container-fluid">
     {% block body %}
     {% endblock %}
