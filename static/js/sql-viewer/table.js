@@ -5,7 +5,7 @@ SqlViewer.Table = function (table, canvasX, canvasY, data) {
     }
 
     // Properties:
-    this.id = table.tableId;
+    this.id = table.id;
     this.table = table;
     this.data = data;
     this.canvasX = canvasX;

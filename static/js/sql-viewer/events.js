@@ -20,6 +20,7 @@ $("#footer-header").click(function() {
 function setEvents() {
     setEventsForFullConnections();
     setEventsForSplitConnections();
+	windowsScrollToPostion();
 }
 
 function setEventsForFullConnections() {
@@ -109,3 +110,11 @@ function deselectLinkSplit(data, c) {
     $("#" + data.targetid).removeClass(c); 
     $("#" + data.sourceid).removeClass(c); 
 }
+
+function windowsScrollToPostion() {
+	var elPositon = $(window.location.hash).position()
+    $(".glimpse-container").scrollLeft(elPositon.left-50);
+    $(".glimpse-container").scrollLeft(elPositon.top);
+}
+
+
