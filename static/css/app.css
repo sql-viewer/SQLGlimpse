@@ -4,15 +4,23 @@ html, body {
     padding: 0px;
 }
 
-.model-image {
+.datamodel-image {
+    float: left;
+}
+
+.datamodel-image img {
     height: 96px;
     width: 96px;
+}
+
+.datamodel-text {
+    float: left;
+    padding-left: 20px;
 }
 
 .model-row {
     margin: 5px;
 }
-
 
 .navbar-header a {
     color: #fff;
@@ -154,20 +162,22 @@ html, body {
 }
 
 .svg-link-hidden {
-	stroke: rgba(0,0,0,0);
+    stroke: rgba(0, 0, 0, 0);
 }
+
 .svg-link-hidden-hover {
-	stroke: rgba(248, 148, 6, 0.6);
-	fill: #000;
+    stroke: rgba(248, 148, 6, 0.6);
+    fill: #000;
 }
+
 .svg-link-hidden-selected {
-	stroke: rgba(248, 148, 6, 0.6);
-	fill: #000;
+    stroke: rgba(248, 148, 6, 0.6);
+    fill: #000;
 }
 
 .svg-link-split {
-	stroke: #5A5A5A;
-	fill: #5A5A5A;	
+    stroke: #5A5A5A;
+    fill: #5A5A5A;
 }
 
 footer {
