@@ -14,16 +14,25 @@
         <div class="row">
             <form class="form-inline" method="GET" action="">
                 <div class="form-group">
-                    <label for="tableFrom">From</label>
+                    <label for="tableFrom">From:</label>
                     <input type="text" class="form-control" id="tableFrom" placeholder="Table" size="64" name="from" value="{{ request.GET.from }}">
                 </div>
                 <div class="form-group">
-                    <label for="tableTo"> to </label>
+                    <label for="tableTo">to:</label>
                     <input type="text" class="form-control" id="tableTo" placeholder="Table" size="64" name="to" value="{{ request.GET.to }}">
                 </div>
                 <button type="submit" class="btn btn-default">Connect</button>
             </form>
         </div>
+        {% for res in results %}
+            <div class="row">
+                <div class="panel">
+                    {% for tab in res %}
+                        {{ tab }}{% if not forloop.last %} => {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}
