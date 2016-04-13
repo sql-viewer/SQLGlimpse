@@ -4,41 +4,26 @@
 
 {% block title %}Connect{% endblock %}
 
+{% block javascript %}
+    <script src="{% static 'js/connect/script.js' %}"></script>
+{% endblock %}
+
 {% block body %}
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <script>
-        $(function () {
-            function log(message) {
-                $("<div>").text(message).prependTo("#log");
-                $("#log").scrollTop(0);
-            }
-
-            $("#tableFrom").autocomplete({
-                source: "search.php",
-                minLength: 2,
-                select: function (event, ui) {
-                    log(ui.item ?
-                    "Selected: " + ui.item.value + " aka " + ui.item.id :
-                    "Nothing selected, input was " + this.value);
-                }
-            });
-        });
-    </script>
     <div class="container">
         <div class="row">
-            <form class="form-inline">
+            <form class="form-inline" method="GET" action="">
                 <div class="form-group">
                     <label for="tableFrom">From</label>
-                    <input type="text" class="form-control" id="tableFrom" placeholder="Table">
+                    <input type="text" class="form-control" id="tableFrom" placeholder="Table" size="64" name="from" value="{{ request.GET.from }}">
                 </div>
                 <div class="form-group">
-                    <label for="tableTo">To</label>
-                    <input type="text" class="form-control" id="tableTo" placeholder="Table">
+                    <label for="tableTo"> to </label>
+                    <input type="text" class="form-control" id="tableTo" placeholder="Table" size="64" name="to" value="{{ request.GET.to }}">
                 </div>
                 <button type="submit" class="btn btn-default">Connect</button>
             </form>
         </div>
     </div>
+
 {% endblock %}
