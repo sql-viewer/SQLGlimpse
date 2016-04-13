@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import render
 
 
@@ -8,3 +9,5 @@ def connect_view(request, model_id, version_id):
     }
 
     return render(request, 'connect/search.html', data)
+
+

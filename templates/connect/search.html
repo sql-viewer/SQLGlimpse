@@ -2,32 +2,43 @@
 {% load staticfiles %}
 {% load humanize %}
 
-{% block title %}Model Details{% endblock %}
-
-{% block custom_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/model/model-style.css' %}"/>
-{% endblock %}
+{% block title %}Connect{% endblock %}
 
 {% block body %}
-    <div class="row"></div>
-    {% for dia in diagrams %}
-        <div class="col-xs-2 diagram-item">
-            <a href="{% url 'diagram_details' version.model.id version.id dia.id %}">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div>
-                                <div class="col-xs-6">
-                                    <img src="{% static 'img/workbench/diagram.jpg' %}" class="diagram-element-image">
-                                </div>
-                                <div class="col-xs-6">
-                                    {{ dia.name }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            function log(message) {
+                $("<div>").text(message).prependTo("#log");
+                $("#log").scrollTop(0);
+            }
+
+            $("#tableFrom").autocomplete({
+                source: "search.php",
+                minLength: 2,
+                select: function (event, ui) {
+                    log(ui.item ?
+                    "Selected: " + ui.item.value + " aka " + ui.item.id :
+                    "Nothing selected, input was " + this.value);
+                }
+            });
+        });
+    </script>
+    <div class="container">
+        <div class="row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="tableFrom">From</label>
+                    <input type="text" class="form-control" id="tableFrom" placeholder="Table">
                 </div>
-            </a>
+                <div class="form-group">
+                    <label for="tableTo">To</label>
+                    <input type="text" class="form-control" id="tableTo" placeholder="Table">
+                </div>
+                <button type="submit" class="btn btn-default">Connect</button>
+            </form>
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
