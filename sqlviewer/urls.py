@@ -29,7 +29,7 @@ import sqlviewer.glimpse.api
 api = [
     url(r'^api/v1/models/(?P<model_id>\d+)?$', sqlviewer.glimpse.api.ModelView.as_view()),
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)?$', sqlviewer.glimpse.api.VersionView.as_view()),
-    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/tables(/)?$', sqlviewer.glimpse.api.table_details),
+    url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/tables(/)?$', sqlviewer.glimpse.api.table_details, name='api-table-details'),
     url(r'^api/v1/models/(?P<model_id>\d+)/versions/(?P<version_id>\d+)/diagrams/(?P<diagram_id>\d+)?$', sqlviewer.glimpse.api.DiagramView.as_view()),
 ]
 pages = [
