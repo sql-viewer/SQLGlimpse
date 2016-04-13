@@ -1,9 +1,15 @@
-.diagram-element {
-
-}
-
 
 .diagram-element-image {
-    width: 64px;
-    height: 64px;
+    float: left;
+}
+
+.diagram-element-text {
+    float: left;
+    padding-left: 5px;
+    max-width: 64px
+}
+
+.diagram-element-image img {
+    width: 84px;
+    height: 84px;
 }

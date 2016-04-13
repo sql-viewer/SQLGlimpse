@@ -11,18 +11,16 @@
 {% block body %}
     <div class="row"></div>
     {% for dia in diagrams %}
-        <div class="col-xs-2 diagram-item">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 diagram-item">
             <a href="{% url 'diagram_details' version.model.id version.id dia.id %}">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <div class="row">
-                            <div>
-                                <div class="col-xs-6">
-                                    <img src="{% static 'img/workbench/diagram.jpg' %}" class="diagram-element-image">
-                                </div>
-                                <div class="col-xs-6">
-                                    {{ dia.name }}
-                                </div>
+                        <div >
+                            <div class="diagram-element-image">
+                                <img src="{% static 'img/workbench/diagram.jpg' %}">
+                            </div>
+                            <div class="diagram-element-text">
+                                {{ dia.name }}
                             </div>
                         </div>
                     </div>
