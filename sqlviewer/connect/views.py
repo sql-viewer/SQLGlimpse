@@ -19,7 +19,6 @@ def connect_view(request, model_id, version_id):
         results = connect_tables(version, source_table, target_table)
     else:
         results = []
-    print(results)
     data = {"version": version,
             "results": results}
 
