@@ -2,32 +2,59 @@
 {% load staticfiles %}
 {% load humanize %}
 
-{% block title %}Model Details{% endblock %}
+{% block title %}Connect{% endblock %}
 
-{% block custom_css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/model/model-style.css' %}"/>
+{% block javascript %}
+    <script src="{% static 'js/connect/script.js' %}"></script>
 {% endblock %}
 
 {% block body %}
-    <div class="row"></div>
-    {% for dia in diagrams %}
-        <div class="col-xs-2 diagram-item">
-            <a href="{% url 'diagram_details' version.model.id version.id dia.id %}">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div>
-                                <div class="col-xs-6">
-                                    <img src="{% static 'img/workbench/diagram.jpg' %}" class="diagram-element-image">
-                                </div>
-                                <div class="col-xs-6">
-                                    {{ dia.name }}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+    <div class="container">
+        <div class="row">
+            <form class="form-inline" method="GET" action="">
+                <div class="form-group ">
+                    <label for="tableFrom">From:</label>
+                    <input type="text" class="form-control" id="tableFrom" placeholder="Table" size="64" name="from" value="{{ request.GET.from }}">
                 </div>
-            </a>
+                <div class="form-group ">
+                    <label for="tableTo">to:</label>
+                    <input type="text" class="form-control" id="tableTo" placeholder="Table" size="64" name="to" value="{{ request.GET.to }}">
+                </div>
+                <button type="submit" class="btn btn-default">Connect</button>
+            </form>
         </div>
-    {% endfor %}
+        {% if results %}
+            <h2>Results</h2>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Hop</th>
+                        <th>Path</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for res in results %}
+                        <tr>
+                            <td>
+                                {{ forloop.counter }}
+                            </td>
+                            <td>
+                                {{ res|length }}
+                            </td>
+                            <td>
+                                {% for tab in res %}
+                                    <b>{{ tab }}</b>{% if not forloop.last %} <i>=></i>{% endif %}
+                                {% endfor %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+
 {% endblock %}

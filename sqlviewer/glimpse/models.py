@@ -97,13 +97,16 @@ class Table(UUIDModel):
     def columns(self):
         return Column.objects.filter(table=self)
 
-    def to_json(self):
-        return {
+    def to_json(self, shallow=False):
+        data = {
             "id": str(self.extid),
             "name": self.name,
-            "comment": self.comment,
-            "columns": [col.to_json() for col in self.columns()]
+            "comment": self.comment
         }
+
+        if not shallow:
+            data["columns"] = [col.to_json() for col in self.columns()]
+        return data
 
 
 class Column(UUIDModel):
